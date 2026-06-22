@@ -1,491 +1,362 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GlobalLink - by Gavriil Moschidis</title>
-  <meta name="description" content="Παγκόσμιος κατάλογος επιλεγμένων προϊόντων με συνεργαζόμενους συνδέσμους." />
-  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-  <style>
-    :root{
-      --blue:#071a35;
-      --blue2:#1554d1;
-      --gold:#d69b26;
-      --text:#111827;
-      --muted:#64748b;
-      --line:#e5eaf3;
-      --bg:#f7f9fc;
-      --card:#ffffff;
-      --shadow:0 14px 36px rgba(7,26,53,.08);
-      --radius:22px;
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{
-      font-family:Arial,"DejaVu Sans",sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      line-height:1.45;
-    }
-    button,input,select{font-family:inherit}
-    button{cursor:pointer}
-    img{max-width:100%;display:block}
-    .container{width:min(1240px,92%);margin:auto}
-    .topbar{
-      position:sticky;top:0;z-index:50;
-      background:rgba(255,255,255,.96);
-      backdrop-filter:blur(12px);
-      border-bottom:1px solid var(--line);
-      box-shadow:0 4px 18px rgba(7,26,53,.05);
-    }
-    .navwrap{
-      height:82px;display:flex;align-items:center;justify-content:space-between;gap:18px;
-    }
-    .brand{display:flex;align-items:center;gap:12px;border:0;background:transparent;color:inherit}
-    .brand-icon{
-      width:64px;height:64px;border-radius:16px;object-fit:cover;
-      filter:drop-shadow(0 8px 14px rgba(21,84,209,.18));
-    }
-    .brand-text strong{
-      display:block;font-size:31px;line-height:.95;color:var(--blue);
-      letter-spacing:-1px;text-shadow:0 0 0 transparent;
-    }
-    .brand-text span{
-      display:block;margin-top:7px;color:#a36d13;font-weight:700;font-size:15px;
-    }
-    .nav{display:flex;align-items:center;gap:26px;font-weight:700}
-    .nav button{
-      background:transparent;border:0;color:var(--blue);font-size:15px;padding:11px 0;border-bottom:2px solid transparent;
-    }
-    .nav button.active,.nav button:hover{color:var(--blue2);border-bottom-color:var(--blue2)}
-    .actions{display:flex;align-items:center;gap:12px}
-    .icon-btn{
-      border:0;background:transparent;font-size:23px;color:var(--blue);
-      width:38px;height:38px;border-radius:12px;
-    }
-    .icon-btn:hover{background:#eef4ff}
-    .lang{position:relative}
-    .lang-main{
-      display:flex;align-items:center;gap:8px;border:1px solid #d9e2f1;background:#fff;
-      padding:11px 15px;border-radius:13px;color:var(--blue);font-weight:700;
-    }
-    .lang-menu{
-      position:absolute;right:0;top:52px;width:180px;background:#fff;border:1px solid var(--line);
-      border-radius:15px;box-shadow:var(--shadow);padding:8px;display:none;
-    }
-    .lang.open .lang-menu{display:block}
-    .lang-menu button{
-      width:100%;background:#fff;border:0;border-radius:11px;text-align:left;padding:12px;font-size:15px;color:var(--blue);
-    }
-    .lang-menu button:hover{background:#eef4ff}
-    .mobile-menu{display:none;border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 13px;font-weight:800;color:var(--blue)}
-
-    .hero{
-      background:linear-gradient(180deg,#fff 0%,#f5f8ff 100%);
-      padding:58px 0 36px;overflow:hidden;
-    }
-    .hero-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:34px;align-items:center}
-    .eyebrow{display:flex;align-items:center;gap:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--gold);font-weight:800;font-size:13px;margin-bottom:20px}
-    .eyebrow:before{content:"";width:42px;height:2px;background:var(--gold);display:block}
-    .hero h1{font-size:clamp(38px,5vw,64px);line-height:1.05;letter-spacing:-1.8px;color:var(--blue);margin-bottom:22px}
-    .hero h1 span{color:var(--blue2)}
-    .hero p{font-size:19px;color:#46556d;max-width:570px;line-height:1.7;margin-bottom:32px}
-    .points{display:flex;flex-wrap:wrap;gap:18px}
-    .point{display:flex;align-items:center;gap:10px;color:var(--blue);font-weight:700}
-    .point i{font-style:normal;color:var(--blue2);font-size:25px}
-    .hero-art{
-      min-height:360px;border-radius:34px;background:url("assets/images/hero.svg") center/cover no-repeat;
-      box-shadow:0 24px 65px rgba(7,26,53,.10);
-    }
-    .section-title{text-align:center;margin:44px 0 24px}
-    .section-title h2{font-size:29px;color:var(--blue)}
-    .section-title:after{content:"";display:block;width:52px;height:3px;background:var(--gold);border-radius:99px;margin:12px auto 0}
-    .category-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-bottom:34px}
-    .cat-card{
-      background:#fff;border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:var(--shadow);
-      transition:.2s;
-    }
-    .cat-card:hover{transform:translateY(-4px);box-shadow:0 20px 42px rgba(7,26,53,.13)}
-    .cat-image{height:170px;background:#eef4ff;display:grid;place-items:center;font-size:70px}
-    .cat-body{padding:22px}
-    .cat-row{display:flex;align-items:center;gap:14px;margin-bottom:14px}
-    .cat-icon{font-size:32px;color:var(--blue2)}
-    .cat-body h3{font-size:22px;color:var(--blue)}
-    .cat-body p{color:var(--muted);font-size:14px;min-height:42px;margin-bottom:18px}
-    .cat-btn,.product-btn{
-      display:inline-flex;align-items:center;justify-content:center;gap:12px;
-      border:1px solid var(--blue2);background:#fff;color:var(--blue2);
-      border-radius:12px;padding:11px 17px;font-weight:800;width:100%;
-      transition:.2s;
-    }
-    .cat-btn:hover,.product-btn:hover{background:var(--blue2);color:#fff}
-    .trust{
-      display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:34px 0 48px;
-    }
-    .trust-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:24px;display:flex;gap:17px;align-items:center;box-shadow:var(--shadow)}
-    .trust-card i{font-style:normal;font-size:32px;color:var(--blue2)}
-    .trust-card h3{font-size:18px;color:var(--blue);margin-bottom:5px}
-    .trust-card p{color:var(--muted);font-size:14px}
-    .products-page{display:none;padding:34px 0 0}
-    .crumbs{color:#53657f;font-size:14px;margin-bottom:18px}
-    .category-header{
-      display:grid;grid-template-columns:.85fr 1.15fr;align-items:stretch;background:#fff;border:1px solid var(--line);
-      border-radius:0 0 28px 28px;overflow:hidden;box-shadow:var(--shadow);margin-bottom:24px;
-    }
-    .category-copy{padding:44px 36px}
-    .category-copy h1{font-size:clamp(34px,5vw,56px);line-height:1.08;color:var(--blue);margin-bottom:15px}
-    .category-copy p{font-size:17px;color:#53657f;line-height:1.65}
-    .category-banner{min-height:230px;background:center/cover no-repeat}
-    .tools{background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);border-radius:22px;padding:18px;display:grid;grid-template-columns:1fr 220px 220px;gap:16px;margin-bottom:24px}
-    .tools input,.tools select{border:1px solid #d9e2f1;border-radius:14px;padding:14px 16px;background:#fff;color:var(--blue);font-size:15px;outline:none}
-    .tabs{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 22px}
-    .tab{border:1px solid var(--line);background:#fff;color:var(--blue);border-radius:13px;padding:12px 16px;font-weight:800}
-    .tab.active,.tab:hover{background:var(--blue);border-color:var(--blue);color:#fff}
-    .product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-bottom:40px}
-    .product-card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);transition:.2s}
-    .product-card:hover{transform:translateY(-4px);box-shadow:0 18px 42px rgba(7,26,53,.12)}
-    .product-img{height:190px;background:#f2f6fc;position:relative;overflow:hidden}
-    .product-img img{width:100%;height:100%;object-fit:cover}
-    .fav{position:absolute;right:12px;top:12px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.9);display:grid;place-items:center;color:var(--blue)}
-    .product-info{padding:17px}
-    .product-info h3{font-size:17px;line-height:1.3;color:var(--blue);min-height:44px}
-    .price{font-size:22px;font-weight:900;color:var(--blue2);margin:9px 0}
-    .ship{font-size:13px;color:var(--muted);display:flex;gap:7px;align-items:center;margin-bottom:13px}
-    .minimal-footer{border-top:1px solid var(--line);background:#fff;padding:24px 0;margin-top:20px}
-    .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:20px}
-    .footer-logo{display:flex;align-items:center;gap:10px;color:var(--blue);font-weight:900}
-    .footer-logo img{width:42px;height:42px;border-radius:10px}
-    .footer-note{font-size:13px;color:var(--muted);text-align:right;max-width:680px}
-    .hide{display:none!important}
-    @media(max-width:980px){
-      .nav{display:none}.mobile-menu{display:block}.hero-grid,.category-header{grid-template-columns:1fr}.category-grid,.product-grid{grid-template-columns:repeat(2,1fr)}.tools,.trust{grid-template-columns:1fr}.hero-art{min-height:270px}.category-banner{min-height:180px}
-    }
-    @media(max-width:620px){
-      .actions .icon-btn{display:none}.brand-icon{width:52px;height:52px}.brand-text strong{font-size:24px}.brand-text span{font-size:13px}.category-grid,.product-grid{grid-template-columns:1fr}.navwrap{height:auto;padding:14px 0}.hero{padding-top:35px}.hero h1{font-size:38px}.lang-main span{display:none}.footer-inner{flex-direction:column;text-align:center}.footer-note{text-align:center}
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GlobalLink - by Gavriil Moschidis</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f7f9fc;color:#071a35}
+button,input,select{font-family:inherit}
+button{cursor:pointer}
+.container{width:min(1180px,92%);margin:auto}
+header{position:sticky;top:0;background:white;border-bottom:1px solid #e5eaf3;z-index:10}
+.top{height:82px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.logo{display:flex;align-items:center;gap:12px;border:0;background:white;color:#071a35}
+.logoIcon{width:58px;height:58px;border-radius:15px;background:linear-gradient(135deg,#071a35,#1554d1);display:grid;place-items:center;font-size:32px;box-shadow:0 10px 25px #1554d133}
+.logo strong{font-size:30px;display:block;line-height:.9}
+.logo span{color:#a36d13;font-weight:bold}
+nav{display:flex;gap:22px}
+nav button,.lang button{border:0;background:white;color:#071a35;font-weight:bold;font-size:15px}
+nav button:hover{color:#1554d1}
+.lang{position:relative}
+.langMain{border:1px solid #d9e2f1!important;padding:11px 14px;border-radius:13px!important}
+.langMenu{display:none;position:absolute;right:0;top:48px;background:white;border:1px solid #e5eaf3;border-radius:14px;box-shadow:0 12px 30px #071a351c;padding:8px;width:170px}
+.langMenu button{display:block;width:100%;text-align:left;padding:12px;border-radius:10px}
+.lang.open .langMenu{display:block}
+.hero{background:linear-gradient(180deg,#fff,#eef5ff);padding:55px 0 35px}
+.heroGrid{display:grid;grid-template-columns:1fr 1fr;gap:35px;align-items:center}
+.hero h1{font-size:clamp(38px,5vw,64px);line-height:1.05;margin-bottom:22px}
+.hero h1 span{color:#1554d1}
+.hero p{font-size:19px;line-height:1.6;color:#475569;margin-bottom:28px}
+.points{display:flex;gap:18px;flex-wrap:wrap;font-weight:bold;color:#071a35}
+.art{min-height:350px;border-radius:34px;background:radial-gradient(circle at 55% 35%,#79cfff 0,#1554d1 28%,#071a35 56%,transparent 57%),linear-gradient(135deg,#fff,#eef5ff);box-shadow:0 24px 60px #071a3519;position:relative;overflow:hidden}
+.art:before{content:"🌐";position:absolute;font-size:175px;right:170px;top:65px}
+.art:after{content:"📦  🔗  ✈️  🚚";position:absolute;font-size:62px;right:55px;bottom:65px}
+.title{text-align:center;margin:42px 0 24px}
+.title h2{font-size:30px}
+.title:after{content:"";display:block;width:55px;height:3px;background:#d69b26;margin:12px auto;border-radius:99px}
+.cats,.products,.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.card,.product,.trustCard{background:white;border:1px solid #e5eaf3;border-radius:22px;overflow:hidden;box-shadow:0 12px 30px #071a3510}
+.pic{height:170px;background:linear-gradient(135deg,#eef4ff,#fff);display:grid;place-items:center;font-size:72px}
+.body{padding:20px}
+.body h3{font-size:21px;margin-bottom:8px}
+.body p{color:#64748b;min-height:42px;margin-bottom:16px}
+.btn{width:100%;border:1px solid #1554d1;background:white;color:#1554d1;border-radius:12px;padding:12px;font-weight:bold}
+.btn:hover{background:#1554d1;color:white}
+.trust{grid-template-columns:repeat(3,1fr);margin:34px 0 45px}
+.trustCard{padding:24px;display:flex;gap:14px;align-items:center}
+.trustCard b{font-size:18px}
+.trustCard p{color:#64748b;font-size:14px}
+#productsPage{display:none;padding:34px 0}
+.categoryHead{display:grid;grid-template-columns:1fr 1fr;background:white;border:1px solid #e5eaf3;border-radius:0 0 28px 28px;overflow:hidden;box-shadow:0 12px 30px #071a3510;margin-bottom:24px}
+.catCopy{padding:42px 34px}
+.catCopy h1{font-size:clamp(34px,5vw,56px);margin-bottom:14px}
+.catCopy p{color:#64748b;font-size:17px;line-height:1.6}
+.banner{display:grid;place-items:center;font-size:120px;background:linear-gradient(135deg,#fff,#eaf3ff)}
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.tabs button{border:1px solid #e5eaf3;background:white;border-radius:13px;padding:12px 16px;font-weight:bold;color:#071a35}
+.tabs button.active{background:#071a35;color:white}
+.tools{display:grid;grid-template-columns:1fr 190px 190px;gap:14px;background:white;border:1px solid #e5eaf3;border-radius:22px;padding:18px;margin-bottom:24px;box-shadow:0 12px 30px #071a3510}
+.tools input,.tools select{border:1px solid #d9e2f1;border-radius:14px;padding:14px;font-size:15px}
+.products{margin-bottom:35px}
+.productImg{height:185px;background:linear-gradient(135deg,#fff,#edf5ff);display:grid;place-items:center;font-size:76px;position:relative}
+.productBody{padding:17px}
+.productBody h3{font-size:17px;min-height:44px}
+.price{font-size:22px;font-weight:900;color:#1554d1;margin:9px 0}
+.ship{font-size:13px;color:#64748b;margin-bottom:13px}
+footer{background:white;border-top:1px solid #e5eaf3;padding:22px 0;color:#64748b;font-size:13px}
+.footer{display:flex;justify-content:space-between;gap:20px;align-items:center}
+@media(max-width:900px){nav{display:none}.heroGrid,.categoryHead{grid-template-columns:1fr}.cats,.products{grid-template-columns:repeat(2,1fr)}.trust,.tools{grid-template-columns:1fr}}
+@media(max-width:560px){.top{height:auto;padding:14px 0}.logo strong{font-size:24px}.logoIcon{width:50px;height:50px}.cats,.products{grid-template-columns:1fr}.hero{padding-top:35px}.hero h1{font-size:38px}.art{min-height:260px}.footer{flex-direction:column;text-align:center}.langMain{font-size:13px!important}}
+</style>
 </head>
 <body>
-<header class="topbar">
-  <div class="container navwrap">
-    <button class="brand" onclick="showHome()" aria-label="GlobalLink">
-      <img class="brand-icon" src="assets/images/logo-icon.svg" alt="GlobalLink">
-      <span class="brand-text"><strong>GlobalLink</strong><span>by Gavriil Moschidis</span></span>
-    </button>
-    <nav class="nav">
-      <button id="navHome" class="active" onclick="showHome()" data-i18n="navHome">Αρχική</button>
-      <button onclick="scrollCategories()" data-i18n="navCategories">Κατηγορίες</button>
-      <button onclick="showProducts('all')" data-i18n="navProducts">Προϊόντα</button>
-      <button onclick="showAbout()" data-i18n="navAbout">Σχετικά με εμάς</button>
-      <button onclick="showContact()" data-i18n="navContact">Επικοινωνία</button>
-    </nav>
-    <div class="actions">
-      <button class="icon-btn" aria-label="Αναζήτηση">⌕</button>
-      <button class="icon-btn" aria-label="Λογαριασμός">♙</button>
-      <button class="mobile-menu" onclick="scrollCategories()">Μενού</button>
-      <div class="lang" id="langBox">
-        <button class="lang-main" onclick="toggleLang()"><span>🌐</span><b id="langLabel">Ελληνικά / English</b>⌄</button>
-        <div class="lang-menu">
-          <button onclick="setLang('el')">🇬🇷 Ελληνικά</button>
-          <button onclick="setLang('en')">🇬🇧 English</button>
-        </div>
-      </div>
-    </div>
-  </div>
+<header>
+<div class="container top">
+<button class="logo" onclick="home()"><div class="logoIcon">🌐</div><div><strong>GlobalLink</strong><span>by Gavriil Moschidis</span></div></button>
+<nav><button onclick="home()" data-t="nav1">Αρχική</button><button onclick="goCats()" data-t="nav2">Κατηγορίες</button><button onclick="showCat('all')" data-t="nav3">Προϊόντα</button><button onclick="goAbout()" data-t="nav4">Σχετικά</button><button onclick="goContact()" data-t="nav5">Επικοινωνία</button></nav>
+<div class="lang" id="lang"><button class="langMain" onclick="toggleLang()">🌐 <span id="langLabel">Ελληνικά / English</span></button><div class="langMenu"><button onclick="setLang('el')">🇬🇷 Ελληνικά</button><button onclick="setLang('en')">🇬🇧 English</button></div></div>
+</div>
 </header>
 
 <main>
-<section id="homePage">
-  <section class="hero">
-    <div class="container hero-grid">
-      <div>
-        <div class="eyebrow" data-i18n="welcome">Καλώς ήρθες στο GlobalLink</div>
-        <h1 data-i18n-html="heroTitle">Ανακάλυψε προϊόντα από <span>όλο τον κόσμο</span></h1>
-        <p data-i18n="heroText">Συνδέουμε τον κόσμο με ποιοτικά προϊόντα και αξιόπιστες αποστολές. Διάλεξε κατηγορία και βρες αυτό που χρειάζεσαι.</p>
-        <div class="points">
-          <div class="point"><i>🌐</i><span data-i18n="point1">Παγκόσμια προϊόντα</span></div>
-          <div class="point"><i>🛡️</i><span data-i18n="point2">Αξιόπιστες αποστολές</span></div>
-          <div class="point"><i>🎧</i><span data-i18n="point3">Εσύ στο επίκεντρο</span></div>
-        </div>
-      </div>
-      <div class="hero-art"></div>
-    </div>
-  </section>
+<section id="home">
+<section class="hero"><div class="container heroGrid"><div><h1 data-html="heroTitle">Ανακάλυψε προϊόντα από <span>όλο τον κόσμο</span></h1><p data-t="heroText">Συνδέουμε τον κόσμο με ποιοτικά προϊόντα και αξιόπιστες αποστολές. Διάλεξε κατηγορία και βρες αυτό που χρειάζεσαι.</p><div class="points"><span data-t="p1">🌐 Παγκόσμια προϊόντα</span><span data-t="p2">🛡️ Αξιόπιστες αποστολές</span><span data-t="p3">🎧 Εσύ στο επίκεντρο</span></div></div><div class="art"></div></div></section>
 
-  <section class="container" id="categories">
-    <div class="section-title"><h2 data-i18n="popularCategories">Δημοφιλείς Κατηγορίες</h2></div>
-    <div class="category-grid">
-      <article class="cat-card">
-        <div class="cat-image">💻</div>
-        <div class="cat-body">
-          <div class="cat-row"><span class="cat-icon">▣</span><h3 data-i18n="catTech">Τεχνολογία</h3></div>
-          <p data-i18n="catTechText">Συσκευές και αξεσουάρ τεχνολογίας.</p>
-          <button class="cat-btn" onclick="showProducts('tech')" data-i18n="seeProducts">Δες προϊόντα →</button>
-        </div>
-      </article>
-      <article class="cat-card">
-        <div class="cat-image">🛋️</div>
-        <div class="cat-body">
-          <div class="cat-row"><span class="cat-icon">⌂</span><h3 data-i18n="catHome">Σπίτι</h3></div>
-          <p data-i18n="catHomeText">Πρακτικά και όμορφα προϊόντα για κάθε χώρο.</p>
-          <button class="cat-btn" onclick="showProducts('home')" data-i18n="seeProducts">Δες προϊόντα →</button>
-        </div>
-      </article>
-      <article class="cat-card">
-        <div class="cat-image">👕</div>
-        <div class="cat-body">
-          <div class="cat-row"><span class="cat-icon">♢</span><h3 data-i18n="catClothes">Ρούχα</h3></div>
-          <p data-i18n="catClothesText">Ρούχα και αξεσουάρ με στυλ και άνεση.</p>
-          <button class="cat-btn" onclick="showProducts('clothes')" data-i18n="seeProducts">Δες προϊόντα →</button>
-        </div>
-      </article>
-      <article class="cat-card">
-        <div class="cat-image">🚗</div>
-        <div class="cat-body">
-          <div class="cat-row"><span class="cat-icon">▱</span><h3 data-i18n="catCar">Αυτοκίνητο</h3></div>
-          <p data-i18n="catCarText">Χρήσιμα αξεσουάρ για το αυτοκίνητο.</p>
-          <button class="cat-btn" onclick="showProducts('car')" data-i18n="seeProducts">Δες προϊόντα →</button>
-        </div>
-      </article>
-    </div>
+<section class="container" id="cats">
+<div class="title"><h2 data-t="popular">Δημοφιλείς Κατηγορίες</h2></div>
 
-    <div class="trust" id="aboutBlock">
-      <div class="trust-card"><i>🌍</i><div><h3 data-i18n="trust1">Παγκόσμιες συνεργασίες</h3><p data-i18n="trust1Text">Συνεργασία με αξιόπιστους συνεργάτες από όλο τον κόσμο.</p></div></div>
-      <div class="trust-card"><i>🔒</i><div><h3 data-i18n="trust2">Ασφαλείς αγορές</h3><p data-i18n="trust2Text">Η αγορά ολοκληρώνεται στον ιστότοπο του συνεργάτη.</p></div></div>
-      <div class="trust-card"><i>🚚</i><div><h3 data-i18n="trust3">Αποστολή παντού</h3><p data-i18n="trust3Text">Προϊόντα με δυνατότητα αποστολής σε πολλές χώρες.</p></div></div>
-    </div>
-  </section>
+<div class="cats">
+<div class="card"><div class="pic">💻</div><div class="body"><h3 data-t="tech">Τεχνολογία</h3><p data-t="techText">Συσκευές και αξεσουάρ τεχνολογίας.</p><button class="btn" onclick="showCat('tech')" data-t="see">Δες προϊόντα →</button></div></div>
+
+<div class="card"><div class="pic">🛋️</div><div class="body"><h3 data-t="homeCat">Σπίτι</h3><p data-t="homeText">Πρακτικά και όμορφα προϊόντα για κάθε χώρο.</p><button class="btn" onclick="showCat('home')" data-t="see">Δες προϊόντα →</button></div></div>
+
+<div class="card"><div class="pic">👕</div><div class="body"><h3 data-t="clothes">Ρούχα</h3><p data-t="clothesText">Ρούχα και αξεσουάρ με στυλ και άνεση.</p><button class="btn" onclick="showCat('clothes')" data-t="see">Δες προϊόντα →</button></div></div>
+
+<div class="card"><div class="pic">🚗</div><div class="body"><h3 data-t="car">Αυτοκίνητο</h3><p data-t="carText">Χρήσιμα αξεσουάρ για το αυτοκίνητο.</p><button class="btn" onclick="showCat('car')" data-t="see">Δες προϊόντα →</button></div></div>
+</div>
+
+<div class="trust" id="about">
+<div class="trustCard">🌍<div><b data-t="tr1">Παγκόσμιες συνεργασίες</b><p data-t="tr1t">Συνεργάτες από όλο τον κόσμο.</p></div></div>
+<div class="trustCard">🔒<div><b data-t="tr2">Ασφαλείς αγορές</b><p data-t="tr2t">Η αγορά γίνεται στον συνεργάτη.</p></div></div>
+<div class="trustCard">🚚<div><b data-t="tr3">Αποστολή παντού</b><p data-t="tr3t">Προϊόντα με αποστολή σε πολλές χώρες.</p></div></div>
+</div>
+</section>
 </section>
 
-<section id="productsPage" class="products-page">
-  <div class="container">
-    <div class="crumbs">Αρχική / Κατηγορίες / <span id="crumbName">Προϊόντα</span></div>
-    <div class="category-header">
-      <div class="category-copy">
-        <h1 id="categoryTitle">Προϊόντα</h1>
-        <p id="categoryText">Επιλεγμένα προϊόντα με αποστολή σε όλο τον κόσμο.</p>
-      </div>
-      <div id="categoryBanner" class="category-banner"></div>
-    </div>
+<section id="productsPage">
+<div class="container">
+<div class="categoryHead">
+<div class="catCopy"><h1 id="catTitle">Προϊόντα</h1><p id="catText">Επιλεγμένα προϊόντα με αποστολή σε όλο τον κόσμο.</p></div>
+<div class="banner" id="catEmoji">🌍</div>
+</div>
 
-    <div class="tabs">
-      <button class="tab" data-cat="tech" onclick="showProducts('tech')">💻 <span data-i18n="catTech">Τεχνολογία</span></button>
-      <button class="tab" data-cat="home" onclick="showProducts('home')">🛋️ <span data-i18n="catHome">Σπίτι</span></button>
-      <button class="tab" data-cat="clothes" onclick="showProducts('clothes')">👕 <span data-i18n="catClothes">Ρούχα</span></button>
-      <button class="tab" data-cat="car" onclick="showProducts('car')">🚗 <span data-i18n="catCar">Αυτοκίνητο</span></button>
-      <button class="tab" data-cat="all" onclick="showProducts('all')">▦ <span data-i18n="allCategories">Όλες οι κατηγορίες</span></button>
-    </div>
+<div class="tabs">
+<button onclick="showCat('tech')" data-cat="tech">💻 <span data-t="tech">Τεχνολογία</span></button>
+<button onclick="showCat('home')" data-cat="home">🛋️ <span data-t="homeCat">Σπίτι</span></button>
+<button onclick="showCat('clothes')" data-cat="clothes">👕 <span data-t="clothes">Ρούχα</span></button>
+<button onclick="showCat('car')" data-cat="car">🚗 <span data-t="car">Αυτοκίνητο</span></button>
+<button onclick="showCat('all')" data-cat="all">▦ <span data-t="all">Όλα</span></button>
+</div>
 
-    <div class="tools">
-      <input id="searchInput" type="search" oninput="renderProducts()" placeholder="Αναζήτηση προϊόντων..." />
-      <select id="priceFilter" onchange="renderProducts()">
-        <option value="all">Όλες οι τιμές</option>
-        <option value="0-25">Μέχρι 25€</option>
-        <option value="25-60">25€ έως 60€</option>
-        <option value="60-1000">Πάνω από 60€</option>
-      </select>
-      <select id="sortFilter" onchange="renderProducts()">
-        <option value="recommended">Προτεινόμενα</option>
-        <option value="low">Τιμή: χαμηλή πρώτα</option>
-        <option value="high">Τιμή: υψηλή πρώτα</option>
-      </select>
-    </div>
+<div class="tools">
+<input id="search" oninput="render()" placeholder="Αναζήτηση προϊόντων...">
+<select id="price" onchange="render()">
+<option value="all">Όλες οι τιμές</option>
+<option value="0-25">Μέχρι 25€</option>
+<option value="25-60">25€ έως 60€</option>
+<option value="60-999">Πάνω από 60€</option>
+</select>
+<select id="sort" onchange="render()">
+<option value="rec">Προτεινόμενα</option>
+<option value="low">Χαμηλή τιμή</option>
+<option value="high">Υψηλή τιμή</option>
+</select>
+</div>
 
-    <div id="productGrid" class="product-grid"></div>
-  </div>
+<div class="products" id="grid"></div>
+</div>
 </section>
 </main>
 
-<footer class="minimal-footer" id="contactBlock">
-  <div class="container footer-inner">
-    <div class="footer-logo"><img src="assets/images/logo-icon.svg" alt=""> GlobalLink <span style="color:#a36d13;font-weight:700">by Gavriil Moschidis</span></div>
-    <div class="footer-note" data-i18n="legal">Η σελίδα περιέχει συνεργαζόμενους συνδέσμους. Η αγορά ολοκληρώνεται στην ιστοσελίδα του εκάστοτε συνεργάτη.</div>
-  </div>
+<footer id="contact">
+<div class="container footer">
+<b>🌐 GlobalLink <span style="color:#a36d13">by Gavriil Moschidis</span></b>
+<span data-t="legal">Η σελίδα περιέχει συνεργαζόμενους συνδέσμους. Η αγορά ολοκληρώνεται στην ιστοσελίδα του εκάστοτε συνεργάτη.</span>
+</div>
 </footer>
 
 <script>
-let lang = "el";
-let currentCategory = "all";
+let lang='el',cat='all';
 
-const translations = {
-  el: {
-    navHome:"Αρχική", navCategories:"Κατηγορίες", navProducts:"Προϊόντα", navAbout:"Σχετικά με εμάς", navContact:"Επικοινωνία",
-    welcome:"Καλώς ήρθες στο GlobalLink",
-    heroTitle:"Ανακάλυψε προϊόντα από <span>όλο τον κόσμο</span>",
-    heroText:"Συνδέουμε τον κόσμο με ποιοτικά προϊόντα και αξιόπιστες αποστολές. Διάλεξε κατηγορία και βρες αυτό που χρειάζεσαι.",
-    point1:"Παγκόσμια προϊόντα", point2:"Αξιόπιστες αποστολές", point3:"Εσύ στο επίκεντρο",
-    popularCategories:"Δημοφιλείς Κατηγορίες",
-    catTech:"Τεχνολογία", catHome:"Σπίτι", catClothes:"Ρούχα", catCar:"Αυτοκίνητο",
-    catTechText:"Συσκευές και αξεσουάρ τεχνολογίας.", catHomeText:"Πρακτικά και όμορφα προϊόντα για κάθε χώρο.", catClothesText:"Ρούχα και αξεσουάρ με στυλ και άνεση.", catCarText:"Χρήσιμα αξεσουάρ για το αυτοκίνητο.",
-    seeProducts:"Δες προϊόντα →", allCategories:"Όλες οι κατηγορίες",
-    trust1:"Παγκόσμιες συνεργασίες", trust1Text:"Συνεργασία με αξιόπιστους συνεργάτες από όλο τον κόσμο.",
-    trust2:"Ασφαλείς αγορές", trust2Text:"Η αγορά ολοκληρώνεται στον ιστότοπο του συνεργάτη.",
-    trust3:"Αποστολή παντού", trust3Text:"Προϊόντα με δυνατότητα αποστολής σε πολλές χώρες.",
-    legal:"Η σελίδα περιέχει συνεργαζόμενους συνδέσμους. Η αγορά ολοκληρώνεται στην ιστοσελίδα του εκάστοτε συνεργάτη.",
-    search:"Αναζήτηση προϊόντων...",
-    allPrices:"Όλες οι τιμές", upTo:"Μέχρι 25€", mid:"25€ έως 60€", highPrice:"Πάνω από 60€",
-    recommended:"Προτεινόμενα", low:"Τιμή: χαμηλή πρώτα", high:"Τιμή: υψηλή πρώτα",
-    shipping:"Αποστολή παγκοσμίως", seeProduct:"Δες προϊόν →", noProducts:"Δεν βρέθηκαν προϊόντα.",
-    categories: {
-      all:["Όλα τα προϊόντα","Επιλεγμένα προϊόντα από όλες τις κατηγορίες.","assets/images/hero.svg"],
-      tech:["Προϊόντα Τεχνολογίας","Συσκευές, αξεσουάρ και έξυπνες επιλογές τεχνολογίας.","assets/images/tech-banner.svg"],
-      home:["Προϊόντα για το Σπίτι","Επιλεγμένα προϊόντα για κάθε χώρο του σπιτιού σας.","assets/images/home-banner.svg"],
-      clothes:["Προϊόντα για Ρούχα","Ρούχα και αξεσουάρ που συνδυάζουν στυλ, ποιότητα και άνεση.","assets/images/clothes-banner.svg"],
-      car:["Προϊόντα για το Αυτοκίνητο","Χρήσιμα αξεσουάρ για οδήγηση, άνεση και καθαριότητα.","assets/images/car-banner.svg"]
-    }
-  },
-  en: {
-    navHome:"Home", navCategories:"Categories", navProducts:"Products", navAbout:"About us", navContact:"Contact",
-    welcome:"Welcome to GlobalLink",
-    heroTitle:"Discover products from <span>around the world</span>",
-    heroText:"We connect you with quality products and trusted global shipping. Choose a category and find what you need.",
-    point1:"Global products", point2:"Trusted shipping", point3:"You first",
-    popularCategories:"Popular Categories",
-    catTech:"Technology", catHome:"Home", catClothes:"Clothing", catCar:"Car",
-    catTechText:"Devices and technology accessories.", catHomeText:"Practical and stylish products for every room.", catClothesText:"Clothing and accessories with style and comfort.", catCarText:"Useful accessories for your car.",
-    seeProducts:"View products →", allCategories:"All categories",
-    trust1:"Global partnerships", trust1Text:"Partners from around the world.",
-    trust2:"Safe purchases", trust2Text:"Purchases are completed on the partner website.",
-    trust3:"Worldwide shipping", trust3Text:"Products with shipping availability to many countries.",
-    legal:"This site contains partner links. Purchases are completed on each partner’s website.",
-    search:"Search products...",
-    allPrices:"All prices", upTo:"Up to €25", mid:"€25 to €60", highPrice:"Over €60",
-    recommended:"Recommended", low:"Price: low first", high:"Price: high first",
-    shipping:"Worldwide shipping", seeProduct:"View product →", noProducts:"No products found.",
-    categories: {
-      all:["All products","Selected products from all categories.","assets/images/hero.svg"],
-      tech:["Technology Products","Devices, accessories and smart technology choices.","assets/images/tech-banner.svg"],
-      home:["Home Products","Selected products for every room of your home.","assets/images/home-banner.svg"],
-      clothes:["Clothing Products","Clothing and accessories with style, quality and comfort.","assets/images/clothes-banner.svg"],
-      car:["Car Products","Useful accessories for driving, comfort and cleaning.","assets/images/car-banner.svg"]
-    }
-  }
+const L={
+el:{
+nav1:'Αρχική',
+nav2:'Κατηγορίες',
+nav3:'Προϊόντα',
+nav4:'Σχετικά',
+nav5:'Επικοινωνία',
+heroTitle:'Ανακάλυψε προϊόντα από <span>όλο τον κόσμο</span>',
+heroText:'Συνδέουμε τον κόσμο με ποιοτικά προϊόντα και αξιόπιστες αποστολές. Διάλεξε κατηγορία και βρες αυτό που χρειάζεσαι.',
+p1:'🌐 Παγκόσμια προϊόντα',
+p2:'🛡️ Αξιόπιστες αποστολές',
+p3:'🎧 Εσύ στο επίκεντρο',
+popular:'Δημοφιλείς Κατηγορίες',
+tech:'Τεχνολογία',
+homeCat:'Σπίτι',
+clothes:'Ρούχα',
+car:'Αυτοκίνητο',
+techText:'Συσκευές και αξεσουάρ τεχνολογίας.',
+homeText:'Πρακτικά και όμορφα προϊόντα για κάθε χώρο.',
+clothesText:'Ρούχα και αξεσουάρ με στυλ και άνεση.',
+carText:'Χρήσιμα αξεσουάρ για το αυτοκίνητο.',
+see:'Δες προϊόντα →',
+all:'Όλα',
+tr1:'Παγκόσμιες συνεργασίες',
+tr1t:'Συνεργάτες από όλο τον κόσμο.',
+tr2:'Ασφαλείς αγορές',
+tr2t:'Η αγορά γίνεται στον συνεργάτη.',
+tr3:'Αποστολή παντού',
+tr3t:'Προϊόντα με αποστολή σε πολλές χώρες.',
+legal:'Η σελίδα περιέχει συνεργαζόμενους συνδέσμους. Η αγορά ολοκληρώνεται στην ιστοσελίδα του εκάστοτε συνεργάτη.',
+search:'Αναζήτηση προϊόντων...',
+ship:'Αποστολή παγκοσμίως',
+view:'Δες προϊόν →',
+cats:{
+all:['Όλα τα προϊόντα','Επιλεγμένα προϊόντα από όλες τις κατηγορίες.','🌍'],
+tech:['Προϊόντα Τεχνολογίας','Συσκευές, αξεσουάρ και έξυπνες επιλογές τεχνολογίας.','💻'],
+home:['Προϊόντα για το Σπίτι','Επιλεγμένα προϊόντα για κάθε χώρο του σπιτιού σας.','🛋️'],
+clothes:['Προϊόντα για Ρούχα','Ρούχα και αξεσουάρ με στυλ, ποιότητα και άνεση.','👕'],
+car:['Προϊόντα για το Αυτοκίνητο','Χρήσιμα αξεσουάρ για οδήγηση και καθαριότητα.','🚗']
+}
+},
+en:{
+nav1:'Home',
+nav2:'Categories',
+nav3:'Products',
+nav4:'About',
+nav5:'Contact',
+heroTitle:'Discover products from <span>around the world</span>',
+heroText:'We connect you with quality products and trusted global shipping. Choose a category and find what you need.',
+p1:'🌐 Global products',
+p2:'🛡️ Trusted shipping',
+p3:'🎧 You first',
+popular:'Popular Categories',
+tech:'Technology',
+homeCat:'Home',
+clothes:'Clothing',
+car:'Car',
+techText:'Devices and technology accessories.',
+homeText:'Practical products for every room.',
+clothesText:'Clothing and accessories with style.',
+carText:'Useful car accessories.',
+see:'View products →',
+all:'All',
+tr1:'Global partnerships',
+tr1t:'Partners from around the world.',
+tr2:'Safe purchases',
+tr2t:'Purchases are completed on partner sites.',
+tr3:'Worldwide shipping',
+tr3t:'Shipping to many countries.',
+legal:'This site contains partner links. Purchases are completed on each partner website.',
+search:'Search products...',
+ship:'Worldwide shipping',
+view:'View product →',
+cats:{
+all:['All products','Selected products from all categories.','🌍'],
+tech:['Technology Products','Devices and smart technology accessories.','💻'],
+home:['Home Products','Selected products for every room.','🛋️'],
+clothes:['Clothing Products','Clothing and accessories with style and comfort.','👕'],
+car:['Car Products','Useful accessories for driving and cleaning.','🚗']
+}
+}
 };
 
-const products = [
- {titleEl:"Ασύρματα Ακουστικά SoundPro X",titleEn:"Wireless Headphones SoundPro X",cat:"tech",price:49.90,img:"assets/images/products/headphones.svg",link:"https://example.com"},
- {titleEl:"Έξυπνο Ρολόι FitTrack Pro",titleEn:"Smartwatch FitTrack Pro",cat:"tech",price:59.90,img:"assets/images/products/smartwatch.svg",link:"https://example.com"},
- {titleEl:"Power Bank 20000mAh",titleEn:"Power Bank 20000mAh",cat:"tech",price:29.90,img:"assets/images/products/powerbank.svg",link:"https://example.com"},
- {titleEl:"Ασύρματη Βάση Κινητού 3in1",titleEn:"Wireless Phone Stand 3in1",cat:"tech",price:24.90,img:"assets/images/products/charger.svg",link:"https://example.com"},
- {titleEl:"Αθλητική Κάμερα 4K Ultra HD",titleEn:"Action Camera 4K Ultra HD",cat:"tech",price:79.90,img:"assets/images/products/camera.svg",link:"https://example.com"},
- {titleEl:"Μηχανικό Πληκτρολόγιο RGB",titleEn:"Mechanical Keyboard RGB",cat:"tech",price:49.90,img:"assets/images/products/keyboard.svg",link:"https://example.com"},
- {titleEl:"Ασύρματο Ποντίκι Bluetooth",titleEn:"Wireless Bluetooth Mouse",cat:"tech",price:19.90,img:"assets/images/products/mouse.svg",link:"https://example.com"},
- {titleEl:"Tablet 10 ιντσών",titleEn:"10-inch Tablet",cat:"tech",price:129.90,img:"assets/images/products/tablet.svg",link:"https://example.com"},
-
- {titleEl:"Επιτραπέζιο Φωτιστικό Minimal",titleEn:"Minimal Table Lamp",cat:"home",price:49.90,img:"assets/images/products/lamp.svg",link:"https://example.com"},
- {titleEl:"Γωνιακός Καναπές Comfort",titleEn:"Comfort Corner Sofa",cat:"home",price:799.00,img:"assets/images/products/sofa.svg",link:"https://example.com"},
- {titleEl:"Σετ Διακοσμητικά Μαξιλάρια",titleEn:"Decorative Pillow Set",cat:"home",price:29.90,img:"assets/images/products/pillows.svg",link:"https://example.com"},
- {titleEl:"Ράφι Τοίχου με Μεταλλικό Σκελετό",titleEn:"Wall Shelf with Metal Frame",cat:"home",price:69.90,img:"assets/images/products/shelf.svg",link:"https://example.com"},
- {titleEl:"Σετ Πετσέτες Premium",titleEn:"Premium Towel Set",cat:"home",price:34.90,img:"assets/images/products/towels.svg",link:"https://example.com"},
- {titleEl:"Αρωματικός Διαχυτής Vanilla",titleEn:"Vanilla Aroma Diffuser",cat:"home",price:24.90,img:"assets/images/products/diffuser.svg",link:"https://example.com"},
- {titleEl:"Organizer Γραφείου & Σπιτιού",titleEn:"Home & Desk Organizer",cat:"home",price:19.90,img:"assets/images/products/organizer.svg",link:"https://example.com"},
- {titleEl:"Στρογγυλό Τραπεζάκι Σαλονιού",titleEn:"Round Living Room Table",cat:"home",price:69.90,img:"assets/images/products/table.svg",link:"https://example.com"},
-
- {titleEl:"Ανδρικό Φούτερ με Κουκούλα",titleEn:"Men's Hoodie",cat:"clothes",price:34.90,img:"assets/images/products/hoodie.svg",link:"https://example.com"},
- {titleEl:"Ανδρικό T-Shirt Basic",titleEn:"Men's Basic T-Shirt",cat:"clothes",price:14.90,img:"assets/images/products/tshirt.svg",link:"https://example.com"},
- {titleEl:"Ανδρικά Sneakers Classic",titleEn:"Classic Men's Sneakers",cat:"clothes",price:59.90,img:"assets/images/products/sneakers.svg",link:"https://example.com"},
- {titleEl:"Ανδρικό Μπουφάν Puffer",titleEn:"Men's Puffer Jacket",cat:"clothes",price:79.90,img:"assets/images/products/jacket.svg",link:"https://example.com"},
- {titleEl:"Ανδρικό Τζιν Slim Fit",titleEn:"Men's Slim Fit Jeans",cat:"clothes",price:39.90,img:"assets/images/products/jeans.svg",link:"https://example.com"},
- {titleEl:"Σακίδιο Πλάτης Urban",titleEn:"Urban Backpack",cat:"clothes",price:29.90,img:"assets/images/products/backpack.svg",link:"https://example.com"},
- {titleEl:"Ανδρικό Πουκάμισο Oxford",titleEn:"Men's Oxford Shirt",cat:"clothes",price:29.90,img:"assets/images/products/shirt.svg",link:"https://example.com"},
- {titleEl:"Καπέλο Baseball Premium",titleEn:"Premium Baseball Cap",cat:"clothes",price:19.90,img:"assets/images/products/cap.svg",link:"https://example.com"},
-
- {titleEl:"Βάση Κινητού Αυτοκινήτου",titleEn:"Car Phone Holder",cat:"car",price:19.90,img:"assets/images/products/car-holder.svg",link:"https://example.com"},
- {titleEl:"Κάμερα Καταγραφής Dash Cam",titleEn:"Dash Cam Recorder",cat:"car",price:79.90,img:"assets/images/products/dashcam.svg",link:"https://example.com"},
- {titleEl:"Κάλυμμα Τιμονιού Premium",titleEn:"Premium Steering Wheel Cover",cat:"car",price:24.90,img:"assets/images/products/steering.svg",link:"https://example.com"},
- {titleEl:"Σετ Ταπέτα Αυτοκινήτου",titleEn:"Car Mat Set",cat:"car",price:59.90,img:"assets/images/products/mats.svg",link:"https://example.com"},
- {titleEl:"Αρωματικό Αυτοκινήτου Deluxe",titleEn:"Deluxe Car Freshener",cat:"car",price:14.90,img:"assets/images/products/freshener.svg",link:"https://example.com"},
- {titleEl:"Οργανωτής Καθίσματος",titleEn:"Seat Organizer",cat:"car",price:29.90,img:"assets/images/products/seat-organizer.svg",link:"https://example.com"},
- {titleEl:"Φορτιστής Αυτοκινήτου USB-C",titleEn:"USB-C Car Charger",cat:"car",price:18.90,img:"assets/images/products/usb-car.svg",link:"https://example.com"},
- {titleEl:"Kit Καθαρισμού Αυτοκινήτου",titleEn:"Car Cleaning Kit",cat:"car",price:34.90,img:"assets/images/products/cleaning-kit.svg",link:"https://example.com"}
+const P=[
+['Ασύρματα Ακουστικά','Wireless Headphones','tech',49.9,'🎧'],
+['Έξυπνο Ρολόι','Smartwatch','tech',59.9,'⌚'],
+['Power Bank','Power Bank','tech',29.9,'🔋'],
+['Ασύρματη Βάση Κινητού','Wireless Phone Stand','tech',24.9,'📱'],
+['Αθλητική Κάμερα 4K','Action Camera 4K','tech',79.9,'📷'],
+['Πληκτρολόγιο RGB','RGB Keyboard','tech',49.9,'⌨️'],
+['Φωτιστικό Minimal','Minimal Lamp','home',49.9,'💡'],
+['Καναπές Comfort','Comfort Sofa','home',799,'🛋️'],
+['Μαξιλάρια','Pillows','home',29.9,'🛏️'],
+['Πετσέτες Premium','Premium Towels','home',34.9,'🧺'],
+['Διαχυτής Αρώματος','Aroma Diffuser','home',24.9,'🌿'],
+['Organizer Σπιτιού','Home Organizer','home',19.9,'🗂️'],
+['Φούτερ','Hoodie','clothes',34.9,'👕'],
+['T-Shirt','T-Shirt','clothes',14.9,'👚'],
+['Sneakers','Sneakers','clothes',59.9,'👟'],
+['Μπουφάν','Jacket','clothes',79.9,'🧥'],
+['Τζιν','Jeans','clothes',39.9,'👖'],
+['Σακίδιο','Backpack','clothes',29.9,'🎒'],
+['Βάση Κινητού Αυτοκινήτου','Car Phone Holder','car',19.9,'📱'],
+['Dash Cam','Dash Cam','car',79.9,'📹'],
+['Κάλυμμα Τιμονιού','Steering Cover','car',24.9,'🚘'],
+['Ταπέτα Αυτοκινήτου','Car Mats','car',59.9,'🚗'],
+['Αρωματικό Αυτοκινήτου','Car Freshener','car',14.9,'🌸'],
+['Φορτιστής Αυτοκινήτου','Car Charger','car',18.9,'🔌']
 ];
 
-function toggleLang(){document.getElementById("langBox").classList.toggle("open")}
-document.addEventListener("click",e=>{if(!document.getElementById("langBox").contains(e.target))document.getElementById("langBox").classList.remove("open")})
-
-function setLang(l){
-  lang=l;
-  document.documentElement.lang=l;
-  document.getElementById("langLabel").textContent = l==="el" ? "Ελληνικά / English" : "English / Ελληνικά";
-  const t=translations[l];
-  document.querySelectorAll("[data-i18n]").forEach(el=>{const k=el.dataset.i18n;if(t[k])el.textContent=t[k]});
-  document.querySelectorAll("[data-i18n-html]").forEach(el=>{const k=el.dataset.i18nHtml;if(t[k])el.innerHTML=t[k]});
-  updateFiltersText();
-  if(document.getElementById("productsPage").style.display==="block"){showProducts(currentCategory,false)} else {renderProducts()}
-  document.getElementById("langBox").classList.remove("open");
+function toggleLang(){
+document.getElementById('lang').classList.toggle('open')
 }
 
-function updateFiltersText(){
-  const t=translations[lang];
-  document.getElementById("searchInput").placeholder=t.search;
-  const price=document.getElementById("priceFilter");
-  price.options[0].text=t.allPrices; price.options[1].text=t.upTo; price.options[2].text=t.mid; price.options[3].text=t.highPrice;
-  const sort=document.getElementById("sortFilter");
-  sort.options[0].text=t.recommended; sort.options[1].text=t.low; sort.options[2].text=t.high;
+function setLang(x){
+lang=x;
+document.getElementById('langLabel').textContent=x==='el'?'Ελληνικά / English':'English / Ελληνικά';
+document.querySelectorAll('[data-t]').forEach(e=>{
+let k=e.dataset.t;
+if(L[x][k])e.textContent=L[x][k]
+});
+document.querySelectorAll('[data-html]').forEach(e=>{
+let k=e.dataset.html;
+if(L[x][k])e.innerHTML=L[x][k]
+});
+document.getElementById('search').placeholder=L[x].search;
+if(document.getElementById('productsPage').style.display==='block')showCat(cat,false);
+render();
+document.getElementById('lang').classList.remove('open')
 }
 
-function showHome(){
-  document.getElementById("homePage").style.display="block";
-  document.getElementById("productsPage").style.display="none";
-  document.getElementById("navHome").classList.add("active");
-  window.scrollTo({top:0,behavior:"smooth"});
-}
-function scrollCategories(){showHome();setTimeout(()=>document.getElementById("categories").scrollIntoView({behavior:"smooth"}),80)}
-function showAbout(){showHome();setTimeout(()=>document.getElementById("aboutBlock").scrollIntoView({behavior:"smooth"}),80)}
-function showContact(){document.getElementById("contactBlock").scrollIntoView({behavior:"smooth"})}
-
-function showProducts(cat,reset=true){
-  currentCategory=cat;
-  document.getElementById("homePage").style.display="none";
-  document.getElementById("productsPage").style.display="block";
-  document.getElementById("navHome").classList.remove("active");
-  const info=translations[lang].categories[cat] || translations[lang].categories.all;
-  document.getElementById("categoryTitle").textContent=info[0];
-  document.getElementById("categoryText").textContent=info[1];
-  document.getElementById("crumbName").textContent=info[0];
-  document.getElementById("categoryBanner").style.backgroundImage=`url('${info[2]}')`;
-  document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.cat===cat));
-  if(reset){document.getElementById("searchInput").value="";document.getElementById("priceFilter").value="all";document.getElementById("sortFilter").value="recommended";}
-  updateFiltersText();
-  renderProducts();
-  window.scrollTo({top:0,behavior:"smooth"});
+function home(){
+document.getElementById('home').style.display='block';
+document.getElementById('productsPage').style.display='none';
+scrollTo(0,0)
 }
 
-function renderProducts(){
-  const t=translations[lang];
-  const search=(document.getElementById("searchInput")?.value || "").toLowerCase();
-  const pf=document.getElementById("priceFilter")?.value || "all";
-  const sort=document.getElementById("sortFilter")?.value || "recommended";
-  let list=products.filter(p=>{
-    const title=(lang==="el"?p.titleEl:p.titleEn).toLowerCase();
-    const catOk=currentCategory==="all" || p.cat===currentCategory;
-    const searchOk=title.includes(search);
-    let priceOk=true;
-    if(pf!=="all"){const [min,max]=pf.split("-").map(Number);priceOk=p.price>=min && p.price<=max}
-    return catOk && searchOk && priceOk;
-  });
-  if(sort==="low") list.sort((a,b)=>a.price-b.price);
-  if(sort==="high") list.sort((a,b)=>b.price-a.price);
-  const grid=document.getElementById("productGrid");
-  if(!grid)return;
-  grid.innerHTML="";
-  if(list.length===0){grid.innerHTML=`<div style="grid-column:1/-1;background:#fff;border:1px solid #e5eaf3;border-radius:18px;padding:22px;color:#64748b">${t.noProducts}</div>`;return;}
-  list.forEach(p=>{
-    const title=lang==="el"?p.titleEl:p.titleEn;
-    const card=document.createElement("article");
-    card.className="product-card";
-    card.innerHTML=`
-      <div class="product-img"><img src="${p.img}" alt="${title}"><span class="fav">♡</span></div>
-      <div class="product-info">
-        <h3>${title}</h3>
-        <div class="price">€${p.price.toFixed(2).replace(".",",")}</div>
-        <div class="ship">🌐 ${t.shipping}</div>
-        <button class="product-btn" onclick="window.open('${p.link}','_blank','noopener,noreferrer')">${t.seeProduct}</button>
-      </div>`;
-    grid.appendChild(card);
-  });
+function goCats(){
+home();
+setTimeout(()=>document.getElementById('cats').scrollIntoView({behavior:'smooth'}),80)
 }
-setLang("el");
+
+function goAbout(){
+home();
+setTimeout(()=>document.getElementById('about').scrollIntoView({behavior:'smooth'}),80)
+}
+
+function goContact(){
+document.getElementById('contact').scrollIntoView({behavior:'smooth'})
+}
+
+function showCat(c,reset=true){
+cat=c;
+document.getElementById('home').style.display='none';
+document.getElementById('productsPage').style.display='block';
+let i=L[lang].cats[c];
+document.getElementById('catTitle').textContent=i[0];
+document.getElementById('catText').textContent=i[1];
+document.getElementById('catEmoji').textContent=i[2];
+document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('active',b.dataset.cat===c));
+if(reset){
+document.getElementById('search').value='';
+document.getElementById('price').value='all';
+document.getElementById('sort').value='rec'
+}
+render();
+scrollTo(0,0)
+}
+
+function render(){
+let s=(document.getElementById('search')?.value||'').toLowerCase();
+let pf=document.getElementById('price')?.value||'all';
+let so=document.getElementById('sort')?.value||'rec';
+
+let arr=P.filter(p=>{
+let name=(lang==='el'?p[0]:p[1]).toLowerCase();
+let ok=cat==='all'||p[2]===cat;
+if(pf!=='all'){
+let [a,b]=pf.split('-').map(Number);
+ok=ok&&p[3]>=a&&p[3]<=b
+}
+return ok&&name.includes(s)
+});
+
+if(so==='low')arr.sort((a,b)=>a[3]-b[3]);
+if(so==='high')arr.sort((a,b)=>b[3]-a[3]);
+
+let g=document.getElementById('grid');
+if(!g)return;
+g.innerHTML='';
+
+arr.forEach(p=>{
+let name=lang==='el'?p[0]:p[1];
+g.innerHTML+=`
+<article class="product">
+<div class="productImg">${p[4]}</div>
+<div class="productBody">
+<h3>${name}</h3>
+<div class="price">€${p[3].toFixed(2).replace('.',',')}</div>
+<div class="ship">🌐 ${L[lang].ship}</div>
+<button class="product-btn" onclick="window.open('https://example.com','_blank')">${L[lang].view}</button>
+</div>
+</article>`
+})
+}
+
+setLang('el');
 </script>
 </body>
-</html>
+  </html>
