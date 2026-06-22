@@ -4,115 +4,65 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GlobalLink - by Gavriil Moschidis</title>
-
 <style>
 :root{
   --blue:#071a35;
   --blue2:#1554d1;
-  --blue3:#eaf3ff;
-  --gold:#c88a1b;
+  --gold:#c98b18;
   --text:#0b1733;
   --muted:#5f6f86;
-  --line:#e2e8f0;
+  --line:#e1e8f2;
   --white:#ffffff;
-  --bg:#f6f9ff;
 }
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
-  font-family:Arial, sans-serif;
-  background:
-    radial-gradient(circle at top right, #e8f3ff 0%, transparent 34%),
-    linear-gradient(180deg,#ffffff 0%,#f6f9ff 100%);
+  font-family:Arial,"DejaVu Sans",sans-serif;
+  background:radial-gradient(circle at top right,#dceeff 0%,transparent 30%),linear-gradient(180deg,#fff 0%,#f5f9ff 100%);
   color:var(--text);
 }
-
-button{
-  font-family:inherit;
-  cursor:pointer;
-}
-
-.container{
-  width:min(1180px,94%);
-  margin:auto;
-}
-
-/* ΠΑΝΩ ΜΠΑΡΑ */
+button{font-family:inherit;cursor:pointer}
+.container{width:min(1180px,94%);margin:auto}
 
 .header{
-  position:sticky;
-  top:0;
-  z-index:100;
-  background:rgba(255,255,255,.96);
-  backdrop-filter:blur(14px);
+  background:rgba(255,255,255,.97);
   border-bottom:1px solid var(--line);
   box-shadow:0 8px 24px rgba(7,26,53,.06);
+  position:sticky;
+  top:0;
+  z-index:10;
 }
-
 .header-inner{
-  min-height:74px;
+  min-height:76px;
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:16px;
 }
-
 .brand{
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:13px;
 }
-
 .logo{
-  width:56px;
-  height:56px;
+  width:58px;
+  height:58px;
   border-radius:18px;
-  position:relative;
-  overflow:hidden;
-  background:
-    radial-gradient(circle at 32% 25%,#9ce9ff 0%,#2c82ff 36%,#071a35 100%);
   box-shadow:0 14px 28px rgba(21,84,209,.25);
 }
-
-.logo::before{
-  content:"";
-  position:absolute;
-  width:34px;
-  height:34px;
-  border:3px solid rgba(255,255,255,.75);
-  border-radius:50%;
-  left:11px;
-  top:10px;
+.logo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:18px;
 }
-
-.logo::after{
-  content:"";
-  position:absolute;
-  left:7px;
-  right:7px;
-  top:25px;
-  height:7px;
-  border-top:3px solid rgba(255,255,255,.7);
-  border-bottom:3px solid rgba(255,255,255,.55);
-}
-
 .brand-text strong{
   display:block;
+  color:var(--blue);
   font-size:31px;
   line-height:.9;
-  color:var(--blue);
   letter-spacing:-1px;
 }
-
 .brand-text span{
   display:block;
   margin-top:7px;
@@ -120,373 +70,153 @@ button{
   font-size:15px;
   font-weight:800;
 }
-
 .nav{
   display:flex;
-  align-items:center;
   gap:24px;
 }
-
 .nav a{
   text-decoration:none;
   color:var(--blue);
   font-weight:800;
   font-size:15px;
 }
-
-.nav a:hover{
-  color:var(--blue2);
-}
-
+.nav a:hover{color:var(--blue2)}
 .lang{
-  border:1px solid #d8e2f1;
-  background:#fff;
+  border:1px solid #d7e2f1;
+  background:white;
   color:var(--blue);
-  padding:12px 18px;
   border-radius:18px;
+  padding:12px 18px;
   font-weight:900;
   font-size:15px;
   box-shadow:0 8px 18px rgba(7,26,53,.06);
 }
 
-/* ΚΕΝΤΡΙΚΗ */
-
-.hero{
-  padding:28px 0 26px;
-}
-
+.hero{padding:28px 0 22px}
 .hero-card{
-  display:grid;
-  grid-template-columns:1fr .95fr;
-  gap:24px;
-  align-items:center;
-  padding:38px;
-  border:1px solid rgba(226,232,240,.95);
+  min-height:520px;
   border-radius:36px;
-  background:
-    linear-gradient(135deg,rgba(255,255,255,.92),rgba(239,247,255,.9));
-  box-shadow:0 22px 60px rgba(7,26,53,.10);
   overflow:hidden;
+  background:linear-gradient(135deg,rgba(255,255,255,.98),rgba(234,244,255,.95));
+  border:1px solid var(--line);
+  box-shadow:0 24px 65px rgba(7,26,53,.10);
+  display:grid;
+  grid-template-columns:1fr .98fr;
+  align-items:center;
 }
-
+.hero-text{padding:48px 44px}
 .badge{
   display:inline-flex;
   align-items:center;
-  gap:10px;
+  gap:12px;
   color:var(--gold);
-  font-size:13px;
   font-weight:900;
-  letter-spacing:.15em;
+  font-size:13px;
+  letter-spacing:.16em;
   text-transform:uppercase;
-  margin-bottom:18px;
+  margin-bottom:22px;
 }
-
-.badge::before{
+.badge:before{
   content:"";
-  width:42px;
+  width:45px;
   height:3px;
   border-radius:99px;
   background:var(--gold);
 }
-
 h1{
-  font-size:clamp(42px,5vw,68px);
-  line-height:1.03;
-  letter-spacing:-2px;
   color:var(--blue);
-  margin-bottom:18px;
+  font-size:clamp(42px,5vw,68px);
+  line-height:1.04;
+  letter-spacing:-2px;
+  margin-bottom:22px;
 }
-
-h1 span{
-  color:var(--blue2);
-}
-
+h1 span{color:var(--blue2)}
 .hero-text p{
   color:var(--muted);
   font-size:19px;
-  line-height:1.62;
-  max-width:610px;
-  margin-bottom:24px;
+  line-height:1.65;
+  max-width:600px;
+  margin-bottom:32px;
 }
-
 .features{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:12px;
+  gap:16px;
 }
-
 .feature{
-  background:#f5f9ff;
-  border:1px solid #dfe8f6;
-  border-radius:18px;
-  padding:14px;
   text-align:center;
   color:var(--blue);
   font-weight:900;
+  font-size:15px;
 }
-
-.feature .icon{
-  width:48px;
-  height:48px;
-  margin:0 auto 8px;
+.feature-icon{
+  width:62px;
+  height:62px;
+  margin:0 auto 12px;
+  border-radius:20px;
   display:grid;
   place-items:center;
-  border-radius:16px;
   background:white;
   color:var(--blue2);
-  font-size:25px;
-  box-shadow:0 8px 20px rgba(7,26,53,.06);
+  border:1px solid #dbe7f5;
+  box-shadow:0 10px 24px rgba(7,26,53,.08);
+  font-size:27px;
+}
+.hero-art{
+  height:100%;
+  min-height:520px;
+  background:url("assets/images/hero-global.svg") center/cover no-repeat;
 }
 
-/* ΓΡΑΦΙΚΟ */
-
-.visual{
-  min-height:420px;
-  position:relative;
-  border-radius:34px;
-  overflow:hidden;
-  background:
-    radial-gradient(circle at 55% 42%,#85ddff 0%,#1554d1 36%,#071a35 72%);
-  box-shadow:0 22px 55px rgba(7,26,53,.16);
-}
-
-.world{
-  position:absolute;
-  width:260px;
-  height:260px;
-  border:7px solid rgba(255,255,255,.42);
-  border-radius:50%;
-  left:50%;
-  top:49%;
-  transform:translate(-50%,-50%);
-}
-
-.world::before{
-  content:"";
-  position:absolute;
-  inset:38px;
-  border-left:5px solid rgba(255,255,255,.32);
-  border-right:5px solid rgba(255,255,255,.32);
-  border-radius:50%;
-}
-
-.world::after{
-  content:"";
-  position:absolute;
-  left:-8px;
-  right:-8px;
-  top:112px;
-  height:30px;
-  border-top:5px solid rgba(255,255,255,.36);
-  border-bottom:5px solid rgba(255,255,255,.26);
-  border-radius:50%;
-}
-
-.gold-orbit{
-  position:absolute;
-  width:390px;
-  height:115px;
-  border:7px solid rgba(214,155,38,.88);
-  border-left-color:transparent;
-  border-right-color:transparent;
-  border-radius:50%;
-  left:50%;
-  top:49%;
-  transform:translate(-50%,-50%) rotate(-14deg);
-}
-
-.chain{
-  position:absolute;
-  left:92px;
-  bottom:112px;
-  width:112px;
-  height:38px;
-  border:9px solid rgba(255,255,255,.75);
-  border-radius:50px;
-  transform:rotate(-18deg);
-  box-shadow:0 12px 26px rgba(0,0,0,.18);
-}
-
-.chain::after{
-  content:"";
-  position:absolute;
-  width:112px;
-  height:38px;
-  border:9px solid rgba(255,255,255,.55);
-  border-radius:50px;
-  left:62px;
-  top:-9px;
-}
-
-.box{
-  position:absolute;
-  width:96px;
-  height:76px;
-  left:66px;
-  bottom:54px;
-  border-radius:16px;
-  background:linear-gradient(135deg,#f7c46c,#b87318);
-  box-shadow:0 18px 32px rgba(0,0,0,.24);
-}
-
-.box::before{
-  content:"";
-  position:absolute;
-  left:0;
-  right:0;
-  top:26px;
-  height:4px;
-  background:rgba(255,255,255,.55);
-}
-
-.box::after{
-  content:"";
-  position:absolute;
-  left:43px;
-  top:0;
-  width:13px;
-  height:76px;
-  background:rgba(255,255,255,.42);
-}
-
-.plane{
-  position:absolute;
-  right:62px;
-  top:72px;
-  width:112px;
-  height:40px;
-  background:white;
-  border-radius:60px 15px 15px 60px;
-  transform:rotate(-18deg);
-  box-shadow:0 16px 34px rgba(0,0,0,.24);
-}
-
-.plane::before{
-  content:"";
-  position:absolute;
-  width:58px;
-  height:14px;
-  background:#dfeaff;
-  left:34px;
-  top:-15px;
-  border-radius:12px;
-  transform:rotate(24deg);
-}
-
-.plane::after{
-  content:"";
-  position:absolute;
-  width:52px;
-  height:14px;
-  background:#dfeaff;
-  left:36px;
-  bottom:-15px;
-  border-radius:12px;
-  transform:rotate(-24deg);
-}
-
-.truck{
-  position:absolute;
-  right:62px;
-  bottom:54px;
-  width:118px;
-  height:70px;
-}
-
-.truck-body{
-  position:absolute;
-  left:0;
-  bottom:16px;
-  width:70px;
-  height:43px;
-  border-radius:10px;
-  background:white;
-}
-
-.truck-front{
-  position:absolute;
-  right:0;
-  bottom:16px;
-  width:44px;
-  height:36px;
-  border-radius:10px 10px 6px 6px;
-  background:#d69b26;
-}
-
-.wheel1,.wheel2{
-  position:absolute;
-  bottom:0;
-  width:19px;
-  height:19px;
-  border-radius:50%;
-  background:#071a35;
-  border:4px solid white;
-}
-
-.wheel1{
-  left:18px;
-}
-
-.wheel2{
-  right:14px;
-}
-
-/* ΚΑΤΗΓΟΡΙΕΣ */
-
+.categories-section{padding:30px 0 26px}
 .section-title{
   text-align:center;
-  margin:34px 0 24px;
+  margin-bottom:26px;
 }
-
 .section-title h2{
-  font-size:34px;
   color:var(--blue);
+  font-size:36px;
   letter-spacing:-1px;
 }
-
-.section-title::after{
+.section-title:after{
   content:"";
-  display:block;
-  width:70px;
+  width:75px;
   height:4px;
+  display:block;
+  margin:14px auto 0;
   background:var(--gold);
   border-radius:99px;
-  margin:15px auto 0;
 }
-
 .categories{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:18px;
+  gap:20px;
 }
-
 .category{
   background:white;
   border:1px solid var(--line);
   border-radius:28px;
-  padding:22px;
+  padding:18px;
   text-align:center;
   box-shadow:0 14px 34px rgba(7,26,53,.08);
 }
-
 .category-visual{
-  height:125px;
+  height:126px;
   border-radius:22px;
-  background:linear-gradient(135deg,#f8fbff,#eaf3ff);
-  display:grid;
-  place-items:center;
   margin-bottom:18px;
-  color:var(--blue2);
-  font-weight:900;
-  font-size:28px;
+  overflow:hidden;
+  background:#eaf4ff;
 }
-
+.category-visual img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
 .category h3{
-  font-size:23px;
   color:var(--blue);
+  font-size:23px;
   margin-bottom:10px;
 }
-
 .category p{
   color:var(--muted);
   font-size:15px;
@@ -494,332 +224,134 @@ h1 span{
   min-height:44px;
   margin-bottom:18px;
 }
-
 .category button{
   width:100%;
   border:0;
   background:var(--blue2);
   color:white;
-  border-radius:15px;
   padding:13px;
-  font-size:16px;
+  border-radius:15px;
   font-weight:900;
+  font-size:16px;
 }
-
 .notice{
-  margin:28px 0 26px;
+  margin-top:30px;
   background:#f2f7ff;
   border:1px solid #dfe8f6;
   border-radius:24px;
-  padding:20px;
+  padding:22px;
   display:flex;
   align-items:center;
-  gap:18px;
-  color:var(--blue);
-}
-
-.notice-icon{
-  width:56px;
-  height:56px;
-  border-radius:18px;
-  display:grid;
-  place-items:center;
-  background:white;
-  color:var(--blue2);
-  font-size:26px;
-}
-
-.notice p{
+  justify-content:center;
+  gap:15px;
   color:var(--muted);
-  line-height:1.5;
+  text-align:center;
+  line-height:1.55;
 }
-
-/* ΚΙΝΗΤΟ */
+.notice strong{color:var(--blue)}
 
 @media(max-width:760px){
-
-  .container{
-    width:92%;
-  }
-
-  .header-inner{
-    min-height:64px;
-  }
-
-  .logo{
-    width:46px;
-    height:46px;
-    border-radius:15px;
-  }
-
-  .logo::before{
-    width:28px;
-    height:28px;
-    left:9px;
-    top:9px;
-  }
-
-  .brand-text strong{
-    font-size:25px;
-  }
-
-  .brand-text span{
-    font-size:13px;
-    margin-top:4px;
-  }
-
-  .nav{
-    display:none;
-  }
-
+  .container{width:92%}
+  .header-inner{min-height:64px}
+  .logo{width:46px;height:46px;border-radius:15px}
+  .logo img{border-radius:15px}
+  .brand-text strong{font-size:25px}
+  .brand-text span{font-size:13px;margin-top:4px}
+  .nav{display:none}
   .lang{
     padding:10px 14px;
-    border-radius:16px;
     font-size:0;
+    border-radius:16px;
   }
-
-  .lang::after{
+  .lang:after{
     content:"EL / EN";
     font-size:15px;
   }
-
-  .hero{
-    padding:14px 0 18px;
-  }
-
+  .hero{padding:14px 0 12px}
   .hero-card{
-    grid-template-columns:1fr;
-    padding:20px;
+    min-height:auto;
+    display:block;
     border-radius:28px;
-    gap:14px;
   }
-
+  .hero-text{padding:20px}
   .badge{
     font-size:10px;
     letter-spacing:.12em;
-    margin-bottom:10px;
+    margin-bottom:11px;
   }
-
-  .badge::before{
-    width:32px;
-    height:2px;
-  }
-
+  .badge:before{width:32px;height:2px}
   h1{
     font-size:32px;
     line-height:1.05;
     letter-spacing:-1px;
     margin-bottom:12px;
   }
-
   .hero-text p{
     font-size:15.5px;
     line-height:1.45;
     margin-bottom:12px;
   }
-
   .features{
     grid-template-columns:1fr;
     gap:7px;
   }
-
   .feature{
     display:flex;
     align-items:center;
     gap:10px;
     text-align:left;
-    padding:9px 12px;
+    background:#f5f9ff;
+    border:1px solid #dfe8f6;
     border-radius:15px;
+    padding:8px 11px;
+    font-size:14px;
   }
-
-  .feature .icon{
-    width:33px;
-    height:33px;
+  .feature-icon{
+    width:32px;
+    height:32px;
     margin:0;
     font-size:18px;
-    border-radius:12px;
+    border-radius:11px;
   }
-
-  .visual{
-    min-height:145px;
-    border-radius:24px;
+  .hero-art{
+    min-height:150px;
+    border-radius:0 0 28px 28px;
   }
-
-  .world{
-    width:112px;
-    height:112px;
-  }
-
-  .world::before{
-    inset:20px;
-    border-width:3px;
-  }
-
-  .world::after{
-    top:47px;
-    height:16px;
-    border-width:3px;
-  }
-
-  .gold-orbit{
-    width:190px;
-    height:55px;
-    border-width:4px;
-  }
-
-  .chain{
-    width:50px;
-    height:19px;
-    border-width:5px;
-    left:68px;
-    bottom:46px;
-  }
-
-  .chain::after{
-    width:50px;
-    height:19px;
-    border-width:5px;
-    left:28px;
-    top:-5px;
-  }
-
-  .box{
-    width:43px;
-    height:34px;
-    left:24px;
-    bottom:26px;
-    border-radius:8px;
-  }
-
-  .box::before{
-    top:12px;
-    height:2px;
-  }
-
-  .box::after{
-    left:18px;
-    width:6px;
-    height:34px;
-  }
-
-  .plane{
-    width:48px;
-    height:18px;
-    right:28px;
-    top:28px;
-  }
-
-  .plane::before{
-    width:26px;
-    height:7px;
-    left:15px;
-    top:-8px;
-  }
-
-  .plane::after{
-    width:25px;
-    height:7px;
-    left:16px;
-    bottom:-8px;
-  }
-
-  .truck{
-    width:54px;
-    height:34px;
-    right:26px;
-    bottom:24px;
-  }
-
-  .truck-body{
-    width:31px;
-    height:20px;
-    bottom:8px;
-    border-radius:5px;
-  }
-
-  .truck-front{
-    width:20px;
-    height:17px;
-    bottom:8px;
-    border-radius:5px;
-  }
-
-  .wheel1,.wheel2{
-    width:10px;
-    height:10px;
-    border-width:2px;
-  }
-
-  .wheel1{
-    left:9px;
-  }
-
-  .wheel2{
-    right:5px;
-  }
-
-  .section-title{
-    margin:18px 0 14px;
-  }
-
-  .section-title h2{
-    font-size:25px;
-  }
-
-  .section-title::after{
-    width:52px;
+  .categories-section{padding:18px 0}
+  .section-title{margin-bottom:14px}
+  .section-title h2{font-size:25px}
+  .section-title:after{
+    width:55px;
     height:3px;
-    margin-top:9px;
+    margin-top:8px;
   }
-
   .categories{
     grid-template-columns:repeat(2,1fr);
     gap:10px;
   }
-
   .category{
     border-radius:20px;
     padding:12px;
   }
-
   .category-visual{
     height:58px;
     border-radius:16px;
     margin-bottom:10px;
-    font-size:19px;
   }
-
   .category h3{
     font-size:17px;
     margin-bottom:5px;
   }
-
-  .category p{
-    display:none;
-  }
-
+  .category p{display:none}
   .category button{
     padding:10px;
     border-radius:13px;
     font-size:13px;
   }
-
   .notice{
-    margin:18px 0;
+    margin-top:18px;
     padding:15px;
     border-radius:20px;
-    align-items:flex-start;
-  }
-
-  .notice-icon{
-    width:42px;
-    height:42px;
-    border-radius:14px;
-    font-size:22px;
-    flex:0 0 auto;
-  }
-
-  .notice p{
     font-size:14px;
   }
 }
@@ -830,9 +362,10 @@ h1 span{
 
 <header class="header">
   <div class="container header-inner">
-
     <div class="brand">
-      <div class="logo"></div>
+      <div class="logo">
+        <img src="assets/images/logo.svg" alt="GlobalLink">
+      </div>
       <div class="brand-text">
         <strong>GlobalLink</strong>
         <span>by Gavriil Moschidis</span>
@@ -846,113 +379,99 @@ h1 span{
     </nav>
 
     <button class="lang">🌐 EL / EN</button>
-
   </div>
 </header>
 
 <main>
 
-  <section class="hero">
-    <div class="container">
+<section class="hero">
+  <div class="container">
+    <div class="hero-card">
+      <div class="hero-text">
+        <div class="badge">Καλώς ήρθες στο GlobalLink</div>
 
-      <div class="hero-card">
+        <h1>
+          Ανακάλυψε προϊόντα από <span>όλο τον κόσμο</span>
+        </h1>
 
-        <div class="hero-text">
-          <div class="badge">Καλώς ήρθες στο GlobalLink</div>
+        <p>
+          Συνδέουμε τον κόσμο με ποιοτικά προϊόντα και αξιόπιστες αποστολές.
+          Διάλεξε κατηγορία και βρες αυτό που χρειάζεσαι.
+        </p>
 
-          <h1>
-            Ανακάλυψε προϊόντα από <span>όλο τον κόσμο</span>
-          </h1>
-
-          <p>
-            Συνδέουμε τον κόσμο με ποιοτικά προϊόντα και αξιόπιστες αποστολές.
-            Διάλεξε κατηγορία και βρες αυτό που χρειάζεσαι.
-          </p>
-
-          <div class="features">
-            <div class="feature">
-              <div class="icon">◎</div>
-              Παγκόσμια προϊόντα
-            </div>
-
-            <div class="feature">
-              <div class="icon">◇</div>
-              Αξιόπιστες αποστολές
-            </div>
-
-            <div class="feature">
-              <div class="icon">◉</div>
-              Εσύ στο επίκεντρο
-            </div>
+        <div class="features">
+          <div class="feature">
+            <div class="feature-icon">◎</div>
+            Παγκόσμια προϊόντα
+          </div>
+          <div class="feature">
+            <div class="feature-icon">◇</div>
+            Αξιόπιστες αποστολές
+          </div>
+          <div class="feature">
+            <div class="feature-icon">◉</div>
+            Εσύ στο επίκεντρο
           </div>
         </div>
-
-        <div class="visual">
-          <div class="world"></div>
-          <div class="gold-orbit"></div>
-          <div class="chain"></div>
-          <div class="box"></div>
-          <div class="plane"></div>
-          <div class="truck">
-            <div class="truck-body"></div>
-            <div class="truck-front"></div>
-            <div class="wheel1"></div>
-            <div class="wheel2"></div>
-          </div>
-        </div>
-
       </div>
 
+      <div class="hero-art"></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="container" id="categories">
-
+<section class="categories-section" id="categories">
+  <div class="container">
     <div class="section-title">
       <h2>Δημοφιλείς Κατηγορίες</h2>
     </div>
 
     <div class="categories">
-
       <div class="category">
-        <div class="category-visual">TECH</div>
+        <div class="category-visual">
+          <img src="assets/images/tech.svg" alt="Τεχνολογία">
+        </div>
         <h3>Τεχνολογία</h3>
         <p>Συσκευές και αξεσουάρ τεχνολογίας.</p>
         <button>Δες προϊόντα</button>
       </div>
 
       <div class="category">
-        <div class="category-visual">HOME</div>
+        <div class="category-visual">
+          <img src="assets/images/home.svg" alt="Σπίτι">
+        </div>
         <h3>Σπίτι</h3>
         <p>Προϊόντα για κάθε χώρο.</p>
         <button>Δες προϊόντα</button>
       </div>
 
       <div class="category">
-        <div class="category-visual">STYLE</div>
+        <div class="category-visual">
+          <img src="assets/images/clothes.svg" alt="Ρούχα">
+        </div>
         <h3>Ρούχα</h3>
         <p>Ρούχα και αξεσουάρ.</p>
         <button>Δες προϊόντα</button>
       </div>
 
       <div class="category">
-        <div class="category-visual">AUTO</div>
+        <div class="category-visual">
+          <img src="assets/images/car.svg" alt="Αυτοκίνητο">
+        </div>
         <h3>Αυτοκίνητο</h3>
         <p>Αξεσουάρ αυτοκινήτου.</p>
         <button>Δες προϊόντα</button>
       </div>
-
     </div>
 
     <div class="notice" id="contact">
-      <div class="notice-icon">◇</div>
       <p>
         <strong>Η σελίδα περιέχει συνεργαζόμενους συνδέσμους.</strong><br>
         Η αγορά ολοκληρώνεται στην ιστοσελίδα του εκάστοτε συνεργάτη.
       </p>
     </div>
-
-  </section>
+  </div>
+</section>
 
 </main>
 
