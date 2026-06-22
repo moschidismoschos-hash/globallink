@@ -9,18 +9,19 @@
 :root{
   --blue:#071a35;
   --blue2:#1554d1;
-  --gold:#d69b26;
+  --blue3:#eaf3ff;
+  --gold:#c88a1b;
   --text:#0b1733;
   --muted:#5f6f86;
-  --line:#e5eaf3;
-  --bg:#f7f9fc;
+  --line:#e2e8f0;
   --white:#ffffff;
+  --bg:#f6f9ff;
 }
 
 *{
-  box-sizing:border-box;
   margin:0;
   padding:0;
+  box-sizing:border-box;
 }
 
 html{
@@ -28,206 +29,164 @@ html{
 }
 
 body{
-  font-family:Arial,"DejaVu Sans",sans-serif;
-  background:linear-gradient(180deg,#ffffff 0%,#f4f8ff 45%,#f7f9fc 100%);
+  font-family:Arial, sans-serif;
+  background:
+    radial-gradient(circle at top right, #e8f3ff 0%, transparent 34%),
+    linear-gradient(180deg,#ffffff 0%,#f6f9ff 100%);
   color:var(--text);
 }
 
-button,input,select{
-  font-family:inherit;
-}
-
 button{
+  font-family:inherit;
   cursor:pointer;
 }
 
 .container{
-  width:min(1220px,94%);
+  width:min(1180px,94%);
   margin:auto;
 }
 
 /* ΠΑΝΩ ΜΠΑΡΑ */
 
-header{
+.header{
   position:sticky;
   top:0;
-  z-index:20;
+  z-index:100;
   background:rgba(255,255,255,.96);
-  backdrop-filter:blur(12px);
+  backdrop-filter:blur(14px);
   border-bottom:1px solid var(--line);
   box-shadow:0 8px 24px rgba(7,26,53,.06);
 }
 
-.top{
-  min-height:72px;
+.header-inner{
+  min-height:74px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:14px;
+  gap:16px;
 }
 
-.logo{
+.brand{
   display:flex;
   align-items:center;
   gap:12px;
-  border:0;
-  background:transparent;
-  color:var(--blue);
 }
 
-.logoIcon{
+.logo{
   width:56px;
   height:56px;
   border-radius:18px;
-  display:grid;
-  place-items:center;
-  background:
-    radial-gradient(circle at 30% 25%,#88ddff 0%,#1554d1 45%,#071a35 100%);
-  box-shadow:0 12px 28px rgba(21,84,209,.25);
   position:relative;
   overflow:hidden;
+  background:
+    radial-gradient(circle at 32% 25%,#9ce9ff 0%,#2c82ff 36%,#071a35 100%);
+  box-shadow:0 14px 28px rgba(21,84,209,.25);
 }
 
-.logoIcon:before{
-  content:"🌐";
-  font-size:32px;
-}
-
-.logoIcon:after{
+.logo::before{
   content:"";
   position:absolute;
-  left:8px;
-  right:8px;
-  bottom:9px;
-  height:5px;
-  border-radius:99px;
-  background:linear-gradient(90deg,transparent,#d69b26,transparent);
+  width:34px;
+  height:34px;
+  border:3px solid rgba(255,255,255,.75);
+  border-radius:50%;
+  left:11px;
+  top:10px;
 }
 
-.logo strong{
+.logo::after{
+  content:"";
+  position:absolute;
+  left:7px;
+  right:7px;
+  top:25px;
+  height:7px;
+  border-top:3px solid rgba(255,255,255,.7);
+  border-bottom:3px solid rgba(255,255,255,.55);
+}
+
+.brand-text strong{
   display:block;
-  font-size:30px;
-  letter-spacing:-1px;
+  font-size:31px;
   line-height:.9;
+  color:var(--blue);
+  letter-spacing:-1px;
 }
 
-.logo span span{
+.brand-text span{
   display:block;
   margin-top:7px;
-  color:#a36d13;
-  font-weight:800;
+  color:var(--gold);
   font-size:15px;
+  font-weight:800;
 }
 
-nav{
+.nav{
   display:flex;
+  align-items:center;
   gap:24px;
 }
 
-nav button{
-  border:0;
-  background:transparent;
+.nav a{
+  text-decoration:none;
   color:var(--blue);
   font-weight:800;
   font-size:15px;
-  padding:10px 0;
 }
 
-nav button:hover{
+.nav a:hover{
   color:var(--blue2);
 }
 
 .lang{
-  position:relative;
-}
-
-.langMain{
   border:1px solid #d8e2f1;
-  background:white;
+  background:#fff;
   color:var(--blue);
-  border-radius:17px;
-  padding:13px 18px;
+  padding:12px 18px;
+  border-radius:18px;
   font-weight:900;
   font-size:15px;
   box-shadow:0 8px 18px rgba(7,26,53,.06);
 }
 
-.langMenu{
-  display:none;
-  position:absolute;
-  right:0;
-  top:54px;
-  width:170px;
-  padding:8px;
-  background:white;
-  border:1px solid var(--line);
-  border-radius:16px;
-  box-shadow:0 15px 35px rgba(7,26,53,.12);
-}
-
-.lang.open .langMenu{
-  display:block;
-}
-
-.langMenu button{
-  display:block;
-  width:100%;
-  text-align:left;
-  border:0;
-  background:white;
-  padding:12px;
-  border-radius:12px;
-  font-weight:800;
-  color:var(--blue);
-}
-
-.langMenu button:hover{
-  background:#eef4ff;
-}
-
 /* ΚΕΝΤΡΙΚΗ */
 
-.homeHero{
-  min-height:calc(100vh - 72px);
-  padding:26px 0 22px;
-  display:flex;
-  align-items:center;
+.hero{
+  padding:28px 0 26px;
 }
 
-.homeBox{
-  width:100%;
+.hero-card{
   display:grid;
-  grid-template-columns:.92fr 1.08fr;
+  grid-template-columns:1fr .95fr;
   gap:24px;
   align-items:center;
-}
-
-.heroText{
-  background:rgba(255,255,255,.72);
-  border:1px solid rgba(229,234,243,.8);
-  border-radius:32px;
-  padding:34px;
-  box-shadow:0 18px 45px rgba(7,26,53,.08);
+  padding:38px;
+  border:1px solid rgba(226,232,240,.95);
+  border-radius:36px;
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.92),rgba(239,247,255,.9));
+  box-shadow:0 22px 60px rgba(7,26,53,.10);
+  overflow:hidden;
 }
 
 .badge{
   display:inline-flex;
   align-items:center;
-  gap:9px;
+  gap:10px;
   color:var(--gold);
-  font-weight:900;
-  letter-spacing:.16em;
   font-size:13px;
+  font-weight:900;
+  letter-spacing:.15em;
   text-transform:uppercase;
   margin-bottom:18px;
 }
 
-.badge:before{
+.badge::before{
   content:"";
-  width:45px;
+  width:42px;
   height:3px;
-  background:var(--gold);
   border-radius:99px;
+  background:var(--gold);
 }
 
 h1{
@@ -242,496 +201,626 @@ h1 span{
   color:var(--blue2);
 }
 
-.heroText p{
+.hero-text p{
   color:var(--muted);
   font-size:19px;
-  line-height:1.65;
-  margin-bottom:20px;
+  line-height:1.62;
+  max-width:610px;
+  margin-bottom:24px;
 }
 
-.points{
+.features{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:10px;
+  gap:12px;
 }
 
-.point{
-  background:#f4f8ff;
-  border:1px solid #e0e9f7;
-  border-radius:16px;
-  padding:12px;
-  font-weight:900;
+.feature{
+  background:#f5f9ff;
+  border:1px solid #dfe8f6;
+  border-radius:18px;
+  padding:14px;
+  text-align:center;
   color:var(--blue);
-  display:flex;
-  align-items:center;
-  gap:8px;
-  font-size:14px;
+  font-weight:900;
 }
 
-.heroVisual{
-  min-height:430px;
-  border-radius:34px;
+.feature .icon{
+  width:48px;
+  height:48px;
+  margin:0 auto 8px;
+  display:grid;
+  place-items:center;
+  border-radius:16px;
+  background:white;
+  color:var(--blue2);
+  font-size:25px;
+  box-shadow:0 8px 20px rgba(7,26,53,.06);
+}
+
+/* ΓΡΑΦΙΚΟ */
+
+.visual{
+  min-height:420px;
   position:relative;
+  border-radius:34px;
   overflow:hidden;
   background:
-    radial-gradient(circle at 58% 42%,#7bd5ff 0%,#1554d1 32%,#071a35 62%,transparent 63%),
-    linear-gradient(135deg,#ffffff 0%,#eaf3ff 100%);
-  box-shadow:0 22px 65px rgba(7,26,53,.14);
+    radial-gradient(circle at 55% 42%,#85ddff 0%,#1554d1 36%,#071a35 72%);
+  box-shadow:0 22px 55px rgba(7,26,53,.16);
 }
 
-.heroVisual .globe{
+.world{
   position:absolute;
-  right:170px;
-  top:58px;
-  font-size:185px;
-  filter:drop-shadow(0 22px 20px rgba(7,26,53,.22));
+  width:260px;
+  height:260px;
+  border:7px solid rgba(255,255,255,.42);
+  border-radius:50%;
+  left:50%;
+  top:49%;
+  transform:translate(-50%,-50%);
 }
 
-.heroVisual .box{
+.world::before{
+  content:"";
   position:absolute;
-  left:54px;
-  bottom:72px;
-  font-size:78px;
+  inset:38px;
+  border-left:5px solid rgba(255,255,255,.32);
+  border-right:5px solid rgba(255,255,255,.32);
+  border-radius:50%;
 }
 
-.heroVisual .chain{
+.world::after{
+  content:"";
   position:absolute;
-  left:190px;
-  bottom:102px;
-  font-size:82px;
-  transform:rotate(-8deg);
+  left:-8px;
+  right:-8px;
+  top:112px;
+  height:30px;
+  border-top:5px solid rgba(255,255,255,.36);
+  border-bottom:5px solid rgba(255,255,255,.26);
+  border-radius:50%;
 }
 
-.heroVisual .plane{
+.gold-orbit{
   position:absolute;
-  right:72px;
-  top:105px;
-  font-size:75px;
-  transform:rotate(-12deg);
+  width:390px;
+  height:115px;
+  border:7px solid rgba(214,155,38,.88);
+  border-left-color:transparent;
+  border-right-color:transparent;
+  border-radius:50%;
+  left:50%;
+  top:49%;
+  transform:translate(-50%,-50%) rotate(-14deg);
 }
 
-.heroVisual .truck{
+.chain{
   position:absolute;
-  right:88px;
-  bottom:65px;
-  font-size:78px;
+  left:92px;
+  bottom:112px;
+  width:112px;
+  height:38px;
+  border:9px solid rgba(255,255,255,.75);
+  border-radius:50px;
+  transform:rotate(-18deg);
+  box-shadow:0 12px 26px rgba(0,0,0,.18);
+}
+
+.chain::after{
+  content:"";
+  position:absolute;
+  width:112px;
+  height:38px;
+  border:9px solid rgba(255,255,255,.55);
+  border-radius:50px;
+  left:62px;
+  top:-9px;
+}
+
+.box{
+  position:absolute;
+  width:96px;
+  height:76px;
+  left:66px;
+  bottom:54px;
+  border-radius:16px;
+  background:linear-gradient(135deg,#f7c46c,#b87318);
+  box-shadow:0 18px 32px rgba(0,0,0,.24);
+}
+
+.box::before{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:26px;
+  height:4px;
+  background:rgba(255,255,255,.55);
+}
+
+.box::after{
+  content:"";
+  position:absolute;
+  left:43px;
+  top:0;
+  width:13px;
+  height:76px;
+  background:rgba(255,255,255,.42);
+}
+
+.plane{
+  position:absolute;
+  right:62px;
+  top:72px;
+  width:112px;
+  height:40px;
+  background:white;
+  border-radius:60px 15px 15px 60px;
+  transform:rotate(-18deg);
+  box-shadow:0 16px 34px rgba(0,0,0,.24);
+}
+
+.plane::before{
+  content:"";
+  position:absolute;
+  width:58px;
+  height:14px;
+  background:#dfeaff;
+  left:34px;
+  top:-15px;
+  border-radius:12px;
+  transform:rotate(24deg);
+}
+
+.plane::after{
+  content:"";
+  position:absolute;
+  width:52px;
+  height:14px;
+  background:#dfeaff;
+  left:36px;
+  bottom:-15px;
+  border-radius:12px;
+  transform:rotate(-24deg);
+}
+
+.truck{
+  position:absolute;
+  right:62px;
+  bottom:54px;
+  width:118px;
+  height:70px;
+}
+
+.truck-body{
+  position:absolute;
+  left:0;
+  bottom:16px;
+  width:70px;
+  height:43px;
+  border-radius:10px;
+  background:white;
+}
+
+.truck-front{
+  position:absolute;
+  right:0;
+  bottom:16px;
+  width:44px;
+  height:36px;
+  border-radius:10px 10px 6px 6px;
+  background:#d69b26;
+}
+
+.wheel1,.wheel2{
+  position:absolute;
+  bottom:0;
+  width:19px;
+  height:19px;
+  border-radius:50%;
+  background:#071a35;
+  border:4px solid white;
+}
+
+.wheel1{
+  left:18px;
+}
+
+.wheel2{
+  right:14px;
 }
 
 /* ΚΑΤΗΓΟΡΙΕΣ */
 
-.quickCats{
-  margin-top:18px;
+.section-title{
+  text-align:center;
+  margin:34px 0 24px;
+}
+
+.section-title h2{
+  font-size:34px;
+  color:var(--blue);
+  letter-spacing:-1px;
+}
+
+.section-title::after{
+  content:"";
+  display:block;
+  width:70px;
+  height:4px;
+  background:var(--gold);
+  border-radius:99px;
+  margin:15px auto 0;
+}
+
+.categories{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:14px;
-}
-
-.cat{
-  background:white;
-  border:1px solid var(--line);
-  border-radius:22px;
-  padding:18px;
-  box-shadow:0 12px 30px rgba(7,26,53,.08);
-  transition:.18s;
-}
-
-.cat:hover{
-  transform:translateY(-3px);
-}
-
-.catTop{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  margin-bottom:10px;
-}
-
-.catIcon{
-  width:45px;
-  height:45px;
-  display:grid;
-  place-items:center;
-  border-radius:15px;
-  background:#eef4ff;
-  font-size:25px;
-}
-
-.cat h3{
-  font-size:18px;
-  color:var(--blue);
-}
-
-.cat p{
-  font-size:13px;
-  color:var(--muted);
-  min-height:36px;
-  margin-bottom:12px;
-}
-
-.cat button{
-  width:100%;
-  border:1px solid var(--blue2);
-  background:var(--blue2);
-  color:white;
-  border-radius:13px;
-  padding:11px 12px;
-  font-weight:900;
-}
-
-/* ΠΡΟΪΟΝΤΑ */
-
-#productsPage{
-  display:none;
-  padding:26px 0 35px;
-}
-
-.categoryHead{
-  display:grid;
-  grid-template-columns:1fr 1fr;
   gap:18px;
-  align-items:center;
-  background:white;
-  border:1px solid var(--line);
-  border-radius:30px;
-  padding:24px;
-  box-shadow:0 16px 42px rgba(7,26,53,.08);
-  margin-bottom:18px;
 }
 
-.categoryHead h2{
-  font-size:clamp(32px,5vw,54px);
+.category{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:28px;
+  padding:22px;
+  text-align:center;
+  box-shadow:0 14px 34px rgba(7,26,53,.08);
+}
+
+.category-visual{
+  height:125px;
+  border-radius:22px;
+  background:linear-gradient(135deg,#f8fbff,#eaf3ff);
+  display:grid;
+  place-items:center;
+  margin-bottom:18px;
+  color:var(--blue2);
+  font-weight:900;
+  font-size:28px;
+}
+
+.category h3{
+  font-size:23px;
   color:var(--blue);
   margin-bottom:10px;
 }
 
-.categoryHead p{
-  font-size:17px;
+.category p{
   color:var(--muted);
-  line-height:1.55;
-}
-
-.banner{
-  min-height:210px;
-  border-radius:24px;
-  display:grid;
-  place-items:center;
-  font-size:120px;
-  background:
-    radial-gradient(circle at 50% 45%,#a5e3ff 0%,#1554d1 35%,#071a35 70%),
-    linear-gradient(135deg,#fff,#eaf3ff);
-}
-
-.tabs{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-bottom:16px;
-}
-
-.tabs button{
-  border:1px solid var(--line);
-  background:white;
-  border-radius:15px;
-  padding:12px 16px;
-  font-weight:900;
-  color:var(--blue);
-}
-
-.tabs button.active{
-  background:var(--blue);
-  color:white;
-}
-
-.tools{
-  display:grid;
-  grid-template-columns:1fr 190px 190px;
-  gap:12px;
-  background:white;
-  border:1px solid var(--line);
-  border-radius:22px;
-  padding:15px;
-  box-shadow:0 12px 30px rgba(7,26,53,.07);
+  font-size:15px;
+  line-height:1.45;
+  min-height:44px;
   margin-bottom:18px;
 }
 
-.tools input,.tools select{
-  border:1px solid #d9e2f1;
-  border-radius:14px;
-  padding:13px 14px;
-  font-size:15px;
-  outline:none;
-}
-
-.products{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:16px;
-}
-
-.product{
-  background:white;
-  border:1px solid var(--line);
-  border-radius:22px;
-  overflow:hidden;
-  box-shadow:0 12px 30px rgba(7,26,53,.08);
-}
-
-.productImg{
-  height:160px;
-  display:grid;
-  place-items:center;
-  font-size:66px;
-  background:linear-gradient(135deg,#ffffff,#eef5ff);
-}
-
-.productBody{
-  padding:16px;
-}
-
-.productBody h3{
+.category button{
+  width:100%;
+  border:0;
+  background:var(--blue2);
+  color:white;
+  border-radius:15px;
+  padding:13px;
   font-size:16px;
-  min-height:42px;
+  font-weight:900;
+}
+
+.notice{
+  margin:28px 0 26px;
+  background:#f2f7ff;
+  border:1px solid #dfe8f6;
+  border-radius:24px;
+  padding:20px;
+  display:flex;
+  align-items:center;
+  gap:18px;
   color:var(--blue);
 }
 
-.price{
-  font-size:22px;
-  font-weight:900;
-  color:var(--blue2);
-  margin:8px 0;
-}
-
-.ship{
-  font-size:13px;
-  color:var(--muted);
-  margin-bottom:12px;
-}
-
-.product button{
-  width:100%;
-  border:1px solid var(--blue2);
+.notice-icon{
+  width:56px;
+  height:56px;
+  border-radius:18px;
+  display:grid;
+  place-items:center;
   background:white;
   color:var(--blue2);
-  border-radius:12px;
-  padding:10px;
-  font-weight:900;
+  font-size:26px;
 }
 
-.product button:hover{
-  background:var(--blue2);
-  color:white;
-}
-
-footer{
-  background:white;
-  border-top:1px solid var(--line);
-  padding:20px 0;
+.notice p{
   color:var(--muted);
-  font-size:13px;
-}
-
-.footer{
-  display:flex;
-  justify-content:space-between;
-  gap:20px;
-  align-items:center;
+  line-height:1.5;
 }
 
 /* ΚΙΝΗΤΟ */
 
 @media(max-width:760px){
+
   .container{
     width:92%;
   }
 
-  .top{
+  .header-inner{
     min-height:64px;
   }
 
-  nav{
-    display:none;
+  .logo{
+    width:46px;
+    height:46px;
+    border-radius:15px;
   }
 
-  .logoIcon{
-    width:44px;
-    height:44px;
-    border-radius:14px;
+  .logo::before{
+    width:28px;
+    height:28px;
+    left:9px;
+    top:9px;
   }
 
-  .logoIcon:before{
+  .brand-text strong{
     font-size:25px;
   }
 
-  .logo strong{
-    font-size:24px;
-  }
-
-  .logo span span{
+  .brand-text span{
     font-size:13px;
     margin-top:4px;
   }
 
-  .langMain{
-    padding:10px 13px;
-    border-radius:15px;
+  .nav{
+    display:none;
+  }
+
+  .lang{
+    padding:10px 14px;
+    border-radius:16px;
     font-size:0;
   }
 
-  .langMain:after{
+  .lang::after{
     content:"EL / EN";
     font-size:15px;
   }
 
-  .homeHero{
-    min-height:auto;
+  .hero{
     padding:14px 0 18px;
-    align-items:flex-start;
   }
 
-  .homeBox{
-    display:block;
-  }
-
-  .heroText{
-    border-radius:25px;
+  .hero-card{
+    grid-template-columns:1fr;
     padding:20px;
-    margin-bottom:12px;
+    border-radius:28px;
+    gap:14px;
   }
 
   .badge{
     font-size:10px;
-    margin-bottom:10px;
     letter-spacing:.12em;
+    margin-bottom:10px;
   }
 
-  .badge:before{
+  .badge::before{
     width:32px;
     height:2px;
   }
 
   h1{
-    font-size:33px;
+    font-size:32px;
     line-height:1.05;
     letter-spacing:-1px;
     margin-bottom:12px;
   }
 
-  .heroText p{
-    font-size:16px;
+  .hero-text p{
+    font-size:15.5px;
     line-height:1.45;
     margin-bottom:12px;
   }
 
-  .points{
+  .features{
     grid-template-columns:1fr;
     gap:7px;
   }
 
-  .point{
-    padding:8px 10px;
-    font-size:14px;
-    border-radius:13px;
-  }
-
-  .heroVisual{
-    min-height:145px;
-    border-radius:24px;
-    margin-bottom:12px;
-  }
-
-  .heroVisual .globe{
-    font-size:92px;
-    right:130px;
-    top:22px;
-  }
-
-  .heroVisual .box{
-    font-size:43px;
-    left:24px;
-    bottom:30px;
-  }
-
-  .heroVisual .chain{
-    font-size:46px;
-    left:90px;
-    bottom:43px;
-  }
-
-  .heroVisual .plane{
-    font-size:43px;
-    right:32px;
-    top:30px;
-  }
-
-  .heroVisual .truck{
-    font-size:43px;
-    right:42px;
-    bottom:28px;
-  }
-
-  .quickCats{
-    grid-template-columns:repeat(2,1fr);
+  .feature{
+    display:flex;
+    align-items:center;
     gap:10px;
-    margin-top:0;
+    text-align:left;
+    padding:9px 12px;
+    border-radius:15px;
   }
 
-  .cat{
-    border-radius:18px;
-    padding:12px;
-  }
-
-  .catTop{
-    gap:8px;
-    margin-bottom:6px;
-  }
-
-  .catIcon{
-    width:34px;
-    height:34px;
-    font-size:21px;
+  .feature .icon{
+    width:33px;
+    height:33px;
+    margin:0;
+    font-size:18px;
     border-radius:12px;
   }
 
-  .cat h3{
-    font-size:16px;
-  }
-
-  .cat p{
-    display:none;
-  }
-
-  .cat button{
-    padding:9px;
-    font-size:13px;
-    border-radius:11px;
-  }
-
-  .categoryHead{
-    grid-template-columns:1fr;
-    padding:16px;
+  .visual{
+    min-height:145px;
     border-radius:24px;
   }
 
-  .categoryHead h2{
-    font-size:32px;
+  .world{
+    width:112px;
+    height:112px;
   }
 
-  .banner{
-    min-height:110px;
-    font-size:70px;
+  .world::before{
+    inset:20px;
+    border-width:3px;
   }
 
-  .tools{
-    grid-template-columns:1fr;
+  .world::after{
+    top:47px;
+    height:16px;
+    border-width:3px;
   }
 
-  .products{
-    grid-template-columns:1fr;
+  .gold-orbit{
+    width:190px;
+    height:55px;
+    border-width:4px;
   }
 
-  .footer{
-    flex-direction:column;
-    text-align:center;
+  .chain{
+    width:50px;
+    height:19px;
+    border-width:5px;
+    left:68px;
+    bottom:46px;
+  }
+
+  .chain::after{
+    width:50px;
+    height:19px;
+    border-width:5px;
+    left:28px;
+    top:-5px;
+  }
+
+  .box{
+    width:43px;
+    height:34px;
+    left:24px;
+    bottom:26px;
+    border-radius:8px;
+  }
+
+  .box::before{
+    top:12px;
+    height:2px;
+  }
+
+  .box::after{
+    left:18px;
+    width:6px;
+    height:34px;
+  }
+
+  .plane{
+    width:48px;
+    height:18px;
+    right:28px;
+    top:28px;
+  }
+
+  .plane::before{
+    width:26px;
+    height:7px;
+    left:15px;
+    top:-8px;
+  }
+
+  .plane::after{
+    width:25px;
+    height:7px;
+    left:16px;
+    bottom:-8px;
+  }
+
+  .truck{
+    width:54px;
+    height:34px;
+    right:26px;
+    bottom:24px;
+  }
+
+  .truck-body{
+    width:31px;
+    height:20px;
+    bottom:8px;
+    border-radius:5px;
+  }
+
+  .truck-front{
+    width:20px;
+    height:17px;
+    bottom:8px;
+    border-radius:5px;
+  }
+
+  .wheel1,.wheel2{
+    width:10px;
+    height:10px;
+    border-width:2px;
+  }
+
+  .wheel1{
+    left:9px;
+  }
+
+  .wheel2{
+    right:5px;
+  }
+
+  .section-title{
+    margin:18px 0 14px;
+  }
+
+  .section-title h2{
+    font-size:25px;
+  }
+
+  .section-title::after{
+    width:52px;
+    height:3px;
+    margin-top:9px;
+  }
+
+  .categories{
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+  }
+
+  .category{
+    border-radius:20px;
+    padding:12px;
+  }
+
+  .category-visual{
+    height:58px;
+    border-radius:16px;
+    margin-bottom:10px;
+    font-size:19px;
+  }
+
+  .category h3{
+    font-size:17px;
+    margin-bottom:5px;
+  }
+
+  .category p{
+    display:none;
+  }
+
+  .category button{
+    padding:10px;
+    border-radius:13px;
+    font-size:13px;
+  }
+
+  .notice{
+    margin:18px 0;
+    padding:15px;
+    border-radius:20px;
+    align-items:flex-start;
+  }
+
+  .notice-icon{
+    width:42px;
+    height:42px;
+    border-radius:14px;
+    font-size:22px;
+    flex:0 0 auto;
+  }
+
+  .notice p{
+    font-size:14px;
   }
 }
 </style>
@@ -739,270 +828,133 @@ footer{
 
 <body>
 
-<header>
-  <div class="container top">
-    <button class="logo" onclick="home()">
-      <div class="logoIcon"></div>
-      <span>
+<header class="header">
+  <div class="container header-inner">
+
+    <div class="brand">
+      <div class="logo"></div>
+      <div class="brand-text">
         <strong>GlobalLink</strong>
         <span>by Gavriil Moschidis</span>
-      </span>
-    </button>
-
-    <nav>
-      <button onclick="home()" data-t="nav1">Αρχική</button>
-      <button onclick="goCats()" data-t="nav2">Κατηγορίες</button>
-      <button onclick="showCat('all')" data-t="nav3">Προϊόντα</button>
-      <button onclick="goContact()" data-t="nav5">Επικοινωνία</button>
-    </nav>
-
-    <div class="lang" id="lang">
-      <button class="langMain" onclick="toggleLang()">🌐 Ελληνικά / English</button>
-      <div class="langMenu">
-        <button onclick="setLang('el')">🇬🇷 Ελληνικά</button>
-        <button onclick="setLang('en')">🇬🇧 English</button>
       </div>
     </div>
+
+    <nav class="nav">
+      <a href="#">Αρχική</a>
+      <a href="#categories">Κατηγορίες</a>
+      <a href="#contact">Επικοινωνία</a>
+    </nav>
+
+    <button class="lang">🌐 EL / EN</button>
+
   </div>
 </header>
 
 <main>
 
-<section id="homePage">
-  <section class="homeHero">
+  <section class="hero">
     <div class="container">
-      <div class="homeBox">
 
-        <div>
-          <div class="heroText">
-            <div class="badge" data-t="welcome">Καλώς ήρθες στο GlobalLink</div>
+      <div class="hero-card">
 
-            <h1 data-html="heroTitle">
-              Ανακάλυψε προϊόντα από <span>όλο τον κόσμο</span>
-            </h1>
+        <div class="hero-text">
+          <div class="badge">Καλώς ήρθες στο GlobalLink</div>
 
-            <p data-t="heroText">
-              Συνδέουμε τον κόσμο με ποιοτικά προϊόντα και αξιόπιστες αποστολές.
-              Διάλεξε κατηγορία και βρες αυτό που χρειάζεσαι.
-            </p>
+          <h1>
+            Ανακάλυψε προϊόντα από <span>όλο τον κόσμο</span>
+          </h1>
 
-            <div class="points">
-              <div class="point" data-t="p1">🌐 Παγκόσμια προϊόντα</div>
-              <div class="point" data-t="p2">🛡️ Αξιόπιστες αποστολές</div>
-              <div class="point" data-t="p3">🎧 Εσύ στο επίκεντρο</div>
-            </div>
-          </div>
+          <p>
+            Συνδέουμε τον κόσμο με ποιοτικά προϊόντα και αξιόπιστες αποστολές.
+            Διάλεξε κατηγορία και βρες αυτό που χρειάζεσαι.
+          </p>
 
-          <div class="quickCats" id="cats">
-            <div class="cat">
-              <div class="catTop">
-                <div class="catIcon">💻</div>
-                <h3 data-t="tech">Τεχνολογία</h3>
-              </div>
-              <p data-t="techText">Συσκευές και αξεσουάρ τεχνολογίας.</p>
-              <button onclick="showCat('tech')" data-t="see">Δες προϊόντα</button>
+          <div class="features">
+            <div class="feature">
+              <div class="icon">◎</div>
+              Παγκόσμια προϊόντα
             </div>
 
-            <div class="cat">
-              <div class="catTop">
-                <div class="catIcon">🛋️</div>
-                <h3 data-t="homeCat">Σπίτι</h3>
-              </div>
-              <p data-t="homeText">Προϊόντα για κάθε χώρο.</p>
-              <button onclick="showCat('home')" data-t="see">Δες προϊόντα</button>
+            <div class="feature">
+              <div class="icon">◇</div>
+              Αξιόπιστες αποστολές
             </div>
 
-            <div class="cat">
-              <div class="catTop">
-                <div class="catIcon">👕</div>
-                <h3 data-t="clothes">Ρούχα</h3>
-              </div>
-              <p data-t="clothesText">Ρούχα και αξεσουάρ.</p>
-              <button onclick="showCat('clothes')" data-t="see">Δες προϊόντα</button>
-            </div>
-
-            <div class="cat">
-              <div class="catTop">
-                <div class="catIcon">🚗</div>
-                <h3 data-t="car">Αυτοκίνητο</h3>
-              </div>
-              <p data-t="carText">Αξεσουάρ αυτοκινήτου.</p>
-              <button onclick="showCat('car')" data-t="see">Δες προϊόντα</button>
+            <div class="feature">
+              <div class="icon">◉</div>
+              Εσύ στο επίκεντρο
             </div>
           </div>
         </div>
 
-        <div class="heroVisual">
-          <div class="globe">🌐</div>
-          <div class="box">📦</div>
-          <div class="chain">🔗</div>
-          <div class="plane">✈️</div>
-          <div class="truck">🚚</div>
+        <div class="visual">
+          <div class="world"></div>
+          <div class="gold-orbit"></div>
+          <div class="chain"></div>
+          <div class="box"></div>
+          <div class="plane"></div>
+          <div class="truck">
+            <div class="truck-body"></div>
+            <div class="truck-front"></div>
+            <div class="wheel1"></div>
+            <div class="wheel2"></div>
+          </div>
         </div>
 
       </div>
+
     </div>
   </section>
-</section>
 
-<section id="productsPage">
-  <div class="container">
+  <section class="container" id="categories">
 
-    <div class="categoryHead">
-      <div>
-        <h2 id="catTitle">Προϊόντα</h2>
-        <p id="catText">Επιλεγμένα προϊόντα με αποστολή σε όλο τον κόσμο.</p>
+    <div class="section-title">
+      <h2>Δημοφιλείς Κατηγορίες</h2>
+    </div>
+
+    <div class="categories">
+
+      <div class="category">
+        <div class="category-visual">TECH</div>
+        <h3>Τεχνολογία</h3>
+        <p>Συσκευές και αξεσουάρ τεχνολογίας.</p>
+        <button>Δες προϊόντα</button>
       </div>
-      <div class="banner" id="catEmoji">🌍</div>
+
+      <div class="category">
+        <div class="category-visual">HOME</div>
+        <h3>Σπίτι</h3>
+        <p>Προϊόντα για κάθε χώρο.</p>
+        <button>Δες προϊόντα</button>
+      </div>
+
+      <div class="category">
+        <div class="category-visual">STYLE</div>
+        <h3>Ρούχα</h3>
+        <p>Ρούχα και αξεσουάρ.</p>
+        <button>Δες προϊόντα</button>
+      </div>
+
+      <div class="category">
+        <div class="category-visual">AUTO</div>
+        <h3>Αυτοκίνητο</h3>
+        <p>Αξεσουάρ αυτοκινήτου.</p>
+        <button>Δες προϊόντα</button>
+      </div>
+
     </div>
 
-    <div class="tabs">
-      <button onclick="showCat('tech')" data-cat="tech">💻 <span data-t="tech">Τεχνολογία</span></button>
-      <button onclick="showCat('home')" data-cat="home">🛋️ <span data-t="homeCat">Σπίτι</span></button>
-      <button onclick="showCat('clothes')" data-cat="clothes">👕 <span data-t="clothes">Ρούχα</span></button>
-      <button onclick="showCat('car')" data-cat="car">🚗 <span data-t="car">Αυτοκίνητο</span></button>
-      <button onclick="showCat('all')" data-cat="all">▦ <span data-t="all">Όλα</span></button>
+    <div class="notice" id="contact">
+      <div class="notice-icon">◇</div>
+      <p>
+        <strong>Η σελίδα περιέχει συνεργαζόμενους συνδέσμους.</strong><br>
+        Η αγορά ολοκληρώνεται στην ιστοσελίδα του εκάστοτε συνεργάτη.
+      </p>
     </div>
 
-    <div class="tools">
-      <input id="search" oninput="render()" placeholder="Αναζήτηση προϊόντων...">
-
-      <select id="price" onchange="render()">
-        <option value="all">Όλες οι τιμές</option>
-        <option value="0-25">Μέχρι 25€</option>
-        <option value="25-60">25€ έως 60€</option>
-        <option value="60-999">Πάνω από 60€</option>
-      </select>
-
-      <select id="sort" onchange="render()">
-        <option value="rec">Προτεινόμενα</option>
-        <option value="low">Χαμηλή τιμή</option>
-        <option value="high">Υψηλή τιμή</option>
-      </select>
-    </div>
-
-    <div class="products" id="grid"></div>
-
-  </div>
-</section>
+  </section>
 
 </main>
 
-<footer id="contact">
-  <div class="container footer">
-    <b>🌐 GlobalLink <span style="color:#a36d13">by Gavriil Moschidis</span></b>
-    <span data-t="legal">
-      Η σελίδα περιέχει συνεργαζόμενους συνδέσμους.
-      Η αγορά ολοκληρώνεται στην ιστοσελίδα του εκάστοτε συνεργάτη.
-    </span>
-  </div>
-</footer>
-
-<script>
-let lang='el';
-let cat='all';
-
-const L={
-el:{
-nav1:'Αρχική',
-nav2:'Κατηγορίες',
-nav3:'Προϊόντα',
-nav5:'Επικοινωνία',
-welcome:'Καλώς ήρθες στο GlobalLink',
-heroTitle:'Ανακάλυψε προϊόντα από <span>όλο τον κόσμο</span>',
-heroText:'Συνδέουμε τον κόσμο με ποιοτικά προϊόντα και αξιόπιστες αποστολές. Διάλεξε κατηγορία και βρες αυτό που χρειάζεσαι.',
-p1:'🌐 Παγκόσμια προϊόντα',
-p2:'🛡️ Αξιόπιστες αποστολές',
-p3:'🎧 Εσύ στο επίκεντρο',
-tech:'Τεχνολογία',
-homeCat:'Σπίτι',
-clothes:'Ρούχα',
-car:'Αυτοκίνητο',
-techText:'Συσκευές και αξεσουάρ τεχνολογίας.',
-homeText:'Προϊόντα για κάθε χώρο.',
-clothesText:'Ρούχα και αξεσουάρ.',
-carText:'Αξεσουάρ αυτοκινήτου.',
-see:'Δες προϊόντα',
-all:'Όλα',
-legal:'Η σελίδα περιέχει συνεργαζόμενους συνδέσμους. Η αγορά ολοκληρώνεται στην ιστοσελίδα του εκάστοτε συνεργάτη.',
-search:'Αναζήτηση προϊόντων...',
-ship:'Αποστολή παγκοσμίως',
-view:'Δες προϊόν',
-cats:{
-all:['Όλα τα προϊόντα','Επιλεγμένα προϊόντα από όλες τις κατηγορίες.','🌍'],
-tech:['Προϊόντα Τεχνολογίας','Συσκευές, αξεσουάρ και έξυπνες επιλογές τεχνολογίας.','💻'],
-home:['Προϊόντα για το Σπίτι','Επιλεγμένα προϊόντα για κάθε χώρο του σπιτιού σας.','🛋️'],
-clothes:['Προϊόντα για Ρούχα','Ρούχα και αξεσουάρ με στυλ, ποιότητα και άνεση.','👕'],
-car:['Προϊόντα για το Αυτοκίνητο','Χρήσιμα αξεσουάρ για οδήγηση και καθαριότητα.','🚗']
-}
-},
-en:{
-nav1:'Home',
-nav2:'Categories',
-nav3:'Products',
-nav5:'Contact',
-welcome:'Welcome to GlobalLink',
-heroTitle:'Discover products from <span>around the world</span>',
-heroText:'Quality products and trusted global shipping. Choose a category and find what you need.',
-p1:'🌐 Global products',
-p2:'🛡️ Trusted shipping',
-p3:'🎧 You first',
-tech:'Technology',
-homeCat:'Home',
-clothes:'Clothing',
-car:'Car',
-techText:'Technology devices and accessories.',
-homeText:'Products for every room.',
-clothesText:'Clothing and accessories.',
-carText:'Car accessories.',
-see:'View products',
-all:'All',
-legal:'This site contains partner links. Purchases are completed on each partner website.',
-search:'Search products...',
-ship:'Worldwide shipping',
-view:'View product',
-cats:{
-all:['All products','Selected products from all categories.','🌍'],
-tech:['Technology Products','Devices and smart accessories.','💻'],
-home:['Home Products','Selected products for every room.','🛋️'],
-clothes:['Clothing Products','Clothing and accessories with style and comfort.','👕'],
-car:['Car Products','Useful accessories for driving and cleaning.','🚗']
-}
-}
-};
-
-const P=[
-['Ασύρματα Ακουστικά','Wireless Headphones','tech',49.9,'🎧'],
-['Έξυπνο Ρολόι','Smartwatch','tech',59.9,'⌚'],
-['Power Bank','Power Bank','tech',29.9,'🔋'],
-['Ασύρματη Βάση Κινητού','Wireless Phone Stand','tech',24.9,'📱'],
-['Αθλητική Κάμερα 4K','Action Camera 4K','tech',79.9,'📷'],
-['Πληκτρολόγιο RGB','RGB Keyboard','tech',49.9,'⌨️'],
-['Φωτιστικό Minimal','Minimal Lamp','home',49.9,'💡'],
-['Καναπές Comfort','Comfort Sofa','home',799,'🛋️'],
-['Μαξιλάρια','Pillows','home',29.9,'🛏️'],
-['Πετσέτες Premium','Premium Towels','home',34.9,'🧺'],
-['Διαχυτής Αρώματος','Aroma Diffuser','home',24.9,'🌿'],
-['Organizer Σπιτιού','Home Organizer','home',19.9,'🗂️'],
-['Φούτερ','Hoodie','clothes',34.9,'👕'],
-['T-Shirt','T-Shirt','clothes',14.9,'👚'],
-['Sneakers','Sneakers','clothes',59.9,'👟'],
-['Μπουφάν','Jacket','clothes',79.9,'🧥'],
-['Τζιν','Jeans','clothes',39.9,'👖'],
-['Σακίδιο','Backpack','clothes',29.9,'🎒'],
-['Βάση Κινητού Αυτοκινήτου','Car Phone Holder','car',19.9,'📱'],
-['Dash Cam','Dash Cam','car',79.9,'📹'],
-['Κάλυμμα Τιμονιού','Steering Cover','car',24.9,'🚘'],
-['Ταπέτα Αυτοκινήτου','Car Mats','car',59.9,'🚗'],
-['Αρωματικό Αυτοκινήτου','Car Freshener','car',14.9,'🌸'],
-['Φορτιστής Αυτοκινήτου','Car Charger','car',18.9,'🔌']
-];
-
-function toggleLang(){
-  document.getElementById('lang').classList.toggle('open');
-}
-
-function setLang(x){
-  lang=x;
-
-  document.querySelectorAll('[d
+</body>
+  </html>
