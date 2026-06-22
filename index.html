@@ -4,185 +4,930 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GlobalLink - by Gavriil Moschidis</title>
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;background:#f7f9fc;color:#071a35}
-button,input,select{font-family:inherit}
-button{cursor:pointer}
-.container{width:min(1180px,92%);margin:auto}
-header{position:sticky;top:0;background:white;border-bottom:1px solid #e5eaf3;z-index:10}
-.top{height:82px;display:flex;align-items:center;justify-content:space-between;gap:18px}
-.logo{display:flex;align-items:center;gap:12px;border:0;background:white;color:#071a35}
-.logoIcon{width:58px;height:58px;border-radius:15px;background:linear-gradient(135deg,#071a35,#1554d1);display:grid;place-items:center;font-size:32px;box-shadow:0 10px 25px #1554d133}
-.logo strong{font-size:30px;display:block;line-height:.9}
-.logo span{color:#a36d13;font-weight:bold}
-nav{display:flex;gap:22px}
-nav button,.lang button{border:0;background:white;color:#071a35;font-weight:bold;font-size:15px}
-nav button:hover{color:#1554d1}
-.lang{position:relative}
-.langMain{border:1px solid #d9e2f1!important;padding:11px 14px;border-radius:13px!important}
-.langMenu{display:none;position:absolute;right:0;top:48px;background:white;border:1px solid #e5eaf3;border-radius:14px;box-shadow:0 12px 30px #071a351c;padding:8px;width:170px}
-.langMenu button{display:block;width:100%;text-align:left;padding:12px;border-radius:10px}
-.lang.open .langMenu{display:block}
-.hero{background:linear-gradient(180deg,#fff,#eef5ff);padding:55px 0 35px}
-.heroGrid{display:grid;grid-template-columns:1fr 1fr;gap:35px;align-items:center}
-.hero h1{font-size:clamp(38px,5vw,64px);line-height:1.05;margin-bottom:22px}
-.hero h1 span{color:#1554d1}
-.hero p{font-size:19px;line-height:1.6;color:#475569;margin-bottom:28px}
-.points{display:flex;gap:18px;flex-wrap:wrap;font-weight:bold;color:#071a35}
-.art{min-height:350px;border-radius:34px;background:radial-gradient(circle at 55% 35%,#79cfff 0,#1554d1 28%,#071a35 56%,transparent 57%),linear-gradient(135deg,#fff,#eef5ff);box-shadow:0 24px 60px #071a3519;position:relative;overflow:hidden}
-.art:before{content:"🌐";position:absolute;font-size:175px;right:170px;top:65px}
-.art:after{content:"📦  🔗  ✈️  🚚";position:absolute;font-size:62px;right:55px;bottom:65px}
-.title{text-align:center;margin:42px 0 24px}
-.title h2{font-size:30px}
-.title:after{content:"";display:block;width:55px;height:3px;background:#d69b26;margin:12px auto;border-radius:99px}
-.cats,.products,.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
-.card,.product,.trustCard{background:white;border:1px solid #e5eaf3;border-radius:22px;overflow:hidden;box-shadow:0 12px 30px #071a3510}
-.pic{height:170px;background:linear-gradient(135deg,#eef4ff,#fff);display:grid;place-items:center;font-size:72px}
-.body{padding:20px}
-.body h3{font-size:21px;margin-bottom:8px}
-.body p{color:#64748b;min-height:42px;margin-bottom:16px}
-.btn{width:100%;border:1px solid #1554d1;background:white;color:#1554d1;border-radius:12px;padding:12px;font-weight:bold}
-.btn:hover{background:#1554d1;color:white}
-.trust{grid-template-columns:repeat(3,1fr);margin:34px 0 45px}
-.trustCard{padding:24px;display:flex;gap:14px;align-items:center}
-.trustCard b{font-size:18px}
-.trustCard p{color:#64748b;font-size:14px}
-#productsPage{display:none;padding:34px 0}
-.categoryHead{display:grid;grid-template-columns:1fr 1fr;background:white;border:1px solid #e5eaf3;border-radius:0 0 28px 28px;overflow:hidden;box-shadow:0 12px 30px #071a3510;margin-bottom:24px}
-.catCopy{padding:42px 34px}
-.catCopy h1{font-size:clamp(34px,5vw,56px);margin-bottom:14px}
-.catCopy p{color:#64748b;font-size:17px;line-height:1.6}
-.banner{display:grid;place-items:center;font-size:120px;background:linear-gradient(135deg,#fff,#eaf3ff)}
-.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
-.tabs button{border:1px solid #e5eaf3;background:white;border-radius:13px;padding:12px 16px;font-weight:bold;color:#071a35}
-.tabs button.active{background:#071a35;color:white}
-.tools{display:grid;grid-template-columns:1fr 190px 190px;gap:14px;background:white;border:1px solid #e5eaf3;border-radius:22px;padding:18px;margin-bottom:24px;box-shadow:0 12px 30px #071a3510}
-.tools input,.tools select{border:1px solid #d9e2f1;border-radius:14px;padding:14px;font-size:15px}
-.products{margin-bottom:35px}
-.productImg{height:185px;background:linear-gradient(135deg,#fff,#edf5ff);display:grid;place-items:center;font-size:76px;position:relative}
-.productBody{padding:17px}
-.productBody h3{font-size:17px;min-height:44px}
-.price{font-size:22px;font-weight:900;color:#1554d1;margin:9px 0}
-.ship{font-size:13px;color:#64748b;margin-bottom:13px}
-footer{background:white;border-top:1px solid #e5eaf3;padding:22px 0;color:#64748b;font-size:13px}
-.footer{display:flex;justify-content:space-between;gap:20px;align-items:center}
-@media(max-width:900px){nav{display:none}.heroGrid,.categoryHead{grid-template-columns:1fr}.cats,.products{grid-template-columns:repeat(2,1fr)}.trust,.tools{grid-template-columns:1fr}}
-@media(max-width:560px){.top{height:auto;padding:14px 0}.logo strong{font-size:24px}.logoIcon{width:50px;height:50px}.cats,.products{grid-template-columns:1fr}.hero{padding-top:35px}.hero h1{font-size:38px}.art{min-height:260px}.footer{flex-direction:column;text-align:center}.langMain{font-size:13px!important}}
+:root{
+  --blue:#071a35;
+  --blue2:#1554d1;
+  --gold:#d69b26;
+  --text:#0b1733;
+  --muted:#5f6f86;
+  --line:#e5eaf3;
+  --bg:#f7f9fc;
+  --white:#ffffff;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Arial,"DejaVu Sans",sans-serif;
+  background:linear-gradient(180deg,#ffffff 0%,#f4f8ff 45%,#f7f9fc 100%);
+  color:var(--text);
+}
+
+button,input,select{
+  font-family:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.container{
+  width:min(1220px,94%);
+  margin:auto;
+}
+
+/* ΠΑΝΩ ΜΠΑΡΑ */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:20;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+  box-shadow:0 8px 24px rgba(7,26,53,.06);
+}
+
+.top{
+  min-height:72px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  border:0;
+  background:transparent;
+  color:var(--blue);
+}
+
+.logoIcon{
+  width:56px;
+  height:56px;
+  border-radius:18px;
+  display:grid;
+  place-items:center;
+  background:
+    radial-gradient(circle at 30% 25%,#88ddff 0%,#1554d1 45%,#071a35 100%);
+  box-shadow:0 12px 28px rgba(21,84,209,.25);
+  position:relative;
+  overflow:hidden;
+}
+
+.logoIcon:before{
+  content:"🌐";
+  font-size:32px;
+}
+
+.logoIcon:after{
+  content:"";
+  position:absolute;
+  left:8px;
+  right:8px;
+  bottom:9px;
+  height:5px;
+  border-radius:99px;
+  background:linear-gradient(90deg,transparent,#d69b26,transparent);
+}
+
+.logo strong{
+  display:block;
+  font-size:30px;
+  letter-spacing:-1px;
+  line-height:.9;
+}
+
+.logo span span{
+  display:block;
+  margin-top:7px;
+  color:#a36d13;
+  font-weight:800;
+  font-size:15px;
+}
+
+nav{
+  display:flex;
+  gap:24px;
+}
+
+nav button{
+  border:0;
+  background:transparent;
+  color:var(--blue);
+  font-weight:800;
+  font-size:15px;
+  padding:10px 0;
+}
+
+nav button:hover{
+  color:var(--blue2);
+}
+
+.lang{
+  position:relative;
+}
+
+.langMain{
+  border:1px solid #d8e2f1;
+  background:white;
+  color:var(--blue);
+  border-radius:17px;
+  padding:13px 18px;
+  font-weight:900;
+  font-size:15px;
+  box-shadow:0 8px 18px rgba(7,26,53,.06);
+}
+
+.langMenu{
+  display:none;
+  position:absolute;
+  right:0;
+  top:54px;
+  width:170px;
+  padding:8px;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:16px;
+  box-shadow:0 15px 35px rgba(7,26,53,.12);
+}
+
+.lang.open .langMenu{
+  display:block;
+}
+
+.langMenu button{
+  display:block;
+  width:100%;
+  text-align:left;
+  border:0;
+  background:white;
+  padding:12px;
+  border-radius:12px;
+  font-weight:800;
+  color:var(--blue);
+}
+
+.langMenu button:hover{
+  background:#eef4ff;
+}
+
+/* ΚΕΝΤΡΙΚΗ */
+
+.homeHero{
+  min-height:calc(100vh - 72px);
+  padding:26px 0 22px;
+  display:flex;
+  align-items:center;
+}
+
+.homeBox{
+  width:100%;
+  display:grid;
+  grid-template-columns:.92fr 1.08fr;
+  gap:24px;
+  align-items:center;
+}
+
+.heroText{
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(229,234,243,.8);
+  border-radius:32px;
+  padding:34px;
+  box-shadow:0 18px 45px rgba(7,26,53,.08);
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  color:var(--gold);
+  font-weight:900;
+  letter-spacing:.16em;
+  font-size:13px;
+  text-transform:uppercase;
+  margin-bottom:18px;
+}
+
+.badge:before{
+  content:"";
+  width:45px;
+  height:3px;
+  background:var(--gold);
+  border-radius:99px;
+}
+
+h1{
+  font-size:clamp(42px,5vw,68px);
+  line-height:1.03;
+  letter-spacing:-2px;
+  color:var(--blue);
+  margin-bottom:18px;
+}
+
+h1 span{
+  color:var(--blue2);
+}
+
+.heroText p{
+  color:var(--muted);
+  font-size:19px;
+  line-height:1.65;
+  margin-bottom:20px;
+}
+
+.points{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+
+.point{
+  background:#f4f8ff;
+  border:1px solid #e0e9f7;
+  border-radius:16px;
+  padding:12px;
+  font-weight:900;
+  color:var(--blue);
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:14px;
+}
+
+.heroVisual{
+  min-height:430px;
+  border-radius:34px;
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 58% 42%,#7bd5ff 0%,#1554d1 32%,#071a35 62%,transparent 63%),
+    linear-gradient(135deg,#ffffff 0%,#eaf3ff 100%);
+  box-shadow:0 22px 65px rgba(7,26,53,.14);
+}
+
+.heroVisual .globe{
+  position:absolute;
+  right:170px;
+  top:58px;
+  font-size:185px;
+  filter:drop-shadow(0 22px 20px rgba(7,26,53,.22));
+}
+
+.heroVisual .box{
+  position:absolute;
+  left:54px;
+  bottom:72px;
+  font-size:78px;
+}
+
+.heroVisual .chain{
+  position:absolute;
+  left:190px;
+  bottom:102px;
+  font-size:82px;
+  transform:rotate(-8deg);
+}
+
+.heroVisual .plane{
+  position:absolute;
+  right:72px;
+  top:105px;
+  font-size:75px;
+  transform:rotate(-12deg);
+}
+
+.heroVisual .truck{
+  position:absolute;
+  right:88px;
+  bottom:65px;
+  font-size:78px;
+}
+
+/* ΚΑΤΗΓΟΡΙΕΣ */
+
+.quickCats{
+  margin-top:18px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+}
+
+.cat{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:18px;
+  box-shadow:0 12px 30px rgba(7,26,53,.08);
+  transition:.18s;
+}
+
+.cat:hover{
+  transform:translateY(-3px);
+}
+
+.catTop{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:10px;
+}
+
+.catIcon{
+  width:45px;
+  height:45px;
+  display:grid;
+  place-items:center;
+  border-radius:15px;
+  background:#eef4ff;
+  font-size:25px;
+}
+
+.cat h3{
+  font-size:18px;
+  color:var(--blue);
+}
+
+.cat p{
+  font-size:13px;
+  color:var(--muted);
+  min-height:36px;
+  margin-bottom:12px;
+}
+
+.cat button{
+  width:100%;
+  border:1px solid var(--blue2);
+  background:var(--blue2);
+  color:white;
+  border-radius:13px;
+  padding:11px 12px;
+  font-weight:900;
+}
+
+/* ΠΡΟΪΟΝΤΑ */
+
+#productsPage{
+  display:none;
+  padding:26px 0 35px;
+}
+
+.categoryHead{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  align-items:center;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:30px;
+  padding:24px;
+  box-shadow:0 16px 42px rgba(7,26,53,.08);
+  margin-bottom:18px;
+}
+
+.categoryHead h2{
+  font-size:clamp(32px,5vw,54px);
+  color:var(--blue);
+  margin-bottom:10px;
+}
+
+.categoryHead p{
+  font-size:17px;
+  color:var(--muted);
+  line-height:1.55;
+}
+
+.banner{
+  min-height:210px;
+  border-radius:24px;
+  display:grid;
+  place-items:center;
+  font-size:120px;
+  background:
+    radial-gradient(circle at 50% 45%,#a5e3ff 0%,#1554d1 35%,#071a35 70%),
+    linear-gradient(135deg,#fff,#eaf3ff);
+}
+
+.tabs{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:16px;
+}
+
+.tabs button{
+  border:1px solid var(--line);
+  background:white;
+  border-radius:15px;
+  padding:12px 16px;
+  font-weight:900;
+  color:var(--blue);
+}
+
+.tabs button.active{
+  background:var(--blue);
+  color:white;
+}
+
+.tools{
+  display:grid;
+  grid-template-columns:1fr 190px 190px;
+  gap:12px;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:15px;
+  box-shadow:0 12px 30px rgba(7,26,53,.07);
+  margin-bottom:18px;
+}
+
+.tools input,.tools select{
+  border:1px solid #d9e2f1;
+  border-radius:14px;
+  padding:13px 14px;
+  font-size:15px;
+  outline:none;
+}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+}
+
+.product{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:0 12px 30px rgba(7,26,53,.08);
+}
+
+.productImg{
+  height:160px;
+  display:grid;
+  place-items:center;
+  font-size:66px;
+  background:linear-gradient(135deg,#ffffff,#eef5ff);
+}
+
+.productBody{
+  padding:16px;
+}
+
+.productBody h3{
+  font-size:16px;
+  min-height:42px;
+  color:var(--blue);
+}
+
+.price{
+  font-size:22px;
+  font-weight:900;
+  color:var(--blue2);
+  margin:8px 0;
+}
+
+.ship{
+  font-size:13px;
+  color:var(--muted);
+  margin-bottom:12px;
+}
+
+.product button{
+  width:100%;
+  border:1px solid var(--blue2);
+  background:white;
+  color:var(--blue2);
+  border-radius:12px;
+  padding:10px;
+  font-weight:900;
+}
+
+.product button:hover{
+  background:var(--blue2);
+  color:white;
+}
+
+footer{
+  background:white;
+  border-top:1px solid var(--line);
+  padding:20px 0;
+  color:var(--muted);
+  font-size:13px;
+}
+
+.footer{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  align-items:center;
+}
+
+/* ΚΙΝΗΤΟ */
+
+@media(max-width:760px){
+  .container{
+    width:92%;
+  }
+
+  .top{
+    min-height:64px;
+  }
+
+  nav{
+    display:none;
+  }
+
+  .logoIcon{
+    width:44px;
+    height:44px;
+    border-radius:14px;
+  }
+
+  .logoIcon:before{
+    font-size:25px;
+  }
+
+  .logo strong{
+    font-size:24px;
+  }
+
+  .logo span span{
+    font-size:13px;
+    margin-top:4px;
+  }
+
+  .langMain{
+    padding:10px 13px;
+    border-radius:15px;
+    font-size:0;
+  }
+
+  .langMain:after{
+    content:"EL / EN";
+    font-size:15px;
+  }
+
+  .homeHero{
+    min-height:auto;
+    padding:14px 0 18px;
+    align-items:flex-start;
+  }
+
+  .homeBox{
+    display:block;
+  }
+
+  .heroText{
+    border-radius:25px;
+    padding:20px;
+    margin-bottom:12px;
+  }
+
+  .badge{
+    font-size:10px;
+    margin-bottom:10px;
+    letter-spacing:.12em;
+  }
+
+  .badge:before{
+    width:32px;
+    height:2px;
+  }
+
+  h1{
+    font-size:33px;
+    line-height:1.05;
+    letter-spacing:-1px;
+    margin-bottom:12px;
+  }
+
+  .heroText p{
+    font-size:16px;
+    line-height:1.45;
+    margin-bottom:12px;
+  }
+
+  .points{
+    grid-template-columns:1fr;
+    gap:7px;
+  }
+
+  .point{
+    padding:8px 10px;
+    font-size:14px;
+    border-radius:13px;
+  }
+
+  .heroVisual{
+    min-height:145px;
+    border-radius:24px;
+    margin-bottom:12px;
+  }
+
+  .heroVisual .globe{
+    font-size:92px;
+    right:130px;
+    top:22px;
+  }
+
+  .heroVisual .box{
+    font-size:43px;
+    left:24px;
+    bottom:30px;
+  }
+
+  .heroVisual .chain{
+    font-size:46px;
+    left:90px;
+    bottom:43px;
+  }
+
+  .heroVisual .plane{
+    font-size:43px;
+    right:32px;
+    top:30px;
+  }
+
+  .heroVisual .truck{
+    font-size:43px;
+    right:42px;
+    bottom:28px;
+  }
+
+  .quickCats{
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    margin-top:0;
+  }
+
+  .cat{
+    border-radius:18px;
+    padding:12px;
+  }
+
+  .catTop{
+    gap:8px;
+    margin-bottom:6px;
+  }
+
+  .catIcon{
+    width:34px;
+    height:34px;
+    font-size:21px;
+    border-radius:12px;
+  }
+
+  .cat h3{
+    font-size:16px;
+  }
+
+  .cat p{
+    display:none;
+  }
+
+  .cat button{
+    padding:9px;
+    font-size:13px;
+    border-radius:11px;
+  }
+
+  .categoryHead{
+    grid-template-columns:1fr;
+    padding:16px;
+    border-radius:24px;
+  }
+
+  .categoryHead h2{
+    font-size:32px;
+  }
+
+  .banner{
+    min-height:110px;
+    font-size:70px;
+  }
+
+  .tools{
+    grid-template-columns:1fr;
+  }
+
+  .products{
+    grid-template-columns:1fr;
+  }
+
+  .footer{
+    flex-direction:column;
+    text-align:center;
+  }
+}
 </style>
 </head>
+
 <body>
+
 <header>
-<div class="container top">
-<button class="logo" onclick="home()"><div class="logoIcon">🌐</div><div><strong>GlobalLink</strong><span>by Gavriil Moschidis</span></div></button>
-<nav><button onclick="home()" data-t="nav1">Αρχική</button><button onclick="goCats()" data-t="nav2">Κατηγορίες</button><button onclick="showCat('all')" data-t="nav3">Προϊόντα</button><button onclick="goAbout()" data-t="nav4">Σχετικά</button><button onclick="goContact()" data-t="nav5">Επικοινωνία</button></nav>
-<div class="lang" id="lang"><button class="langMain" onclick="toggleLang()">🌐 <span id="langLabel">Ελληνικά / English</span></button><div class="langMenu"><button onclick="setLang('el')">🇬🇷 Ελληνικά</button><button onclick="setLang('en')">🇬🇧 English</button></div></div>
-</div>
+  <div class="container top">
+    <button class="logo" onclick="home()">
+      <div class="logoIcon"></div>
+      <span>
+        <strong>GlobalLink</strong>
+        <span>by Gavriil Moschidis</span>
+      </span>
+    </button>
+
+    <nav>
+      <button onclick="home()" data-t="nav1">Αρχική</button>
+      <button onclick="goCats()" data-t="nav2">Κατηγορίες</button>
+      <button onclick="showCat('all')" data-t="nav3">Προϊόντα</button>
+      <button onclick="goContact()" data-t="nav5">Επικοινωνία</button>
+    </nav>
+
+    <div class="lang" id="lang">
+      <button class="langMain" onclick="toggleLang()">🌐 Ελληνικά / English</button>
+      <div class="langMenu">
+        <button onclick="setLang('el')">🇬🇷 Ελληνικά</button>
+        <button onclick="setLang('en')">🇬🇧 English</button>
+      </div>
+    </div>
+  </div>
 </header>
 
 <main>
-<section id="home">
-<section class="hero"><div class="container heroGrid"><div><h1 data-html="heroTitle">Ανακάλυψε προϊόντα από <span>όλο τον κόσμο</span></h1><p data-t="heroText">Συνδέουμε τον κόσμο με ποιοτικά προϊόντα και αξιόπιστες αποστολές. Διάλεξε κατηγορία και βρες αυτό που χρειάζεσαι.</p><div class="points"><span data-t="p1">🌐 Παγκόσμια προϊόντα</span><span data-t="p2">🛡️ Αξιόπιστες αποστολές</span><span data-t="p3">🎧 Εσύ στο επίκεντρο</span></div></div><div class="art"></div></div></section>
 
-<section class="container" id="cats">
-<div class="title"><h2 data-t="popular">Δημοφιλείς Κατηγορίες</h2></div>
+<section id="homePage">
+  <section class="homeHero">
+    <div class="container">
+      <div class="homeBox">
 
-<div class="cats">
-<div class="card"><div class="pic">💻</div><div class="body"><h3 data-t="tech">Τεχνολογία</h3><p data-t="techText">Συσκευές και αξεσουάρ τεχνολογίας.</p><button class="btn" onclick="showCat('tech')" data-t="see">Δες προϊόντα →</button></div></div>
+        <div>
+          <div class="heroText">
+            <div class="badge" data-t="welcome">Καλώς ήρθες στο GlobalLink</div>
 
-<div class="card"><div class="pic">🛋️</div><div class="body"><h3 data-t="homeCat">Σπίτι</h3><p data-t="homeText">Πρακτικά και όμορφα προϊόντα για κάθε χώρο.</p><button class="btn" onclick="showCat('home')" data-t="see">Δες προϊόντα →</button></div></div>
+            <h1 data-html="heroTitle">
+              Ανακάλυψε προϊόντα από <span>όλο τον κόσμο</span>
+            </h1>
 
-<div class="card"><div class="pic">👕</div><div class="body"><h3 data-t="clothes">Ρούχα</h3><p data-t="clothesText">Ρούχα και αξεσουάρ με στυλ και άνεση.</p><button class="btn" onclick="showCat('clothes')" data-t="see">Δες προϊόντα →</button></div></div>
+            <p data-t="heroText">
+              Συνδέουμε τον κόσμο με ποιοτικά προϊόντα και αξιόπιστες αποστολές.
+              Διάλεξε κατηγορία και βρες αυτό που χρειάζεσαι.
+            </p>
 
-<div class="card"><div class="pic">🚗</div><div class="body"><h3 data-t="car">Αυτοκίνητο</h3><p data-t="carText">Χρήσιμα αξεσουάρ για το αυτοκίνητο.</p><button class="btn" onclick="showCat('car')" data-t="see">Δες προϊόντα →</button></div></div>
-</div>
+            <div class="points">
+              <div class="point" data-t="p1">🌐 Παγκόσμια προϊόντα</div>
+              <div class="point" data-t="p2">🛡️ Αξιόπιστες αποστολές</div>
+              <div class="point" data-t="p3">🎧 Εσύ στο επίκεντρο</div>
+            </div>
+          </div>
 
-<div class="trust" id="about">
-<div class="trustCard">🌍<div><b data-t="tr1">Παγκόσμιες συνεργασίες</b><p data-t="tr1t">Συνεργάτες από όλο τον κόσμο.</p></div></div>
-<div class="trustCard">🔒<div><b data-t="tr2">Ασφαλείς αγορές</b><p data-t="tr2t">Η αγορά γίνεται στον συνεργάτη.</p></div></div>
-<div class="trustCard">🚚<div><b data-t="tr3">Αποστολή παντού</b><p data-t="tr3t">Προϊόντα με αποστολή σε πολλές χώρες.</p></div></div>
-</div>
-</section>
+          <div class="quickCats" id="cats">
+            <div class="cat">
+              <div class="catTop">
+                <div class="catIcon">💻</div>
+                <h3 data-t="tech">Τεχνολογία</h3>
+              </div>
+              <p data-t="techText">Συσκευές και αξεσουάρ τεχνολογίας.</p>
+              <button onclick="showCat('tech')" data-t="see">Δες προϊόντα</button>
+            </div>
+
+            <div class="cat">
+              <div class="catTop">
+                <div class="catIcon">🛋️</div>
+                <h3 data-t="homeCat">Σπίτι</h3>
+              </div>
+              <p data-t="homeText">Προϊόντα για κάθε χώρο.</p>
+              <button onclick="showCat('home')" data-t="see">Δες προϊόντα</button>
+            </div>
+
+            <div class="cat">
+              <div class="catTop">
+                <div class="catIcon">👕</div>
+                <h3 data-t="clothes">Ρούχα</h3>
+              </div>
+              <p data-t="clothesText">Ρούχα και αξεσουάρ.</p>
+              <button onclick="showCat('clothes')" data-t="see">Δες προϊόντα</button>
+            </div>
+
+            <div class="cat">
+              <div class="catTop">
+                <div class="catIcon">🚗</div>
+                <h3 data-t="car">Αυτοκίνητο</h3>
+              </div>
+              <p data-t="carText">Αξεσουάρ αυτοκινήτου.</p>
+              <button onclick="showCat('car')" data-t="see">Δες προϊόντα</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="heroVisual">
+          <div class="globe">🌐</div>
+          <div class="box">📦</div>
+          <div class="chain">🔗</div>
+          <div class="plane">✈️</div>
+          <div class="truck">🚚</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
 </section>
 
 <section id="productsPage">
-<div class="container">
-<div class="categoryHead">
-<div class="catCopy"><h1 id="catTitle">Προϊόντα</h1><p id="catText">Επιλεγμένα προϊόντα με αποστολή σε όλο τον κόσμο.</p></div>
-<div class="banner" id="catEmoji">🌍</div>
-</div>
+  <div class="container">
 
-<div class="tabs">
-<button onclick="showCat('tech')" data-cat="tech">💻 <span data-t="tech">Τεχνολογία</span></button>
-<button onclick="showCat('home')" data-cat="home">🛋️ <span data-t="homeCat">Σπίτι</span></button>
-<button onclick="showCat('clothes')" data-cat="clothes">👕 <span data-t="clothes">Ρούχα</span></button>
-<button onclick="showCat('car')" data-cat="car">🚗 <span data-t="car">Αυτοκίνητο</span></button>
-<button onclick="showCat('all')" data-cat="all">▦ <span data-t="all">Όλα</span></button>
-</div>
+    <div class="categoryHead">
+      <div>
+        <h2 id="catTitle">Προϊόντα</h2>
+        <p id="catText">Επιλεγμένα προϊόντα με αποστολή σε όλο τον κόσμο.</p>
+      </div>
+      <div class="banner" id="catEmoji">🌍</div>
+    </div>
 
-<div class="tools">
-<input id="search" oninput="render()" placeholder="Αναζήτηση προϊόντων...">
-<select id="price" onchange="render()">
-<option value="all">Όλες οι τιμές</option>
-<option value="0-25">Μέχρι 25€</option>
-<option value="25-60">25€ έως 60€</option>
-<option value="60-999">Πάνω από 60€</option>
-</select>
-<select id="sort" onchange="render()">
-<option value="rec">Προτεινόμενα</option>
-<option value="low">Χαμηλή τιμή</option>
-<option value="high">Υψηλή τιμή</option>
-</select>
-</div>
+    <div class="tabs">
+      <button onclick="showCat('tech')" data-cat="tech">💻 <span data-t="tech">Τεχνολογία</span></button>
+      <button onclick="showCat('home')" data-cat="home">🛋️ <span data-t="homeCat">Σπίτι</span></button>
+      <button onclick="showCat('clothes')" data-cat="clothes">👕 <span data-t="clothes">Ρούχα</span></button>
+      <button onclick="showCat('car')" data-cat="car">🚗 <span data-t="car">Αυτοκίνητο</span></button>
+      <button onclick="showCat('all')" data-cat="all">▦ <span data-t="all">Όλα</span></button>
+    </div>
 
-<div class="products" id="grid"></div>
-</div>
+    <div class="tools">
+      <input id="search" oninput="render()" placeholder="Αναζήτηση προϊόντων...">
+
+      <select id="price" onchange="render()">
+        <option value="all">Όλες οι τιμές</option>
+        <option value="0-25">Μέχρι 25€</option>
+        <option value="25-60">25€ έως 60€</option>
+        <option value="60-999">Πάνω από 60€</option>
+      </select>
+
+      <select id="sort" onchange="render()">
+        <option value="rec">Προτεινόμενα</option>
+        <option value="low">Χαμηλή τιμή</option>
+        <option value="high">Υψηλή τιμή</option>
+      </select>
+    </div>
+
+    <div class="products" id="grid"></div>
+
+  </div>
 </section>
+
 </main>
 
 <footer id="contact">
-<div class="container footer">
-<b>🌐 GlobalLink <span style="color:#a36d13">by Gavriil Moschidis</span></b>
-<span data-t="legal">Η σελίδα περιέχει συνεργαζόμενους συνδέσμους. Η αγορά ολοκληρώνεται στην ιστοσελίδα του εκάστοτε συνεργάτη.</span>
-</div>
+  <div class="container footer">
+    <b>🌐 GlobalLink <span style="color:#a36d13">by Gavriil Moschidis</span></b>
+    <span data-t="legal">
+      Η σελίδα περιέχει συνεργαζόμενους συνδέσμους.
+      Η αγορά ολοκληρώνεται στην ιστοσελίδα του εκάστοτε συνεργάτη.
+    </span>
+  </div>
 </footer>
 
 <script>
-let lang='el',cat='all';
+let lang='el';
+let cat='all';
 
 const L={
 el:{
 nav1:'Αρχική',
 nav2:'Κατηγορίες',
 nav3:'Προϊόντα',
-nav4:'Σχετικά',
 nav5:'Επικοινωνία',
+welcome:'Καλώς ήρθες στο GlobalLink',
 heroTitle:'Ανακάλυψε προϊόντα από <span>όλο τον κόσμο</span>',
 heroText:'Συνδέουμε τον κόσμο με ποιοτικά προϊόντα και αξιόπιστες αποστολές. Διάλεξε κατηγορία και βρες αυτό που χρειάζεσαι.',
 p1:'🌐 Παγκόσμια προϊόντα',
 p2:'🛡️ Αξιόπιστες αποστολές',
 p3:'🎧 Εσύ στο επίκεντρο',
-popular:'Δημοφιλείς Κατηγορίες',
 tech:'Τεχνολογία',
 homeCat:'Σπίτι',
 clothes:'Ρούχα',
 car:'Αυτοκίνητο',
 techText:'Συσκευές και αξεσουάρ τεχνολογίας.',
-homeText:'Πρακτικά και όμορφα προϊόντα για κάθε χώρο.',
-clothesText:'Ρούχα και αξεσουάρ με στυλ και άνεση.',
-carText:'Χρήσιμα αξεσουάρ για το αυτοκίνητο.',
-see:'Δες προϊόντα →',
+homeText:'Προϊόντα για κάθε χώρο.',
+clothesText:'Ρούχα και αξεσουάρ.',
+carText:'Αξεσουάρ αυτοκινήτου.',
+see:'Δες προϊόντα',
 all:'Όλα',
-tr1:'Παγκόσμιες συνεργασίες',
-tr1t:'Συνεργάτες από όλο τον κόσμο.',
-tr2:'Ασφαλείς αγορές',
-tr2t:'Η αγορά γίνεται στον συνεργάτη.',
-tr3:'Αποστολή παντού',
-tr3t:'Προϊόντα με αποστολή σε πολλές χώρες.',
 legal:'Η σελίδα περιέχει συνεργαζόμενους συνδέσμους. Η αγορά ολοκληρώνεται στην ιστοσελίδα του εκάστοτε συνεργάτη.',
 search:'Αναζήτηση προϊόντων...',
 ship:'Αποστολή παγκοσμίως',
-view:'Δες προϊόν →',
+view:'Δες προϊόν',
 cats:{
 all:['Όλα τα προϊόντα','Επιλεγμένα προϊόντα από όλες τις κατηγορίες.','🌍'],
 tech:['Προϊόντα Τεχνολογίας','Συσκευές, αξεσουάρ και έξυπνες επιλογές τεχνολογίας.','💻'],
@@ -195,37 +940,30 @@ en:{
 nav1:'Home',
 nav2:'Categories',
 nav3:'Products',
-nav4:'About',
 nav5:'Contact',
+welcome:'Welcome to GlobalLink',
 heroTitle:'Discover products from <span>around the world</span>',
-heroText:'We connect you with quality products and trusted global shipping. Choose a category and find what you need.',
+heroText:'Quality products and trusted global shipping. Choose a category and find what you need.',
 p1:'🌐 Global products',
 p2:'🛡️ Trusted shipping',
 p3:'🎧 You first',
-popular:'Popular Categories',
 tech:'Technology',
 homeCat:'Home',
 clothes:'Clothing',
 car:'Car',
-techText:'Devices and technology accessories.',
-homeText:'Practical products for every room.',
-clothesText:'Clothing and accessories with style.',
-carText:'Useful car accessories.',
-see:'View products →',
+techText:'Technology devices and accessories.',
+homeText:'Products for every room.',
+clothesText:'Clothing and accessories.',
+carText:'Car accessories.',
+see:'View products',
 all:'All',
-tr1:'Global partnerships',
-tr1t:'Partners from around the world.',
-tr2:'Safe purchases',
-tr2t:'Purchases are completed on partner sites.',
-tr3:'Worldwide shipping',
-tr3t:'Shipping to many countries.',
 legal:'This site contains partner links. Purchases are completed on each partner website.',
 search:'Search products...',
 ship:'Worldwide shipping',
-view:'View product →',
+view:'View product',
 cats:{
 all:['All products','Selected products from all categories.','🌍'],
-tech:['Technology Products','Devices and smart technology accessories.','💻'],
+tech:['Technology Products','Devices and smart accessories.','💻'],
 home:['Home Products','Selected products for every room.','🛋️'],
 clothes:['Clothing Products','Clothing and accessories with style and comfort.','👕'],
 car:['Car Products','Useful accessories for driving and cleaning.','🚗']
@@ -261,102 +999,10 @@ const P=[
 ];
 
 function toggleLang(){
-document.getElementById('lang').classList.toggle('open')
+  document.getElementById('lang').classList.toggle('open');
 }
 
 function setLang(x){
-lang=x;
-document.getElementById('langLabel').textContent=x==='el'?'Ελληνικά / English':'English / Ελληνικά';
-document.querySelectorAll('[data-t]').forEach(e=>{
-let k=e.dataset.t;
-if(L[x][k])e.textContent=L[x][k]
-});
-document.querySelectorAll('[data-html]').forEach(e=>{
-let k=e.dataset.html;
-if(L[x][k])e.innerHTML=L[x][k]
-});
-document.getElementById('search').placeholder=L[x].search;
-if(document.getElementById('productsPage').style.display==='block')showCat(cat,false);
-render();
-document.getElementById('lang').classList.remove('open')
-}
+  lang=x;
 
-function home(){
-document.getElementById('home').style.display='block';
-document.getElementById('productsPage').style.display='none';
-scrollTo(0,0)
-}
-
-function goCats(){
-home();
-setTimeout(()=>document.getElementById('cats').scrollIntoView({behavior:'smooth'}),80)
-}
-
-function goAbout(){
-home();
-setTimeout(()=>document.getElementById('about').scrollIntoView({behavior:'smooth'}),80)
-}
-
-function goContact(){
-document.getElementById('contact').scrollIntoView({behavior:'smooth'})
-}
-
-function showCat(c,reset=true){
-cat=c;
-document.getElementById('home').style.display='none';
-document.getElementById('productsPage').style.display='block';
-let i=L[lang].cats[c];
-document.getElementById('catTitle').textContent=i[0];
-document.getElementById('catText').textContent=i[1];
-document.getElementById('catEmoji').textContent=i[2];
-document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('active',b.dataset.cat===c));
-if(reset){
-document.getElementById('search').value='';
-document.getElementById('price').value='all';
-document.getElementById('sort').value='rec'
-}
-render();
-scrollTo(0,0)
-}
-
-function render(){
-let s=(document.getElementById('search')?.value||'').toLowerCase();
-let pf=document.getElementById('price')?.value||'all';
-let so=document.getElementById('sort')?.value||'rec';
-
-let arr=P.filter(p=>{
-let name=(lang==='el'?p[0]:p[1]).toLowerCase();
-let ok=cat==='all'||p[2]===cat;
-if(pf!=='all'){
-let [a,b]=pf.split('-').map(Number);
-ok=ok&&p[3]>=a&&p[3]<=b
-}
-return ok&&name.includes(s)
-});
-
-if(so==='low')arr.sort((a,b)=>a[3]-b[3]);
-if(so==='high')arr.sort((a,b)=>b[3]-a[3]);
-
-let g=document.getElementById('grid');
-if(!g)return;
-g.innerHTML='';
-
-arr.forEach(p=>{
-let name=lang==='el'?p[0]:p[1];
-g.innerHTML+=`
-<article class="product">
-<div class="productImg">${p[4]}</div>
-<div class="productBody">
-<h3>${name}</h3>
-<div class="price">€${p[3].toFixed(2).replace('.',',')}</div>
-<div class="ship">🌐 ${L[lang].ship}</div>
-<button class="product-btn" onclick="window.open('https://example.com','_blank')">${L[lang].view}</button>
-</div>
-</article>`
-})
-}
-
-setLang('el');
-</script>
-</body>
-  </html>
+  document.querySelectorAll('[d
