@@ -13,7 +13,6 @@
   --text:#071a35;
   --muted:#53657a;
   --white:#ffffff;
-  --line:rgba(255,255,255,.75);
 }
 
 *{
@@ -31,8 +30,12 @@ body{
   color:var(--text);
   min-height:100vh;
   background:
-    linear-gradient(rgba(255,255,255,.72),rgba(238,247,255,.78)),
-    url("assets/background.jpg") center/cover fixed no-repeat;
+    linear-gradient(rgba(255,255,255,.70),rgba(238,247,255,.82)),
+    url("master.jpg") center/cover fixed no-repeat;
+}
+
+button{
+  font-family:inherit;
 }
 
 .container{
@@ -40,17 +43,20 @@ body{
   margin:auto;
 }
 
+/* ΠΑΝΩ ΜΠΑΡΑ */
+
 .header{
   position:sticky;
   top:0;
   z-index:10;
   padding:14px 0;
   backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
 }
 
 .header-box{
-  background:rgba(255,255,255,.68);
-  border:1px solid rgba(255,255,255,.78);
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(255,255,255,.85);
   border-radius:24px;
   box-shadow:0 18px 38px rgba(7,26,53,.12);
   display:flex;
@@ -96,13 +102,15 @@ body{
 
 .lang{
   border:1px solid rgba(8,34,75,.10);
-  background:rgba(255,255,255,.7);
+  background:rgba(255,255,255,.78);
   border-radius:18px;
   padding:12px 18px;
   font-size:15px;
   font-weight:900;
   color:#08224b;
 }
+
+/* ΚΕΝΤΡΙΚΗ */
 
 .hero{
   padding:12px 0 10px;
@@ -118,8 +126,8 @@ body{
   display:block;
   overflow:hidden;
   border-radius:18px;
-  border:1px solid rgba(255,255,255,.85);
-  box-shadow:0 20px 45px rgba(7,26,53,.13);
+  border:1px solid rgba(255,255,255,.90);
+  box-shadow:0 20px 45px rgba(7,26,53,.14);
   background:rgba(255,255,255,.45);
 }
 
@@ -129,6 +137,8 @@ body{
   display:block;
   object-fit:cover;
 }
+
+/* ΤΙΤΛΟΣ ΚΑΤΗΓΟΡΙΩΝ */
 
 .section-title{
   text-align:center;
@@ -151,6 +161,8 @@ body{
   margin:12px auto 0;
 }
 
+/* ΚΑΤΗΓΟΡΙΕΣ */
+
 .categories{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -162,10 +174,10 @@ body{
   display:block;
   overflow:hidden;
   border-radius:18px;
-  border:1px solid rgba(255,255,255,.85);
-  box-shadow:0 18px 38px rgba(7,26,53,.12);
+  border:1px solid rgba(255,255,255,.90);
+  box-shadow:0 18px 38px rgba(7,26,53,.13);
   transition:.2s ease;
-  background:rgba(255,255,255,.52);
+  background:rgba(255,255,255,.55);
 }
 
 .category:hover{
@@ -179,10 +191,12 @@ body{
   object-fit:cover;
 }
 
+/* ΚΑΤΩ ΣΗΜΕΙΩΣΗ */
+
 .notice{
   margin:20px 0 28px;
-  background:rgba(255,255,255,.72);
-  border:1px solid rgba(255,255,255,.82);
+  background:rgba(255,255,255,.76);
+  border:1px solid rgba(255,255,255,.88);
   border-radius:22px;
   padding:18px;
   text-align:center;
@@ -195,9 +209,15 @@ body{
   color:#08224b;
 }
 
+/* ΚΙΝΗΤΟ */
+
 @media(max-width:800px){
   .container{
     width:94%;
+  }
+
+  .header{
+    padding:10px 0;
   }
 
   .header-box{
@@ -225,8 +245,17 @@ body{
     font-size:13px;
   }
 
+  .hero{
+    padding:8px 0 8px;
+  }
+
   .hero-grid{
     grid-template-columns:1fr;
+    gap:10px;
+  }
+
+  .section-title{
+    margin:16px 0 12px;
   }
 
   .section-title h1{
@@ -245,7 +274,8 @@ body{
 
   .notice{
     font-size:14px;
-    margin-bottom:18px;
+    margin:16px 0 18px;
+    padding:15px;
   }
 }
 </style>
@@ -274,44 +304,50 @@ body{
 <section class="hero">
   <div class="container">
     <div class="hero-grid">
+
       <a class="panel" href="#categories">
-        <img src="assets/hero.jpg" alt="GlobalLink παγκόσμιες αποστολές">
+        <img src="hero.jpg" alt="GlobalLink παγκόσμιες αποστολές">
       </a>
 
       <a class="panel" href="#categories">
-        <img src="assets/side.jpg" alt="GlobalLink πληροφορίες">
+        <img src="side.jpg" alt="GlobalLink πληροφορίες">
       </a>
+
     </div>
   </div>
 </section>
 
 <section class="container" id="categories">
+
   <div class="section-title">
     <h1>Δημοφιλείς Κατηγορίες</h1>
   </div>
 
   <div class="categories">
+
     <a class="category" href="#">
-      <img src="assets/tech.jpg" alt="Τεχνολογία">
+      <img src="tech.jpg" alt="Τεχνολογία">
     </a>
 
     <a class="category" href="#">
-      <img src="assets/home.jpg" alt="Σπίτι">
+      <img src="home.jpg" alt="Σπίτι">
     </a>
 
     <a class="category" href="#">
-      <img src="assets/clothes.jpg" alt="Ρούχα">
+      <img src="clothes.jpg" alt="Ρούχα">
     </a>
 
     <a class="category" href="#">
-      <img src="assets/car.jpg" alt="Αυτοκίνητο">
+      <img src="car.jpg" alt="Αυτοκίνητο">
     </a>
+
   </div>
 
   <div class="notice">
     <strong>Η σελίδα περιέχει συνεργαζόμενους συνδέσμους.</strong><br>
     Η αγορά ολοκληρώνεται στην ιστοσελίδα του εκάστοτε συνεργάτη.
   </div>
+
 </section>
 
 </main>
