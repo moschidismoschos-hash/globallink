@@ -2342,6 +2342,557 @@
 
     /* END_CLEAN_BOTTOM_SECTION_V1 */
 
+  
+    /* BILINGUAL_VISUAL_LAYER_V1 */
+
+    /*
+      Τα παρακάτω αγγλικά στρώματα εμφανίζονται
+      μόνο όταν ο χρήστης επιλέγει English.
+    */
+
+    .hero-language-layer,
+    .footer-language-layer {
+      display: none;
+    }
+
+    body.lang-en .hero-language-layer {
+      position: absolute;
+      z-index: 3;
+
+      left: 1.3%;
+      top: 3%;
+
+      width: 49%;
+      height: 91%;
+
+      display: block;
+
+      border-radius: 28px 0 0 28px;
+
+      pointer-events: none;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(237, 249, 255, 0.99) 0%,
+          rgba(235, 248, 255, 0.97) 70%,
+          rgba(234, 248, 255, 0.80) 87%,
+          rgba(234, 248, 255, 0) 100%
+        );
+    }
+
+    .hero-language-copy {
+      position: absolute;
+
+      left: 7%;
+      top: 16%;
+
+      width: 79%;
+
+      color: #062d78;
+    }
+
+    .hero-language-copy h1 {
+      margin: 0;
+
+      font-size: clamp(27px, 4.4vw, 61px);
+      line-height: 1.08;
+      font-weight: 900;
+      letter-spacing: -1.3px;
+    }
+
+    .hero-language-copy p {
+      max-width: 510px;
+      margin: 7% 0 0;
+
+      color: #315d8d;
+
+      font-size: clamp(11px, 1.45vw, 20px);
+      line-height: 1.55;
+      font-weight: 500;
+    }
+
+    /*
+      Καλύπτει μόνο την ελληνική ονομασία
+      στο κάτω μέρος κάθε κατηγορίας.
+    */
+
+    body.lang-en .category-button::before {
+      content: attr(data-name-en) "  →";
+
+      position: absolute;
+      z-index: 3;
+
+      left: 5%;
+      right: 5%;
+      bottom: 4%;
+
+      min-height: 25%;
+      padding: 2px 3px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 1px solid rgba(255, 255, 255, 0.96);
+      border-radius: 10px;
+
+      color: #07377e;
+      text-align: center;
+
+      font-size: clamp(7px, 1vw, 13px);
+      line-height: 1.08;
+      font-weight: 900;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.97),
+          rgba(220, 244, 255, 0.94)
+        );
+
+      box-shadow:
+        inset 0 1px 3px white,
+        0 4px 10px rgba(0, 103, 220, 0.13);
+    }
+
+    .category-button.selected::after {
+      z-index: 5;
+    }
+
+    /*
+      Πλήρως αγγλικό κάτω τμήμα.
+      Η παλιά ελληνική εικόνα παραμένει από πίσω,
+      αλλά εξασθενεί ώστε να μη φαίνονται τα γράμματα.
+    */
+
+    body.lang-en .bottom-static-image {
+      opacity: 0.08 !important;
+    }
+
+    body.lang-en .footer-language-layer {
+      position: absolute;
+      z-index: 5;
+      inset: 0;
+
+      padding: 1.5% 2%;
+
+      display: grid;
+
+      grid-template-rows:
+        minmax(0, 31%)
+        minmax(0, 24%)
+        minmax(0, 45%);
+
+      gap: 2%;
+
+      overflow: hidden;
+      pointer-events: none;
+
+      color: #073475;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(239, 250, 255, 0.98),
+          rgba(222, 243, 255, 0.97)
+        );
+    }
+
+    .footer-benefits-en {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1.2%;
+    }
+
+    .footer-benefit-en {
+      min-width: 0;
+      padding: 3% 4%;
+
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      align-items: center;
+      gap: 6%;
+
+      border: 1px solid rgba(255, 255, 255, 0.98);
+      border-radius: 17px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.94),
+          rgba(222, 244, 255, 0.72)
+        );
+
+      box-shadow:
+        inset 0 1px 3px white,
+        0 5px 13px rgba(0, 94, 205, 0.11);
+    }
+
+    .footer-benefit-icon-en {
+      width: clamp(25px, 4.1vw, 52px);
+      aspect-ratio: 1;
+
+      display: grid;
+      place-items: center;
+
+      border: 1px solid white;
+      border-radius: 50%;
+
+      color: white;
+
+      font-size: clamp(12px, 2vw, 25px);
+
+      background:
+        linear-gradient(
+          135deg,
+          #0878ff,
+          #26c9ff
+        );
+
+      box-shadow:
+        inset 0 1px 4px rgba(255, 255, 255, 0.65),
+        0 5px 14px rgba(0, 105, 230, 0.25);
+    }
+
+    .footer-benefit-en strong {
+      display: block;
+
+      overflow: hidden;
+
+      color: #052d7c;
+
+      font-size: clamp(7px, 1vw, 13px);
+      line-height: 1.12;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .footer-benefit-en small {
+      display: block;
+
+      margin-top: 3px;
+
+      overflow: hidden;
+
+      color: #315d8d;
+
+      font-size: clamp(5px, 0.72vw, 10px);
+      line-height: 1.25;
+
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+
+    .footer-newsletter-en {
+      padding: 0 3%;
+
+      display: grid;
+      grid-template-columns:
+        auto
+        minmax(0, 1fr)
+        minmax(145px, 31%);
+
+      align-items: center;
+      gap: 2%;
+
+      border: 1px solid rgba(255, 255, 255, 0.98);
+      border-radius: 20px;
+
+      color: white;
+
+      background:
+        linear-gradient(
+          100deg,
+          #086ff2,
+          #20c6ff
+        );
+
+      box-shadow:
+        inset 0 2px 5px rgba(255, 255, 255, 0.55),
+        0 7px 20px rgba(0, 101, 230, 0.27);
+    }
+
+    .footer-mail-icon-en {
+      width: clamp(28px, 4.5vw, 55px);
+      aspect-ratio: 1;
+
+      display: grid;
+      place-items: center;
+
+      border: 1px solid rgba(255, 255, 255, 0.86);
+      border-radius: 50%;
+
+      font-size: clamp(14px, 2.2vw, 27px);
+
+      background: rgba(255, 255, 255, 0.13);
+    }
+
+    .footer-newsletter-copy-en strong {
+      display: block;
+
+      font-size: clamp(9px, 1.45vw, 18px);
+      line-height: 1.1;
+    }
+
+    .footer-newsletter-copy-en small {
+      display: block;
+
+      margin-top: 3px;
+
+      font-size: clamp(5px, 0.75vw, 10px);
+      line-height: 1.2;
+    }
+
+    .footer-newsletter-field-en {
+      min-width: 0;
+      padding: 4% 7%;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      border-radius: 999px;
+
+      font-size: clamp(6px, 0.85vw, 11px);
+
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    .footer-newsletter-field-en b {
+      padding: 4% 10%;
+
+      border-radius: 999px;
+
+      color: #0871df;
+      white-space: nowrap;
+
+      background: white;
+    }
+
+    .footer-info-en {
+      padding: 1.6% 2.2%;
+
+      display: grid;
+      grid-template-columns:
+        1.35fr
+        1fr
+        1fr
+        1fr;
+
+      gap: 3%;
+
+      border: 1px solid rgba(255, 255, 255, 0.98);
+      border-radius: 18px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.93),
+          rgba(223, 244, 255, 0.72)
+        );
+
+      box-shadow:
+        inset 0 1px 3px white,
+        0 5px 15px rgba(0, 90, 195, 0.10);
+    }
+
+    .footer-brand-en strong {
+      display: block;
+
+      color: #052d7c;
+
+      font-size: clamp(9px, 1.4vw, 18px);
+      line-height: 1.05;
+    }
+
+    .footer-brand-en em {
+      display: block;
+
+      margin-top: 2px;
+
+      color: #0874e9;
+
+      font-size: clamp(5px, 0.72vw, 10px);
+      font-style: normal;
+      font-weight: 700;
+    }
+
+    .footer-brand-en p {
+      margin: 7% 0 0;
+
+      color: #315d8d;
+
+      font-size: clamp(5px, 0.75vw, 10px);
+      line-height: 1.35;
+    }
+
+    .footer-column-en strong {
+      display: block;
+
+      margin-bottom: 5%;
+
+      color: #052d7c;
+
+      font-size: clamp(6px, 0.85vw, 11px);
+    }
+
+    .footer-column-en span {
+      display: block;
+
+      margin-bottom: 3%;
+
+      color: #315d8d;
+
+      font-size: clamp(5px, 0.7vw, 9px);
+      line-height: 1.18;
+    }
+
+    @media (max-width: 700px) {
+      body.lang-en .hero-language-layer {
+        left: 1.5%;
+        top: 2%;
+
+        width: 50%;
+        height: 96%;
+
+        border-radius: 16px 0 0 16px;
+      }
+
+      .hero-language-copy {
+        left: 7%;
+        top: 15%;
+
+        width: 82%;
+      }
+
+      .hero-language-copy h1 {
+        font-size: clamp(16px, 4.7vw, 29px);
+        line-height: 1.08;
+        letter-spacing: -0.5px;
+      }
+
+      .hero-language-copy p {
+        margin-top: 7%;
+
+        font-size: clamp(7px, 1.6vw, 11px);
+        line-height: 1.45;
+      }
+
+      body.lang-en .category-button::before {
+        left: 3%;
+        right: 3%;
+        bottom: 3%;
+
+        min-height: 28%;
+        padding: 1px 2px;
+
+        border-radius: 7px;
+
+        font-size: clamp(5px, 1.15vw, 8px);
+      }
+
+      body.lang-en .footer-language-layer {
+        padding: 1.3% 1.7%;
+        gap: 1.6%;
+
+        grid-template-rows:
+          minmax(0, 31%)
+          minmax(0, 23%)
+          minmax(0, 46%);
+      }
+
+      .footer-benefit-en {
+        padding: 3%;
+
+        grid-template-columns: auto minmax(0, 1fr);
+        gap: 5%;
+
+        border-radius: 12px;
+      }
+
+      .footer-benefit-icon-en {
+        width: clamp(22px, 5.7vw, 38px);
+
+        font-size: clamp(11px, 2.8vw, 19px);
+      }
+
+      .footer-benefit-en strong {
+        font-size: clamp(5px, 1.4vw, 8px);
+      }
+
+      .footer-benefit-en small {
+        margin-top: 1px;
+
+        font-size: clamp(4px, 1vw, 6px);
+      }
+
+      .footer-newsletter-en {
+        padding: 0 2.4%;
+
+        grid-template-columns:
+          auto
+          minmax(0, 1fr)
+          minmax(105px, 33%);
+
+        border-radius: 14px;
+      }
+
+      .footer-mail-icon-en {
+        width: clamp(24px, 6vw, 40px);
+
+        font-size: clamp(12px, 3vw, 20px);
+      }
+
+      .footer-newsletter-copy-en strong {
+        font-size: clamp(7px, 1.8vw, 11px);
+      }
+
+      .footer-newsletter-copy-en small {
+        font-size: clamp(4px, 1vw, 6px);
+      }
+
+      .footer-newsletter-field-en {
+        padding: 3% 5%;
+
+        font-size: clamp(4px, 1.05vw, 7px);
+      }
+
+      .footer-info-en {
+        padding: 1.7% 2%;
+
+        grid-template-columns:
+          1.35fr
+          1fr
+          1fr
+          1fr;
+
+        gap: 2%;
+
+        border-radius: 13px;
+      }
+
+      .footer-brand-en strong {
+        font-size: clamp(7px, 1.9vw, 12px);
+      }
+
+      .footer-brand-en em,
+      .footer-brand-en p,
+      .footer-column-en strong,
+      .footer-column-en span {
+        font-size: clamp(4px, 1vw, 6.5px);
+      }
+
+      .footer-brand-en p {
+        margin-top: 5%;
+      }
+    }
+
+    /* END_BILINGUAL_VISUAL_LAYER_V1 */
+
   </style>
 </head>
 
@@ -2562,6 +3113,23 @@
         src="assets/homepage.png"
         alt="GlobalLink"
       >
+      <!-- HERO_EN_LAYER_START -->
+      <div class="hero-language-layer">
+        <div class="hero-language-copy">
+          <h1>
+            Discover products<br>
+            from around the world
+          </h1>
+
+          <p>
+            Quality products, carefully selected.
+            Safe shopping, fast delivery and an
+            experience you can trust.
+          </p>
+        </div>
+      </div>
+      <!-- HERO_EN_LAYER_END -->
+
 
       <span
         class="earth-ring"
@@ -3029,6 +3597,106 @@
         src="assets/footer-clean.png"
         alt="Πληροφορίες και επικοινωνία GlobalLink"
       >
+      <!-- FOOTER_EN_LAYER_START -->
+      <div class="footer-language-layer">
+
+        <div class="footer-benefits-en">
+
+          <div class="footer-benefit-en">
+            <span class="footer-benefit-icon-en">✓</span>
+
+            <span>
+              <strong>Safe shopping</strong>
+              <small>Secure purchases and data protection.</small>
+            </span>
+          </div>
+
+          <div class="footer-benefit-en">
+            <span class="footer-benefit-icon-en">◎</span>
+
+            <span>
+              <strong>Worldwide delivery</strong>
+              <small>Products from stores around the world.</small>
+            </span>
+          </div>
+
+          <div class="footer-benefit-en">
+            <span class="footer-benefit-icon-en">★</span>
+
+            <span>
+              <strong>Selected products</strong>
+              <small>Carefully chosen product categories.</small>
+            </span>
+          </div>
+
+          <div class="footer-benefit-en">
+            <span class="footer-benefit-icon-en">☎</span>
+
+            <span>
+              <strong>Support</strong>
+              <small>We are here whenever you need us.</small>
+            </span>
+          </div>
+
+        </div>
+
+        <div class="footer-newsletter-en">
+
+          <span class="footer-mail-icon-en">✉</span>
+
+          <span class="footer-newsletter-copy-en">
+            <strong>Stay updated</strong>
+            <small>Receive news and selected product updates.</small>
+          </span>
+
+          <span class="footer-newsletter-field-en">
+            Email address
+            <b>JOIN</b>
+          </span>
+
+        </div>
+
+        <div class="footer-info-en">
+
+          <div class="footer-brand-en">
+            <strong>GlobalLink</strong>
+            <em>by Gavriil Moschidis</em>
+
+            <p>
+              Discover selected products
+              from around the world.
+            </p>
+          </div>
+
+          <div class="footer-column-en">
+            <strong>Quick links</strong>
+            <span>Home</span>
+            <span>Categories</span>
+            <span>Products</span>
+            <span>Contact</span>
+          </div>
+
+          <div class="footer-column-en">
+            <strong>Categories</strong>
+            <span>Home</span>
+            <span>Car</span>
+            <span>Technology</span>
+            <span>Travel</span>
+          </div>
+
+          <div class="footer-column-en">
+            <strong>About</strong>
+            <span>Our story</span>
+            <span>Terms of use</span>
+            <span>Privacy policy</span>
+            <span>Affiliate notice</span>
+          </div>
+
+        </div>
+
+      </div>
+      <!-- FOOTER_EN_LAYER_END -->
+
 
       <span
         class="section-anchor"
@@ -3522,6 +4190,47 @@
       const greek =
         language.value === "el";
 
+      /* LANGUAGE_CLASS_FIX_V1 */
+
+      document.body.classList.toggle(
+        "lang-el",
+        greek
+      );
+
+      document.body.classList.toggle(
+        "lang-en",
+        !greek
+      );
+
+      document.documentElement.lang =
+        greek ? "el" : "en";
+
+      searchButton.setAttribute(
+        "aria-label",
+        greek ? "Αναζήτηση" : "Search"
+      );
+
+      menuButton.setAttribute(
+        "aria-label",
+        greek ? "Άνοιγμα μενού" : "Open menu"
+      );
+
+      modalClose.setAttribute(
+        "aria-label",
+        greek ? "Κλείσιμο" : "Close"
+      );
+
+      try {
+        localStorage.setItem(
+          "globallink-language",
+          language.value
+        );
+      } catch (error) {
+        console.log(
+          "Δεν αποθηκεύτηκε η γλώσσα."
+        );
+      }
+
       translatedItems.forEach((item) => {
         item.textContent =
           greek
@@ -3554,6 +4263,29 @@
         openProductModal(currentModalCard);
       }
     }
+
+    /* LANGUAGE_STORAGE_V1 */
+
+    try {
+      const savedLanguage =
+        localStorage.getItem(
+          "globallink-language"
+        );
+
+      if (
+        savedLanguage === "el" ||
+        savedLanguage === "en"
+      ) {
+        language.value =
+          savedLanguage;
+      }
+    } catch (error) {
+      console.log(
+        "Δεν φορτώθηκε η αποθηκευμένη γλώσσα."
+      );
+    }
+
+    updateLanguage();
 
     language.addEventListener(
       "change",
