@@ -759,7 +759,7 @@
     .products-section {
       width: min(1100px, calc(100% - 14px));
       margin: 5px auto 13px;
-      padding: 18px 17px 20px;
+      padding: 16px 15px 18px;
 
       border: 1px solid var(--glass-border);
       border-radius: 30px;
@@ -781,7 +781,7 @@
     }
 
     .products-heading {
-      margin-bottom: 15px;
+      margin-bottom: 14px;
 
       display: flex;
       align-items: center;
@@ -863,8 +863,9 @@
     }
 
     .product-grid.filtered {
-      grid-template-columns: minmax(180px, 275px);
+      grid-template-columns: minmax(0, 300px);
       justify-content: center;
+      align-items: start;
     }
 
     .product-card {
@@ -907,6 +908,13 @@
       display: none;
     }
 
+    .product-grid.filtered .product-card {
+      width: 100%;
+      max-width: 300px;
+      min-width: 0;
+      padding: 10px;
+    }
+
     .product-image-box {
       position: relative;
 
@@ -926,6 +934,11 @@
 
       box-shadow:
         inset 0 0 18px rgba(255, 255, 255, 0.8);
+    }
+
+    .product-grid.filtered .product-image-box {
+      aspect-ratio: 4 / 3;
+      max-height: 220px;
     }
 
     .product-image-box::after {
@@ -950,6 +963,7 @@
       display: block;
 
       object-fit: cover;
+      object-position: center;
     }
 
     .product-category {
@@ -985,6 +999,21 @@
       line-height: 1.48;
     }
 
+    .product-grid.filtered .product-card h3 {
+      font-size: 17px;
+      line-height: 1.28;
+    }
+
+    .product-grid.filtered .product-card p {
+      font-size: 13px;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .product-grid.filtered .product-category {
+      font-size: 9px;
+    }
+
     .product-button {
       width: 100%;
       min-height: 38px;
@@ -1009,6 +1038,11 @@
         color 0.2s ease,
         background 0.2s ease,
         transform 0.2s ease;
+    }
+
+    .product-grid.filtered .product-button {
+      min-height: 43px;
+      font-size: 12px;
     }
 
     .product-button:hover,
@@ -1138,7 +1172,7 @@
 
     .modal-image {
       width: 100%;
-      max-height: 330px;
+      max-height: 290px;
       display: block;
 
       object-fit: contain;
@@ -1287,7 +1321,11 @@
       }
 
       .product-grid.filtered {
+        display: grid;
+        grid-template-columns: minmax(0, 290px);
         justify-content: center;
+        overflow: visible;
+        padding: 0;
       }
 
       .product-card {
@@ -1296,6 +1334,13 @@
         flex: 0 0 180px;
 
         scroll-snap-align: start;
+      }
+
+      .product-grid.filtered .product-card {
+        width: 100%;
+        max-width: 290px;
+        min-width: 0;
+        flex: none;
       }
     }
 
@@ -1387,16 +1432,17 @@
       }
 
       .products-section {
-        padding: 14px 11px 17px;
+        padding: 13px 10px 15px;
         border-radius: 24px;
       }
 
       .products-heading {
+        margin-bottom: 12px;
         align-items: flex-start;
       }
 
       .products-heading h2 {
-        font-size: 20px;
+        font-size: 19px;
       }
 
       .show-all-button {
@@ -1408,6 +1454,44 @@
         width: 165px;
         min-width: 165px;
         flex-basis: 165px;
+      }
+
+      .product-grid.filtered {
+        grid-template-columns: minmax(0, 270px);
+      }
+
+      .product-grid.filtered .product-card {
+        max-width: 270px;
+      }
+
+      .product-grid.filtered .product-image-box {
+        max-height: 195px;
+      }
+
+      .product-grid.filtered .product-card h3 {
+        font-size: 16px;
+      }
+
+      .product-grid.filtered .product-card p {
+        font-size: 12px;
+      }
+
+      .modal {
+        padding: 10px;
+      }
+
+      .modal-panel {
+        max-height: calc(100vh - 20px);
+        padding: 14px;
+        border-radius: 24px;
+      }
+
+      .modal-image {
+        max-height: 245px;
+      }
+
+      .modal-title {
+        font-size: 21px;
       }
     }
 
@@ -1422,6 +1506,18 @@
 
       .language {
         display: none;
+      }
+
+      .product-grid.filtered {
+        grid-template-columns: minmax(0, 245px);
+      }
+
+      .product-grid.filtered .product-card {
+        max-width: 245px;
+      }
+
+      .product-grid.filtered .product-image-box {
+        max-height: 175px;
       }
     }
 
