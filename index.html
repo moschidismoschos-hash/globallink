@@ -17,12 +17,13 @@
 
   <style>
     :root {
-      --dark-blue: #052d7c;
-      --blue: #0878ff;
-      --light-blue: #26c9ff;
-      --page-background: #eef9ff;
-      --glass-border: rgba(255, 255, 255, 0.98);
-      --shadow: rgba(0, 91, 200, 0.20);
+      --σκούρο-μπλε: #052d7c;
+      --μπλε: #0878ff;
+      --φωτεινό-μπλε: #26c9ff;
+      --φόντο: #eef9ff;
+      --γυαλί: rgba(255, 255, 255, 0.78);
+      --περίγραμμα: rgba(255, 255, 255, 0.98);
+      --σκιά: rgba(0, 91, 200, 0.20);
     }
 
     * {
@@ -40,7 +41,7 @@
 
     body {
       overflow-x: hidden;
-      color: var(--dark-blue);
+      color: var(--σκούρο-μπλε);
       font-family: Arial, Helvetica, sans-serif;
 
       background:
@@ -57,7 +58,7 @@
         linear-gradient(
           180deg,
           #fbfeff 0%,
-          var(--page-background) 100%
+          var(--φόντο) 100%
         );
     }
 
@@ -73,19 +74,21 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    .top-header {
+    .επάνω-μπάρα {
       position: sticky;
       top: 0;
       z-index: 1000;
+
       width: 100%;
       padding: 7px;
 
       background: rgba(237, 248, 255, 0.84);
+
       backdrop-filter: blur(22px);
       -webkit-backdrop-filter: blur(22px);
     }
 
-    .top-inner {
+    .επάνω-εσωτερικό {
       width: min(1180px, 100%);
       min-height: 72px;
       margin: 0 auto;
@@ -96,7 +99,7 @@
       align-items: center;
       gap: 14px;
 
-      border: 1px solid var(--glass-border);
+      border: 1px solid var(--περίγραμμα);
       border-radius: 27px;
 
       background:
@@ -109,21 +112,21 @@
       box-shadow:
         inset 0 2px 5px rgba(255, 255, 255, 1),
         inset 0 -8px 24px rgba(28, 143, 255, 0.08),
-        0 12px 34px var(--shadow);
+        0 12px 34px var(--σκιά);
     }
 
-    .brand {
+    .μάρκα {
       min-width: 0;
 
       display: flex;
       align-items: center;
       gap: 10px;
 
-      color: var(--dark-blue);
+      color: var(--σκούρο-μπλε);
       text-decoration: none;
     }
 
-    .liquid-logo {
+    .υγρό-λογότυπο {
       position: relative;
 
       width: 49px;
@@ -148,8 +151,8 @@
         0 8px 22px rgba(0, 103, 255, 0.40);
     }
 
-    .liquid-logo::before,
-    .liquid-logo::after {
+    .υγρό-λογότυπο::before,
+    .υγρό-λογότυπο::after {
       content: "";
 
       position: absolute;
@@ -167,15 +170,15 @@
         inset 0 0 7px rgba(0, 91, 255, 0.75);
     }
 
-    .liquid-logo::before {
+    .υγρό-λογότυπο::before {
       transform: rotate(38deg);
     }
 
-    .liquid-logo::after {
+    .υγρό-λογότυπο::after {
       transform: rotate(-38deg);
     }
 
-    .brand-name {
+    .όνομα-μάρκας {
       display: block;
 
       font-size: 25px;
@@ -185,7 +188,7 @@
       white-space: nowrap;
     }
 
-    .brand-owner {
+    .όνομα-δημιουργού {
       display: block;
 
       margin-top: 4px;
@@ -196,14 +199,14 @@
       white-space: nowrap;
     }
 
-    .desktop-nav {
+    .μενού-υπολογιστή {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 3px;
     }
 
-    .desktop-nav a {
+    .μενού-υπολογιστή a {
       padding: 10px 9px;
 
       border-radius: 14px;
@@ -220,9 +223,10 @@
         box-shadow 0.2s ease;
     }
 
-    .desktop-nav a:hover,
-    .desktop-nav a:focus {
+    .μενού-υπολογιστή a:hover,
+    .μενού-υπολογιστή a:focus {
       outline: none;
+
       transform: translateY(-1px);
 
       background: rgba(255, 255, 255, 0.88);
@@ -232,24 +236,25 @@
         0 7px 18px rgba(0, 97, 220, 0.13);
     }
 
-    .actions {
+    .εργαλεία {
       display: flex;
       align-items: center;
       justify-content: flex-end;
       gap: 6px;
     }
 
-    .language {
+    .γλώσσα {
       height: 40px;
       max-width: 112px;
       padding: 0 8px;
 
-      border: 1px solid var(--glass-border);
+      border: 1px solid var(--περίγραμμα);
       border-radius: 15px;
       outline: none;
 
       color: #073678;
       background: rgba(255, 255, 255, 0.78);
+
       font-size: 11px;
       font-weight: 800;
 
@@ -258,7 +263,7 @@
         0 7px 18px rgba(0, 94, 210, 0.12);
     }
 
-    .icon-button {
+    .κουμπί-εικονίδιο {
       width: 40px;
       height: 40px;
       padding: 0;
@@ -267,8 +272,9 @@
       display: grid;
       place-items: center;
 
-      border: 1px solid var(--glass-border);
+      border: 1px solid var(--περίγραμμα);
       border-radius: 50%;
+
       cursor: pointer;
 
       color: #063681;
@@ -277,17 +283,24 @@
       box-shadow:
         inset 0 1px 3px white,
         0 7px 18px rgba(0, 94, 210, 0.13);
+
+      transition:
+        transform 0.2s ease,
+        color 0.2s ease,
+        background 0.2s ease;
     }
 
-    .icon-button:hover,
-    .icon-button:focus {
+    .κουμπί-εικονίδιο:hover,
+    .κουμπί-εικονίδιο:focus {
       outline: none;
 
       color: #008cff;
       transform: translateY(-1px);
+
+      background: rgba(255, 255, 255, 0.94);
     }
 
-    .icon-button svg {
+    .κουμπί-εικονίδιο svg {
       width: 20px;
       height: 20px;
 
@@ -298,11 +311,11 @@
       stroke-linejoin: round;
     }
 
-    .menu-button {
+    .κουμπί-μενού {
       display: none;
     }
 
-    .mobile-nav {
+    .μενού-κινητού {
       display: none;
 
       width: min(1180px, 100%);
@@ -312,10 +325,11 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 7px;
 
-      border: 1px solid var(--glass-border);
+      border: 1px solid var(--περίγραμμα);
       border-radius: 22px;
 
       background: rgba(242, 251, 255, 0.96);
+
       backdrop-filter: blur(22px);
       -webkit-backdrop-filter: blur(22px);
 
@@ -324,11 +338,11 @@
         0 14px 35px rgba(0, 74, 180, 0.21);
     }
 
-    .mobile-nav.open {
+    .μενού-κινητού.ανοιχτό {
       display: grid;
     }
 
-    .mobile-nav a {
+    .μενού-κινητού a {
       min-height: 43px;
       padding: 10px;
 
@@ -352,7 +366,7 @@
         0 6px 15px rgba(0, 94, 210, 0.10);
     }
 
-    .search-panel {
+    .αναζήτηση {
       position: fixed;
       z-index: 1300;
       top: 92px;
@@ -364,10 +378,11 @@
       display: none;
       gap: 8px;
 
-      border: 1px solid var(--glass-border);
+      border: 1px solid var(--περίγραμμα);
       border-radius: 22px;
 
       background: rgba(241, 251, 255, 0.96);
+
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
 
@@ -378,11 +393,11 @@
       transform: translateX(-50%);
     }
 
-    .search-panel.open {
+    .αναζήτηση.ανοιχτή {
       display: flex;
     }
 
-    .search-panel input {
+    .αναζήτηση input {
       width: 100%;
       min-width: 0;
       padding: 13px 14px;
@@ -391,15 +406,23 @@
       border-radius: 15px;
       outline: none;
 
-      color: var(--dark-blue);
+      color: var(--σκούρο-μπλε);
       background: rgba(255, 255, 255, 0.92);
     }
 
-    .search-submit {
+    .αναζήτηση input:focus {
+      border-color: rgba(0, 121, 255, 0.55);
+
+      box-shadow:
+        0 0 0 4px rgba(0, 121, 255, 0.10);
+    }
+
+    .κουμπί-αναζήτησης {
       padding: 0 17px;
 
       border: 0;
       border-radius: 15px;
+
       cursor: pointer;
 
       color: white;
@@ -409,8 +432,8 @@
       background:
         linear-gradient(
           135deg,
-          var(--blue),
-          var(--light-blue)
+          var(--μπλε),
+          var(--φωτεινό-μπλε)
         );
 
       box-shadow:
@@ -418,11 +441,11 @@
     }
 
     /*
-      Κρατάμε ακριβώς το αρχικό οριζόντιο ύψος.
-      Η σελίδα δεν μεγαλώνει.
+      Το επάνω σχέδιο κρατά ακριβώς το
+      αρχικό οριζόντιο μέγεθος.
     */
 
-    .hero-original {
+    .κεντρικό-σχέδιο {
       position: relative;
 
       width: min(1100px, 100%);
@@ -432,7 +455,7 @@
       overflow: hidden;
     }
 
-    .hero-original .full-design {
+    .κεντρική-εικόνα {
       position: absolute;
       z-index: 1;
       left: 0;
@@ -446,56 +469,167 @@
     }
 
     /*
-      Η κινούμενη Γη μπαίνει ακριβώς επάνω
-      από την υπάρχουσα Γη της φωτογραφίας.
+      Η σφαίρα μπαίνει ακριβώς στη θέση
+      της αρχικής Γης.
     */
 
-    .earth-glow {
+    .περίβλημα-γης {
       position: absolute;
-      z-index: 3;
+      z-index: 5;
 
-      left: 53.2%;
-      top: 3%;
-      width: 37%;
+      left: 54.6%;
+      top: 4%;
+      width: 36.8%;
       aspect-ratio: 1;
+
+      overflow: hidden;
+
+      border: 2px solid rgba(225, 251, 255, 0.92);
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle at 34% 25%,
+          #f7ffff 0%,
+          #9deaff 20%,
+          #209dff 47%,
+          #0753ce 73%,
+          #031e78 100%
+        );
+
+      box-shadow:
+        inset 7px 8px 17px rgba(255, 255, 255, 0.65),
+        inset -12px -13px 24px rgba(0, 22, 101, 0.38),
+        0 0 13px rgba(255, 255, 255, 0.95),
+        0 0 30px rgba(32, 184, 255, 0.80),
+        0 18px 35px rgba(0, 75, 190, 0.34);
+
+      pointer-events: none;
+    }
+
+    .περίβλημα-γης::before {
+      content: "";
+
+      position: absolute;
+      z-index: 7;
+      inset: 0;
 
       border-radius: 50%;
 
       background:
         radial-gradient(
-          circle,
-          rgba(64, 198, 255, 0.30) 0%,
-          rgba(17, 117, 255, 0.15) 52%,
-          transparent 72%
+          circle at 28% 20%,
+          rgba(255, 255, 255, 0.50),
+          transparent 36%
+        ),
+        radial-gradient(
+          circle at 70% 74%,
+          transparent 44%,
+          rgba(0, 17, 76, 0.32) 100%
         );
 
-      filter: blur(6px);
       pointer-events: none;
     }
 
-    .rotating-earth {
+    .περίβλημα-γης::after {
+      content: "";
+
+      position: absolute;
+      z-index: 8;
+
+      left: 13%;
+      top: 7%;
+
+      width: 27%;
+      height: 52%;
+
+      border-radius: 50%;
+
+      background:
+        linear-gradient(
+          110deg,
+          rgba(255, 255, 255, 0.44),
+          rgba(255, 255, 255, 0.03)
+        );
+
+      filter: blur(2px);
+
+      transform: rotate(26deg);
+
+      pointer-events: none;
+    }
+
+    .βίντεο-γης {
+      position: absolute;
+      z-index: 6;
+
+      left: 50%;
+      top: 50%;
+
+      width: 122%;
+      height: 122%;
+
+      object-fit: cover;
+      object-position: center;
+
+      transform:
+        translate(-50%, -50%)
+        scale(1.18);
+
+      filter:
+        brightness(1.24)
+        saturate(1.26)
+        contrast(1.05);
+
+      mix-blend-mode: screen;
+
+      pointer-events: none;
+    }
+
+    .δαχτυλίδι-γης {
       position: absolute;
       z-index: 4;
 
-      left: 53.2%;
-      top: 3%;
-      width: 37%;
-      height: auto;
-      display: block;
+      left: 52%;
+      top: 1%;
+      width: 42%;
+      aspect-ratio: 1;
+
+      border: 2px solid rgba(137, 229, 255, 0.40);
+      border-radius: 50%;
+
+      box-shadow:
+        0 0 16px rgba(49, 195, 255, 0.74),
+        inset 0 0 15px rgba(255, 255, 255, 0.40);
 
       pointer-events: none;
 
-      filter:
-        hue-rotate(175deg)
-        saturate(1.30)
-        brightness(1.16)
-        contrast(1.05)
-        drop-shadow(
-          0 0 12px rgba(52, 193, 255, 0.60)
-        );
+      animation:
+        ανάσα-δαχτυλιδιού
+        3.5s
+        ease-in-out
+        infinite;
     }
 
-    .lower-design {
+    @keyframes ανάσα-δαχτυλιδιού {
+      0%,
+      100% {
+        opacity: 0.58;
+        transform: scale(0.98);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.02);
+      }
+    }
+
+    /*
+      Το κάτω μέρος παραμένει ακριβώς όπως
+      ήταν στην αρχική εικόνα.
+    */
+
+    .κάτω-σχέδιο {
       position: relative;
 
       width: min(1100px, 100%);
@@ -505,7 +639,7 @@
       overflow: hidden;
     }
 
-    .lower-design .full-design {
+    .κάτω-εικόνα {
       position: absolute;
       left: 0;
       top: 0;
@@ -517,7 +651,7 @@
       transform: translateY(-37.46%);
     }
 
-    .section-anchor {
+    .σημείο {
       position: absolute;
       left: 0;
 
@@ -527,27 +661,27 @@
       scroll-margin-top: 92px;
     }
 
-    #home {
+    #αρχική {
       top: 0;
     }
 
-    #categories {
+    #κατηγορίες {
       top: 0;
     }
 
-    #products {
+    #προϊόντα {
       top: 24%;
     }
 
-    #about {
+    #σχετικά {
       top: 72%;
     }
 
-    #contact {
+    #επικοινωνία {
       top: 88%;
     }
 
-    .toast {
+    .ειδοποίηση {
       position: fixed;
       z-index: 1600;
       left: 50%;
@@ -586,45 +720,32 @@
         transform 0.25s ease;
     }
 
-    .toast.show {
+    .ειδοποίηση.φαίνεται {
       opacity: 1;
+
       transform: translate(-50%, 0);
     }
 
-    .earth-credit {
-      width: min(1100px, calc(100% - 20px));
-      margin: 0 auto 20px;
-
-      color: #52749a;
-      text-align: center;
-      font-size: 9px;
-      line-height: 1.5;
-    }
-
-    .earth-credit a {
-      color: #266fbe;
-    }
-
     @media (max-width: 900px) {
-      .top-inner {
+      .επάνω-εσωτερικό {
         grid-template-columns: 1fr auto;
       }
 
-      .desktop-nav {
+      .μενού-υπολογιστή {
         display: none;
       }
 
-      .menu-button {
+      .κουμπί-μενού {
         display: grid;
       }
     }
 
     @media (max-width: 560px) {
-      .top-header {
+      .επάνω-μπάρα {
         padding: 5px;
       }
 
-      .top-inner {
+      .επάνω-εσωτερικό {
         min-height: 66px;
         padding: 8px 9px;
         gap: 7px;
@@ -632,14 +753,14 @@
         border-radius: 23px;
       }
 
-      .liquid-logo {
+      .υγρό-λογότυπο {
         width: 43px;
         height: 43px;
         flex-basis: 43px;
       }
 
-      .liquid-logo::before,
-      .liquid-logo::after {
+      .υγρό-λογότυπο::before,
+      .υγρό-λογότυπο::after {
         left: 6px;
         top: 14px;
 
@@ -649,23 +770,23 @@
         border-width: 3px;
       }
 
-      .brand {
+      .μάρκα {
         gap: 8px;
       }
 
-      .brand-name {
+      .όνομα-μάρκας {
         font-size: 19px;
       }
 
-      .brand-owner {
+      .όνομα-δημιουργού {
         font-size: 9px;
       }
 
-      .actions {
+      .εργαλεία {
         gap: 4px;
       }
 
-      .language {
+      .γλώσσα {
         width: 73px;
         height: 37px;
         padding: 0 4px;
@@ -673,37 +794,44 @@
         font-size: 9px;
       }
 
-      .icon-button {
+      .κουμπί-εικονίδιο {
         width: 37px;
         height: 37px;
         flex-basis: 37px;
       }
 
-      .search-panel {
+      .αναζήτηση {
         top: 80px;
+
         flex-direction: column;
       }
 
-      .search-submit {
+      .κουμπί-αναζήτησης {
         min-height: 43px;
       }
 
-      .mobile-nav {
+      .μενού-κινητού {
         grid-template-columns: 1fr;
       }
     }
 
     @media (max-width: 370px) {
-      .brand-owner {
+      .όνομα-δημιουργού {
         display: none;
       }
 
-      .brand-name {
+      .όνομα-μάρκας {
         font-size: 17px;
       }
 
-      .language {
+      .γλώσσα {
         display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .δαχτυλίδι-γης {
+        animation: none;
       }
     }
   </style>
@@ -711,28 +839,28 @@
 
 <body>
 
-  <header class="top-header">
+  <header class="επάνω-μπάρα">
 
-    <div class="top-inner">
+    <div class="επάνω-εσωτερικό">
 
       <a
-        class="brand"
-        href="#home"
+        class="μάρκα"
+        href="#αρχική"
         aria-label="GlobalLink αρχική σελίδα"
       >
 
         <span
-          class="liquid-logo"
+          class="υγρό-λογότυπο"
           aria-hidden="true"
         ></span>
 
         <span>
 
-          <span class="brand-name">
+          <span class="όνομα-μάρκας">
             GlobalLink
           </span>
 
-          <span class="brand-owner">
+          <span class="όνομα-δημιουργού">
             by Gavriil Moschidis
           </span>
 
@@ -740,12 +868,12 @@
       </a>
 
       <nav
-        class="desktop-nav"
+        class="μενού-υπολογιστή"
         aria-label="Κύριο μενού"
       >
 
         <a
-          href="#home"
+          href="#αρχική"
           data-el="ΑΡΧΙΚΗ"
           data-en="HOME"
         >
@@ -753,7 +881,7 @@
         </a>
 
         <a
-          href="#categories"
+          href="#κατηγορίες"
           data-el="ΚΑΤΗΓΟΡΙΕΣ"
           data-en="CATEGORIES"
         >
@@ -761,7 +889,7 @@
         </a>
 
         <a
-          href="#products"
+          href="#προϊόντα"
           data-el="ΠΡΟΪΟΝΤΑ"
           data-en="PRODUCTS"
         >
@@ -769,7 +897,7 @@
         </a>
 
         <a
-          href="#about"
+          href="#σχετικά"
           data-el="ΣΧΕΤΙΚΑ ΜΕ ΕΜΑΣ"
           data-en="ABOUT US"
         >
@@ -777,7 +905,7 @@
         </a>
 
         <a
-          href="#contact"
+          href="#επικοινωνία"
           data-el="ΕΠΙΚΟΙΝΩΝΙΑ"
           data-en="CONTACT"
         >
@@ -786,11 +914,11 @@
 
       </nav>
 
-      <div class="actions">
+      <div class="εργαλεία">
 
         <select
-          class="language"
-          id="language"
+          class="γλώσσα"
+          id="γλώσσα"
           aria-label="Επιλογή γλώσσας"
         >
 
@@ -805,8 +933,8 @@
         </select>
 
         <button
-          class="icon-button"
-          id="searchButton"
+          class="κουμπί-εικονίδιο"
+          id="κουμπίΑναζήτησης"
           type="button"
           aria-label="Αναζήτηση"
         >
@@ -828,8 +956,8 @@
         </button>
 
         <button
-          class="icon-button menu-button"
-          id="menuButton"
+          class="κουμπί-εικονίδιο κουμπί-μενού"
+          id="κουμπίΜενού"
           type="button"
           aria-label="Άνοιγμα μενού"
         >
@@ -850,13 +978,13 @@
     </div>
 
     <nav
-      class="mobile-nav"
-      id="mobileNav"
+      class="μενού-κινητού"
+      id="μενούΚινητού"
       aria-label="Μενού κινητού"
     >
 
       <a
-        href="#home"
+        href="#αρχική"
         data-el="ΑΡΧΙΚΗ"
         data-en="HOME"
       >
@@ -864,7 +992,7 @@
       </a>
 
       <a
-        href="#categories"
+        href="#κατηγορίες"
         data-el="ΚΑΤΗΓΟΡΙΕΣ"
         data-en="CATEGORIES"
       >
@@ -872,7 +1000,7 @@
       </a>
 
       <a
-        href="#products"
+        href="#προϊόντα"
         data-el="ΠΡΟΪΟΝΤΑ"
         data-en="PRODUCTS"
       >
@@ -880,7 +1008,7 @@
       </a>
 
       <a
-        href="#about"
+        href="#σχετικά"
         data-el="ΣΧΕΤΙΚΑ ΜΕ ΕΜΑΣ"
         data-en="ABOUT US"
       >
@@ -888,7 +1016,7 @@
       </a>
 
       <a
-        href="#contact"
+        href="#επικοινωνία"
         data-el="ΕΠΙΚΟΙΝΩΝΙΑ"
         data-en="CONTACT"
       >
@@ -900,12 +1028,12 @@
   </header>
 
   <form
-    class="search-panel"
-    id="searchPanel"
+    class="αναζήτηση"
+    id="φόρμαΑναζήτησης"
   >
 
     <input
-      id="searchInput"
+      id="πεδίοΑναζήτησης"
       type="search"
       placeholder="Γράψε: σπίτι, αυτοκίνητο, τεχνολογία..."
       autocomplete="off"
@@ -913,8 +1041,8 @@
     >
 
     <button
-      class="search-submit"
-      id="searchSubmit"
+      class="κουμπί-αναζήτησης"
+      id="εκτέλεσηΑναζήτησης"
       type="submit"
     >
       ΑΝΑΖΗΤΗΣΗ
@@ -925,57 +1053,75 @@
   <main>
 
     <section
-      class="hero-original"
-      id="home"
+      class="κεντρικό-σχέδιο"
+      id="αρχική"
       aria-label="GlobalLink αρχική παρουσίαση"
     >
 
       <img
-        class="full-design"
+        class="κεντρική-εικόνα"
         src="assets/homepage.png"
         alt="GlobalLink"
       >
 
       <span
-        class="earth-glow"
+        class="δαχτυλίδι-γης"
         aria-hidden="true"
       ></span>
 
-      <img
-        class="rotating-earth"
-        src="assets/earth-spin.gif"
-        alt="Περιστρεφόμενη Γη"
+      <div
+        class="περίβλημα-γης"
+        aria-label="Περιστρεφόμενη Γη"
       >
+
+        <video
+          class="βίντεο-γης"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+          aria-label="Περιστρεφόμενη Γη"
+        >
+
+          <source
+            src="assets/earth-blue.mp4"
+            type="video/mp4"
+          >
+
+        </video>
+
+      </div>
 
     </section>
 
     <section
-      class="lower-design"
+      class="κάτω-σχέδιο"
       aria-label="Κατηγορίες και προϊόντα GlobalLink"
     >
 
       <span
-        class="section-anchor"
-        id="categories"
+        class="σημείο"
+        id="κατηγορίες"
       ></span>
 
       <span
-        class="section-anchor"
-        id="products"
+        class="σημείο"
+        id="προϊόντα"
       ></span>
 
       <span
-        class="section-anchor"
-        id="about"
+        class="σημείο"
+        id="σχετικά"
       ></span>
 
       <span
-        class="section-anchor"
-        id="contact"
+        class="σημείο"
+        id="επικοινωνία"
       ></span>
 
       <img
-        class="full-design"
+        class="κάτω-εικόνα"
         src="assets/homepage.png"
         alt="Κατηγορίες και προϊόντα GlobalLink"
       >
@@ -985,154 +1131,148 @@
   </main>
 
   <div
-    class="earth-credit"
-  >
-    Κινούμενη Γη:
-    <a
-      href="https://commons.wikimedia.org/wiki/File:Rotating_earth_(large)_transparent.gif"
-      target="_blank"
-      rel="noopener"
-    >
-      Wikimedia Commons
-    </a>
-    — άδεια CC BY-SA 3.0.
-  </div>
-
-  <div
-    class="toast"
-    id="toast"
+    class="ειδοποίηση"
+    id="ειδοποίηση"
     role="status"
     aria-live="polite"
   ></div>
 
+  <!--
+    Περιστρεφόμενη Blue Marble:
+    NASA/Goddard Space Flight Center
+    Scientific Visualization Studio.
+  -->
+
   <script>
-    const language =
-      document.getElementById("language");
+    const γλώσσα =
+      document.getElementById("γλώσσα");
 
-    const menuButton =
-      document.getElementById("menuButton");
+    const κουμπίΜενού =
+      document.getElementById("κουμπίΜενού");
 
-    const mobileNav =
-      document.getElementById("mobileNav");
+    const μενούΚινητού =
+      document.getElementById("μενούΚινητού");
 
-    const searchButton =
-      document.getElementById("searchButton");
+    const κουμπίΑναζήτησης =
+      document.getElementById("κουμπίΑναζήτησης");
 
-    const searchPanel =
-      document.getElementById("searchPanel");
+    const φόρμαΑναζήτησης =
+      document.getElementById("φόρμαΑναζήτησης");
 
-    const searchInput =
-      document.getElementById("searchInput");
+    const πεδίοΑναζήτησης =
+      document.getElementById("πεδίοΑναζήτησης");
 
-    const searchSubmit =
-      document.getElementById("searchSubmit");
+    const εκτέλεσηΑναζήτησης =
+      document.getElementById("εκτέλεσηΑναζήτησης");
 
-    const toast =
-      document.getElementById("toast");
+    const ειδοποίηση =
+      document.getElementById("ειδοποίηση");
 
-    const translatedItems =
+    const μεταφραζόμεναΣτοιχεία =
       document.querySelectorAll(
         "[data-el][data-en]"
       );
 
-    let toastTimer;
+    let χρόνοςΕιδοποίησης;
 
-    function showToast(message) {
-      clearTimeout(toastTimer);
+    function εμφάνισεΕιδοποίηση(μήνυμα) {
+      clearTimeout(χρόνοςΕιδοποίησης);
 
-      toast.textContent = message;
-      toast.classList.add("show");
+      ειδοποίηση.textContent = μήνυμα;
+      ειδοποίηση.classList.add("φαίνεται");
 
-      toastTimer = setTimeout(() => {
-        toast.classList.remove("show");
+      χρόνοςΕιδοποίησης = setTimeout(() => {
+        ειδοποίηση.classList.remove("φαίνεται");
       }, 2800);
     }
 
-    menuButton.addEventListener(
+    κουμπίΜενού.addEventListener(
       "click",
       () => {
-        mobileNav.classList.toggle("open");
-        searchPanel.classList.remove("open");
+        μενούΚινητού.classList.toggle("ανοιχτό");
+        φόρμαΑναζήτησης.classList.remove("ανοιχτή");
       }
     );
 
-    mobileNav
+    μενούΚινητού
       .querySelectorAll("a")
-      .forEach((link) => {
-        link.addEventListener(
+      .forEach((σύνδεσμος) => {
+        σύνδεσμος.addEventListener(
           "click",
           () => {
-            mobileNav.classList.remove("open");
+            μενούΚινητού.classList.remove("ανοιχτό");
           }
         );
       });
 
-    searchButton.addEventListener(
+    κουμπίΑναζήτησης.addEventListener(
       "click",
       () => {
-        searchPanel.classList.toggle("open");
-        mobileNav.classList.remove("open");
+        φόρμαΑναζήτησης.classList.toggle("ανοιχτή");
+        μενούΚινητού.classList.remove("ανοιχτό");
 
         if (
-          searchPanel.classList.contains("open")
+          φόρμαΑναζήτησης.classList.contains("ανοιχτή")
         ) {
           setTimeout(() => {
-            searchInput.focus();
+            πεδίοΑναζήτησης.focus();
           }, 100);
         }
       }
     );
 
-    language.addEventListener(
+    γλώσσα.addEventListener(
       "change",
       () => {
-        const selectedLanguage =
-          language.value;
+        const επιλεγμένηΓλώσσα =
+          γλώσσα.value;
 
-        translatedItems.forEach((item) => {
-          item.textContent =
-            selectedLanguage === "el"
-              ? item.dataset.el
-              : item.dataset.en;
-        });
+        μεταφραζόμεναΣτοιχεία.forEach(
+          (στοιχείο) => {
+            στοιχείο.textContent =
+              επιλεγμένηΓλώσσα === "el"
+                ? στοιχείο.dataset.el
+                : στοιχείο.dataset.en;
+          }
+        );
 
-        if (selectedLanguage === "el") {
-          searchInput.placeholder =
+        if (επιλεγμένηΓλώσσα === "el") {
+          πεδίοΑναζήτησης.placeholder =
             "Γράψε: σπίτι, αυτοκίνητο, τεχνολογία...";
 
-          searchSubmit.textContent =
+          εκτέλεσηΑναζήτησης.textContent =
             "ΑΝΑΖΗΤΗΣΗ";
 
-          showToast(
+          εμφάνισεΕιδοποίηση(
             "Η γλώσσα άλλαξε σε Ελληνικά."
           );
         } else {
-          searchInput.placeholder =
+          πεδίοΑναζήτησης.placeholder =
             "Search: home, car, technology...";
 
-          searchSubmit.textContent =
+          εκτέλεσηΑναζήτησης.textContent =
             "SEARCH";
 
-          showToast(
+          εμφάνισεΕιδοποίηση(
             "Language changed to English."
           );
         }
       }
     );
 
-    searchPanel.addEventListener(
+    φόρμαΑναζήτησης.addEventListener(
       "submit",
-      (event) => {
-        event.preventDefault();
+      (γεγονός) => {
+        γεγονός.preventDefault();
 
-        const term =
-          searchInput.value
+        const λέξη =
+          πεδίοΑναζήτησης.value
             .trim()
             .toLocaleLowerCase("el-GR");
 
-        if (!term) {
-          showToast(
-            language.value === "el"
+        if (!λέξη) {
+          εμφάνισεΕιδοποίηση(
+            γλώσσα.value === "el"
               ? "Γράψε πρώτα τι θέλεις να αναζητήσεις."
               : "Type what you want to search for."
           );
@@ -1140,58 +1280,58 @@
           return;
         }
 
-        let target = "";
+        let στόχος = "";
 
         if (
-          term.includes("σπίτ") ||
-          term.includes("αυτοκ") ||
-          term.includes("τεχνο") ||
-          term.includes("εργαλ") ||
-          term.includes("ταξίδ") ||
-          term.includes("κάμπ") ||
-          term.includes("δώρ") ||
-          term.includes("home") ||
-          term.includes("car") ||
-          term.includes("technology") ||
-          term.includes("tool") ||
-          term.includes("travel") ||
-          term.includes("gift")
+          λέξη.includes("σπίτ") ||
+          λέξη.includes("αυτοκ") ||
+          λέξη.includes("τεχνο") ||
+          λέξη.includes("εργαλ") ||
+          λέξη.includes("ταξίδ") ||
+          λέξη.includes("κάμπ") ||
+          λέξη.includes("δώρ") ||
+          λέξη.includes("home") ||
+          λέξη.includes("car") ||
+          λέξη.includes("technology") ||
+          λέξη.includes("tool") ||
+          λέξη.includes("travel") ||
+          λέξη.includes("gift")
         ) {
-          target = "categories";
+          στόχος = "κατηγορίες";
         }
 
         if (
-          term.includes("προϊόν") ||
-          term.includes("φορτιστ") ||
-          term.includes("φριτέζ") ||
-          term.includes("ρολό") ||
-          term.includes("σκην") ||
-          term.includes("product") ||
-          term.includes("charger") ||
-          term.includes("watch")
+          λέξη.includes("προϊόν") ||
+          λέξη.includes("φορτιστ") ||
+          λέξη.includes("φριτέζ") ||
+          λέξη.includes("ρολό") ||
+          λέξη.includes("σκην") ||
+          λέξη.includes("product") ||
+          λέξη.includes("charger") ||
+          λέξη.includes("watch")
         ) {
-          target = "products";
+          στόχος = "προϊόντα";
         }
 
         if (
-          term.includes("σχετικά") ||
-          term.includes("ποιοι") ||
-          term.includes("about")
+          λέξη.includes("σχετικά") ||
+          λέξη.includes("ποιοι") ||
+          λέξη.includes("about")
         ) {
-          target = "about";
+          στόχος = "σχετικά";
         }
 
         if (
-          term.includes("επικοινων") ||
-          term.includes("email") ||
-          term.includes("contact")
+          λέξη.includes("επικοινων") ||
+          λέξη.includes("email") ||
+          λέξη.includes("contact")
         ) {
-          target = "contact";
+          στόχος = "επικοινωνία";
         }
 
-        if (!target) {
-          showToast(
-            language.value === "el"
+        if (!στόχος) {
+          εμφάνισεΕιδοποίηση(
+            γλώσσα.value === "el"
               ? "Δεν βρέθηκε ακόμη αυτή η αναζήτηση."
               : "This search is not available yet."
           );
@@ -1200,33 +1340,39 @@
         }
 
         document
-          .getElementById(target)
+          .getElementById(στόχος)
           .scrollIntoView({
             behavior: "smooth",
             block: "start"
           });
 
-        searchPanel.classList.remove("open");
+        φόρμαΑναζήτησης.classList.remove("ανοιχτή");
+
+        εμφάνισεΕιδοποίηση(
+          γλώσσα.value === "el"
+            ? "Μεταφερθήκατε στη σωστή περιοχή."
+            : "You moved to the matching section."
+        );
       }
     );
 
     document.addEventListener(
       "click",
-      (event) => {
-        const clickedSearch =
-          searchPanel.contains(event.target) ||
-          searchButton.contains(event.target);
+      (γεγονός) => {
+        const πάτησεΑναζήτηση =
+          φόρμαΑναζήτησης.contains(γεγονός.target) ||
+          κουμπίΑναζήτησης.contains(γεγονός.target);
 
-        const clickedMenu =
-          mobileNav.contains(event.target) ||
-          menuButton.contains(event.target);
+        const πάτησεΜενού =
+          μενούΚινητού.contains(γεγονός.target) ||
+          κουμπίΜενού.contains(γεγονός.target);
 
-        if (!clickedSearch) {
-          searchPanel.classList.remove("open");
+        if (!πάτησεΑναζήτηση) {
+          φόρμαΑναζήτησης.classList.remove("ανοιχτή");
         }
 
-        if (!clickedMenu) {
-          mobileNav.classList.remove("open");
+        if (!πάτησεΜενού) {
+          μενούΚινητού.classList.remove("ανοιχτό");
         }
       }
     );
