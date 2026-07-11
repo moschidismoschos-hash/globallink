@@ -21,8 +21,10 @@
       --blue: #0878ff;
       --light-blue: #26c9ff;
       --background: #eef9ff;
+      --glass: rgba(255, 255, 255, 0.72);
+      --glass-strong: rgba(255, 255, 255, 0.9);
       --glass-border: rgba(255, 255, 255, 0.98);
-      --shadow: rgba(0, 91, 200, 0.20);
+      --shadow: rgba(0, 91, 200, 0.2);
     }
 
     * {
@@ -61,6 +63,10 @@
         );
     }
 
+    body.modal-open {
+      overflow: hidden;
+    }
+
     button,
     select,
     input {
@@ -71,6 +77,10 @@
     select,
     a {
       -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+      touch-action: manipulation;
     }
 
     .top-header {
@@ -147,7 +157,7 @@
       box-shadow:
         inset 5px 6px 11px rgba(255, 255, 255, 0.92),
         inset -5px -6px 13px rgba(0, 28, 131, 0.48),
-        0 8px 22px rgba(0, 103, 255, 0.40);
+        0 8px 22px rgba(0, 103, 255, 0.4);
     }
 
     .liquid-logo::before,
@@ -161,11 +171,11 @@
       width: 35px;
       height: 14px;
 
-      border: 4px solid rgba(239, 253, 255, 0.90);
+      border: 4px solid rgba(239, 253, 255, 0.9);
       border-radius: 50%;
 
       box-shadow:
-        0 0 9px rgba(0, 198, 255, 0.90),
+        0 0 9px rgba(0, 198, 255, 0.9),
         inset 0 0 7px rgba(0, 91, 255, 0.75);
     }
 
@@ -207,6 +217,7 @@
 
     .desktop-nav a {
       padding: 10px 9px;
+
       border-radius: 14px;
 
       color: #092e72;
@@ -271,6 +282,7 @@
 
       border: 1px solid var(--glass-border);
       border-radius: 50%;
+
       cursor: pointer;
 
       color: #063681;
@@ -279,6 +291,11 @@
       box-shadow:
         inset 0 1px 3px white,
         0 7px 18px rgba(0, 94, 210, 0.13);
+
+      transition:
+        transform 0.2s ease,
+        color 0.2s ease,
+        background 0.2s ease;
     }
 
     .icon-button:hover,
@@ -286,6 +303,8 @@
       outline: none;
       color: #008cff;
       transform: translateY(-1px);
+
+      background: rgba(255, 255, 255, 0.94);
     }
 
     .icon-button svg {
@@ -394,15 +413,21 @@
       background: rgba(255, 255, 255, 0.92);
     }
 
-    .search-submit {
-      padding: 0 17px;
+    .search-panel input:focus {
+      border-color: rgba(0, 121, 255, 0.55);
 
+      box-shadow:
+        0 0 0 4px rgba(0, 121, 255, 0.1);
+    }
+
+    .search-submit,
+    .primary-button {
       border: 0;
       border-radius: 15px;
+
       cursor: pointer;
 
       color: white;
-      font-size: 12px;
       font-weight: 900;
 
       background:
@@ -411,6 +436,15 @@
           var(--blue),
           var(--light-blue)
         );
+
+      box-shadow:
+        inset 0 1px 3px rgba(255, 255, 255, 0.55),
+        0 8px 21px rgba(0, 108, 255, 0.31);
+    }
+
+    .search-submit {
+      padding: 0 17px;
+      font-size: 12px;
     }
 
     .hero-design {
@@ -509,13 +543,13 @@
       background:
         radial-gradient(
           circle at 24% 17%,
-          rgba(255, 255, 255, 0.60),
+          rgba(255, 255, 255, 0.6),
           transparent 33%
         ),
         radial-gradient(
           circle at 72% 76%,
           transparent 39%,
-          rgba(0, 15, 73, 0.40) 100%
+          rgba(0, 15, 73, 0.4) 100%
         );
 
       pointer-events: none;
@@ -572,11 +606,11 @@
         linear-gradient(
           90deg,
           transparent 49.5%,
-          rgba(210, 249, 255, 0.20) 50%,
+          rgba(210, 249, 255, 0.2) 50%,
           transparent 50.5%
         );
 
-      opacity: 0.50;
+      opacity: 0.5;
     }
 
     .earth-lines::before,
@@ -587,7 +621,7 @@
       left: 8%;
       right: 8%;
 
-      border: 1px solid rgba(207, 248, 255, 0.30);
+      border: 1px solid rgba(207, 248, 255, 0.3);
       border-radius: 50%;
     }
 
@@ -599,20 +633,21 @@
     .earth-lines::after {
       top: 12%;
       bottom: 12%;
+
       transform: scaleX(0.55);
     }
 
-    .lower-design {
+    .category-strip {
       position: relative;
 
       width: min(1100px, 100%);
-      aspect-ratio: 1024 / 960;
+      aspect-ratio: 1024 / 220;
       margin: 0 auto;
 
       overflow: hidden;
     }
 
-    .lower-image {
+    .category-strip-image {
       position: absolute;
       z-index: 1;
       left: 0;
@@ -631,8 +666,8 @@
 
       left: 1.55%;
       right: 1.55%;
-      top: 0.3%;
-      height: 18.2%;
+      top: 4%;
+      height: 88%;
 
       display: grid;
       grid-template-columns: repeat(6, 1fr);
@@ -650,6 +685,7 @@
       border-radius: 22px;
 
       cursor: pointer;
+
       color: transparent;
       background: transparent;
 
@@ -674,7 +710,7 @@
     }
 
     .category-button.selected {
-      border-color: rgba(0, 119, 255, 0.90);
+      border-color: rgba(0, 119, 255, 0.9);
 
       background:
         linear-gradient(
@@ -684,7 +720,7 @@
         );
 
       box-shadow:
-        inset 0 0 20px rgba(255, 255, 255, 0.70),
+        inset 0 0 20px rgba(255, 255, 255, 0.7),
         0 0 9px rgba(255, 255, 255, 0.95),
         0 0 23px rgba(0, 125, 255, 0.62);
     }
@@ -715,41 +751,463 @@
           #0878ff,
           #26c9ff
         );
+
+      box-shadow:
+        0 5px 14px rgba(0, 102, 235, 0.42);
+    }
+
+    .products-section {
+      width: min(1100px, calc(100% - 14px));
+      margin: 5px auto 13px;
+      padding: 18px 17px 20px;
+
+      border: 1px solid var(--glass-border);
+      border-radius: 30px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.84),
+          rgba(218, 242, 255, 0.56)
+        );
+
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+
+      box-shadow:
+        inset 0 2px 5px rgba(255, 255, 255, 1),
+        inset 0 -12px 30px rgba(24, 135, 255, 0.07),
+        0 18px 44px rgba(0, 91, 200, 0.16);
+    }
+
+    .products-heading {
+      margin-bottom: 15px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .products-heading h2 {
+      position: relative;
+
+      margin: 0;
+      padding-bottom: 8px;
+
+      color: #062d78;
+      font-size: clamp(20px, 2.4vw, 29px);
+      line-height: 1.2;
+    }
+
+    .products-heading h2::after {
+      content: "";
+
+      position: absolute;
+      left: 0;
+      bottom: 0;
+
+      width: 42px;
+      height: 3px;
+
+      border-radius: 999px;
+
+      background:
+        linear-gradient(
+          90deg,
+          var(--blue),
+          var(--light-blue)
+        );
+
+      box-shadow:
+        0 0 10px rgba(0, 132, 255, 0.4);
+    }
+
+    .show-all-button {
+      flex: 0 0 auto;
+      padding: 9px 13px;
+
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      border-radius: 14px;
+
+      cursor: pointer;
+
+      color: #0871dd;
+      background: rgba(255, 255, 255, 0.7);
+
+      font-size: 11px;
+      font-weight: 900;
+
+      box-shadow:
+        inset 0 1px 3px white,
+        0 6px 16px rgba(0, 100, 220, 0.11);
+    }
+
+    .show-all-button:hover,
+    .show-all-button:focus {
+      outline: none;
+      color: white;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--blue),
+          var(--light-blue)
+        );
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .product-grid.filtered {
+      grid-template-columns: minmax(180px, 275px);
+      justify-content: center;
+    }
+
+    .product-card {
+      min-width: 0;
+      padding: 9px 9px 11px;
+
+      display: flex;
+      flex-direction: column;
+
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.9),
+          rgba(224, 244, 255, 0.64)
+        );
+
+      box-shadow:
+        inset 0 2px 5px rgba(255, 255, 255, 1),
+        inset 0 -8px 24px rgba(0, 112, 255, 0.05),
+        0 12px 28px rgba(0, 90, 190, 0.14);
+
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        opacity 0.2s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+
+      box-shadow:
+        inset 0 2px 5px rgba(255, 255, 255, 1),
+        0 17px 34px rgba(0, 100, 220, 0.22);
+    }
+
+    .product-card.hidden {
+      display: none;
+    }
+
+    .product-image-box {
+      position: relative;
+
+      width: 100%;
+      aspect-ratio: 150 / 185;
+      overflow: hidden;
+
+      border: 1px solid rgba(255, 255, 255, 0.96);
+      border-radius: 18px;
+
+      background:
+        radial-gradient(
+          circle at top,
+          white,
+          #dff5ff
+        );
+
+      box-shadow:
+        inset 0 0 18px rgba(255, 255, 255, 0.8);
+    }
+
+    .product-image-box::after {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+
+      pointer-events: none;
+
+      background:
+        linear-gradient(
+          115deg,
+          rgba(255, 255, 255, 0.28),
+          transparent 38%
+        );
+    }
+
+    .product-image {
+      width: 100%;
+      height: 100%;
+      display: block;
+
+      object-fit: cover;
+    }
+
+    .product-category {
+      align-self: flex-start;
+
+      margin-top: 9px;
+      padding: 4px 7px;
+
+      border-radius: 999px;
+
+      color: #0875e6;
+      background: rgba(8, 120, 255, 0.08);
+
+      font-size: 8px;
+      font-weight: 900;
+    }
+
+    .product-card h3 {
+      margin: 8px 0 6px;
+
+      color: #062d78;
+      font-size: 13px;
+      line-height: 1.3;
+    }
+
+    .product-card p {
+      flex: 1;
+
+      margin: 0 0 10px;
+
+      color: #315d8d;
+      font-size: 10px;
+      line-height: 1.48;
+    }
+
+    .product-button {
+      width: 100%;
+      min-height: 38px;
+      padding: 8px 9px;
+
+      border: 1px solid rgba(255, 255, 255, 0.98);
+      border-radius: 14px;
+
+      cursor: pointer;
+
+      color: #0872de;
+      background: rgba(255, 255, 255, 0.75);
+
+      font-size: 10px;
+      font-weight: 900;
+
+      box-shadow:
+        inset 0 1px 3px white,
+        0 6px 15px rgba(0, 100, 220, 0.12);
+
+      transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    .product-button:hover,
+    .product-button:focus {
+      outline: none;
+      color: white;
+
+      transform: translateY(-1px);
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--blue),
+          var(--light-blue)
+        );
+    }
+
+    .empty-message {
+      display: none;
+
+      padding: 30px 15px;
+
+      color: #315d8d;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .empty-message.show {
+      display: block;
+    }
+
+    .bottom-static {
+      position: relative;
+
+      width: min(1100px, 100%);
+      aspect-ratio: 1024 / 365;
+      margin: 0 auto;
+
+      overflow: hidden;
+    }
+
+    .bottom-static-image {
+      position: absolute;
+      left: 0;
+      top: 0;
+
+      width: 100%;
+      height: auto;
+      display: block;
+
+      transform: translateY(-76.22%);
+    }
+
+    .modal {
+      position: fixed;
+      z-index: 3000;
+      inset: 0;
+
+      padding: 18px;
+
+      display: none;
+      align-items: center;
+      justify-content: center;
+
+      background: rgba(1, 27, 79, 0.46);
+
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .modal.open {
+      display: flex;
+    }
+
+    .modal-panel {
+      position: relative;
+
+      width: min(470px, 100%);
+      max-height: calc(100vh - 36px);
+      padding: 18px;
+
+      overflow-y: auto;
+
+      border: 1px solid rgba(255, 255, 255, 0.98);
+      border-radius: 30px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.96),
+          rgba(216, 241, 255, 0.9)
+        );
+
+      box-shadow:
+        inset 0 2px 5px white,
+        0 25px 70px rgba(0, 54, 145, 0.36);
+    }
+
+    .modal-close {
+      position: absolute;
+      z-index: 4;
+      right: 12px;
+      top: 12px;
+
+      width: 39px;
+      height: 39px;
+      padding: 0;
+
+      display: grid;
+      place-items: center;
+
+      border: 1px solid white;
+      border-radius: 50%;
+
+      cursor: pointer;
+
+      color: #07387d;
+      background: rgba(255, 255, 255, 0.85);
+
+      font-size: 24px;
+      line-height: 1;
+
+      box-shadow:
+        inset 0 1px 3px white,
+        0 7px 18px rgba(0, 80, 190, 0.14);
+    }
+
+    .modal-image {
+      width: 100%;
+      max-height: 330px;
+      display: block;
+
+      object-fit: contain;
+
+      border: 1px solid white;
+      border-radius: 22px;
+
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    .modal-category {
+      display: inline-block;
+
+      margin-top: 14px;
+      padding: 6px 10px;
+
+      border-radius: 999px;
+
+      color: #0875e6;
+      background: rgba(8, 120, 255, 0.09);
+
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+    .modal-title {
+      margin: 10px 0 8px;
+
+      color: #052d7c;
+      font-size: 24px;
+      line-height: 1.25;
+    }
+
+    .modal-description {
+      margin: 0;
+
+      color: #315d8d;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .modal-note {
+      margin-top: 15px;
+      padding: 12px 13px;
+
+      border: 1px solid rgba(255, 255, 255, 0.96);
+      border-radius: 16px;
+
+      color: #315d8d;
+      background: rgba(255, 255, 255, 0.56);
+
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .modal-bottom-button {
+      width: 100%;
+      min-height: 45px;
+      margin-top: 15px;
+      padding: 10px 15px;
     }
 
     .section-anchor {
-      position: absolute;
-      left: 0;
-
-      width: 1px;
-      height: 1px;
-
       scroll-margin-top: 92px;
-    }
-
-    #home {
-      top: 0;
-    }
-
-    #categories {
-      top: 0;
-    }
-
-    #products {
-      top: 24%;
-    }
-
-    #about {
-      top: 72%;
-    }
-
-    #contact {
-      top: 88%;
     }
 
     .toast {
       position: fixed;
-      z-index: 1600;
+      z-index: 4000;
       left: 50%;
       bottom: 24px;
 
@@ -815,6 +1273,29 @@
 
       .menu-button {
         display: grid;
+      }
+
+      .product-grid {
+        display: flex;
+        gap: 12px;
+
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: thin;
+
+        padding: 2px 2px 9px;
+      }
+
+      .product-grid.filtered {
+        justify-content: center;
+      }
+
+      .product-card {
+        width: 180px;
+        min-width: 180px;
+        flex: 0 0 180px;
+
+        scroll-snap-align: start;
       }
     }
 
@@ -904,6 +1385,30 @@
 
         font-size: 11px;
       }
+
+      .products-section {
+        padding: 14px 11px 17px;
+        border-radius: 24px;
+      }
+
+      .products-heading {
+        align-items: flex-start;
+      }
+
+      .products-heading h2 {
+        font-size: 20px;
+      }
+
+      .show-all-button {
+        padding: 8px 9px;
+        font-size: 9px;
+      }
+
+      .product-card {
+        width: 165px;
+        min-width: 165px;
+        flex-basis: 165px;
+      }
     }
 
     @media (max-width: 370px) {
@@ -923,6 +1428,10 @@
     @media (prefers-reduced-motion: reduce) {
       .earth-ring {
         animation: none;
+      }
+
+      * {
+        scroll-behavior: auto;
       }
     }
   </style>
@@ -962,7 +1471,11 @@
         aria-label="Κύριο μενού"
       >
 
-        <a href="#home" data-el="ΑΡΧΙΚΗ" data-en="HOME">
+        <a
+          href="#home"
+          data-el="ΑΡΧΙΚΗ"
+          data-en="HOME"
+        >
           ΑΡΧΙΚΗ
         </a>
 
@@ -1007,8 +1520,13 @@
           id="language"
           aria-label="Επιλογή γλώσσας"
         >
-          <option value="el">🇬🇷 Ελληνικά</option>
-          <option value="en">🇬🇧 English</option>
+          <option value="el">
+            🇬🇷 Ελληνικά
+          </option>
+
+          <option value="en">
+            🇬🇧 English
+          </option>
         </select>
 
         <button
@@ -1017,8 +1535,16 @@
           type="button"
           aria-label="Αναζήτηση"
         >
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="11" cy="11" r="7"></circle>
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <circle
+              cx="11"
+              cy="11"
+              r="7"
+            ></circle>
+
             <path d="M20 20l-4-4"></path>
           </svg>
         </button>
@@ -1029,7 +1555,10 @@
           type="button"
           aria-label="Άνοιγμα μενού"
         >
-          <svg viewBox="0 0 24 24" aria-hidden="true">
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
             <path d="M4 7h16"></path>
             <path d="M4 12h16"></path>
             <path d="M4 17h16"></path>
@@ -1045,7 +1574,11 @@
       aria-label="Μενού κινητού"
     >
 
-      <a href="#home" data-el="ΑΡΧΙΚΗ" data-en="HOME">
+      <a
+        href="#home"
+        data-el="ΑΡΧΙΚΗ"
+        data-en="HOME"
+      >
         ΑΡΧΙΚΗ
       </a>
 
@@ -1111,7 +1644,7 @@
   <main>
 
     <section
-      class="hero-design"
+      class="hero-design section-anchor"
       id="home"
       aria-label="GlobalLink αρχική παρουσίαση"
     >
@@ -1147,25 +1680,18 @@
     </section>
 
     <section
-      class="lower-design"
-      aria-label="Κατηγορίες και προϊόντα GlobalLink"
+      class="category-strip section-anchor"
+      id="categories"
+      aria-label="Κατηγορίες προϊόντων"
     >
 
-      <span class="section-anchor" id="categories"></span>
-      <span class="section-anchor" id="products"></span>
-      <span class="section-anchor" id="about"></span>
-      <span class="section-anchor" id="contact"></span>
-
       <img
-        class="lower-image"
+        class="category-strip-image"
         src="assets/homepage.png"
-        alt="Κατηγορίες και προϊόντα GlobalLink"
+        alt="Κατηγορίες GlobalLink"
       >
 
-      <div
-        class="category-buttons"
-        aria-label="Κατηγορίες προϊόντων"
-      >
+      <div class="category-buttons">
 
         <button
           class="category-button"
@@ -1225,7 +1751,447 @@
 
     </section>
 
+    <section
+      class="products-section section-anchor"
+      id="products"
+    >
+
+      <div class="products-heading">
+
+        <h2 id="productsTitle">
+          Προτεινόμενα προϊόντα
+        </h2>
+
+        <button
+          class="show-all-button"
+          id="showAllButton"
+          type="button"
+          data-el="ΠΡΟΒΟΛΗ ΟΛΩΝ"
+          data-en="VIEW ALL"
+        >
+          ΠΡΟΒΟΛΗ ΟΛΩΝ
+        </button>
+
+      </div>
+
+      <div
+        class="product-grid"
+        id="productGrid"
+      >
+
+        <article
+          class="product-card"
+          data-category="car"
+          data-title-el="Ασύρματος φορτιστής αυτοκινήτου"
+          data-title-en="Wireless car charger"
+          data-description-el="Γρήγορη και ασφαλής φόρτιση του κινητού κατά τη διάρκεια της οδήγησης."
+          data-description-en="Fast and safe phone charging while driving."
+          data-category-el="Αυτοκίνητο"
+          data-category-en="Car"
+          data-search="αυτοκίνητο αμάξι φορτιστής κινητό car charger phone"
+        >
+
+          <div class="product-image-box">
+            <img
+              class="product-image"
+              src="assets/products/car-charger.png"
+              alt="Ασύρματος φορτιστής αυτοκινήτου"
+            >
+          </div>
+
+          <span
+            class="product-category"
+            data-el="ΑΥΤΟΚΙΝΗΤΟ"
+            data-en="CAR"
+          >
+            ΑΥΤΟΚΙΝΗΤΟ
+          </span>
+
+          <h3
+            data-el="Ασύρματος φορτιστής αυτοκινήτου"
+            data-en="Wireless car charger"
+          >
+            Ασύρματος φορτιστής αυτοκινήτου
+          </h3>
+
+          <p
+            data-el="Γρήγορη και ασφαλής φόρτιση του κινητού κατά την οδήγηση."
+            data-en="Fast and safe phone charging while driving."
+          >
+            Γρήγορη και ασφαλής φόρτιση του κινητού κατά την οδήγηση.
+          </p>
+
+          <button
+            class="product-button"
+            type="button"
+            data-el="ΔΕΣ ΠΡΟΪΟΝ"
+            data-en="VIEW PRODUCT"
+          >
+            ΔΕΣ ΠΡΟΪΟΝ
+          </button>
+
+        </article>
+
+        <article
+          class="product-card"
+          data-category="home"
+          data-title-el="Φριτέζα αέρος"
+          data-title-en="Air fryer"
+          data-description-el="Πρακτική συσκευή για γρήγορο μαγείρεμα με θερμό αέρα και εύκολο καθάρισμα."
+          data-description-en="A practical appliance for quick hot-air cooking and easy cleaning."
+          data-category-el="Σπίτι"
+          data-category-en="Home"
+          data-search="σπίτι κουζίνα μαγείρεμα φριτέζα air fryer home kitchen"
+        >
+
+          <div class="product-image-box">
+            <img
+              class="product-image"
+              src="assets/products/air-fryer.png"
+              alt="Φριτέζα αέρος"
+            >
+          </div>
+
+          <span
+            class="product-category"
+            data-el="ΣΠΙΤΙ"
+            data-en="HOME"
+          >
+            ΣΠΙΤΙ
+          </span>
+
+          <h3
+            data-el="Φριτέζα αέρος"
+            data-en="Air fryer"
+          >
+            Φριτέζα αέρος
+          </h3>
+
+          <p
+            data-el="Υγιεινό και γρήγορο μαγείρεμα με τεχνολογία θερμού αέρα."
+            data-en="Healthy and quick cooking with hot-air technology."
+          >
+            Υγιεινό και γρήγορο μαγείρεμα με τεχνολογία θερμού αέρα.
+          </p>
+
+          <button
+            class="product-button"
+            type="button"
+            data-el="ΔΕΣ ΠΡΟΪΟΝ"
+            data-en="VIEW PRODUCT"
+          >
+            ΔΕΣ ΠΡΟΪΟΝ
+          </button>
+
+        </article>
+
+        <article
+          class="product-card"
+          data-category="technology"
+          data-title-el="Έξυπνο ρολόι"
+          data-title-en="Smartwatch"
+          data-description-el="Έξυπνες λειτουργίες, καθαρή οθόνη και καθημερινή παρακολούθηση δραστηριότητας."
+          data-description-en="Smart functions, a clear display and everyday activity tracking."
+          data-category-el="Τεχνολογία"
+          data-category-en="Technology"
+          data-search="τεχνολογία ρολόι smartwatch κινητό technology watch"
+        >
+
+          <div class="product-image-box">
+            <img
+              class="product-image"
+              src="assets/products/smartwatch.png"
+              alt="Έξυπνο ρολόι"
+            >
+          </div>
+
+          <span
+            class="product-category"
+            data-el="ΤΕΧΝΟΛΟΓΙΑ"
+            data-en="TECHNOLOGY"
+          >
+            ΤΕΧΝΟΛΟΓΙΑ
+          </span>
+
+          <h3
+            data-el="Έξυπνο ρολόι"
+            data-en="Smartwatch"
+          >
+            Έξυπνο ρολόι
+          </h3>
+
+          <p
+            data-el="Καθημερινές έξυπνες λειτουργίες και παρακολούθηση δραστηριότητας."
+            data-en="Everyday smart functions and activity tracking."
+          >
+            Καθημερινές έξυπνες λειτουργίες και παρακολούθηση δραστηριότητας.
+          </p>
+
+          <button
+            class="product-button"
+            type="button"
+            data-el="ΔΕΣ ΠΡΟΪΟΝ"
+            data-en="VIEW PRODUCT"
+          >
+            ΔΕΣ ΠΡΟΪΟΝ
+          </button>
+
+        </article>
+
+        <article
+          class="product-card"
+          data-category="tools"
+          data-title-el="Επαναφορτιζόμενο δραπανοκατσάβιδο"
+          data-title-en="Cordless drill"
+          data-description-el="Ισχυρό και πρακτικό εργαλείο για εργασίες στο σπίτι και στο εργαστήριο."
+          data-description-en="A powerful and practical tool for home and workshop projects."
+          data-category-el="Εργαλεία"
+          data-category-en="Tools"
+          data-search="εργαλεία δράπανο δραπανοκατσάβιδο tool drill cordless"
+        >
+
+          <div class="product-image-box">
+            <img
+              class="product-image"
+              src="assets/products/drill.png"
+              alt="Επαναφορτιζόμενο δραπανοκατσάβιδο"
+            >
+          </div>
+
+          <span
+            class="product-category"
+            data-el="ΕΡΓΑΛΕΙΑ"
+            data-en="TOOLS"
+          >
+            ΕΡΓΑΛΕΙΑ
+          </span>
+
+          <h3
+            data-el="Επαναφορτιζόμενο δραπανοκατσάβιδο"
+            data-en="Cordless drill"
+          >
+            Επαναφορτιζόμενο δραπανοκατσάβιδο
+          </h3>
+
+          <p
+            data-el="Ισχυρό και πρακτικό εργαλείο για καθημερινές εργασίες."
+            data-en="A powerful and practical tool for everyday projects."
+          >
+            Ισχυρό και πρακτικό εργαλείο για καθημερινές εργασίες.
+          </p>
+
+          <button
+            class="product-button"
+            type="button"
+            data-el="ΔΕΣ ΠΡΟΪΟΝ"
+            data-en="VIEW PRODUCT"
+          >
+            ΔΕΣ ΠΡΟΪΟΝ
+          </button>
+
+        </article>
+
+        <article
+          class="product-card"
+          data-category="travel"
+          data-title-el="Σκηνή κάμπινγκ"
+          data-title-en="Camping tent"
+          data-description-el="Άνετη σκηνή για ταξίδια, εξορμήσεις και προστασία στις υπαίθριες δραστηριότητες."
+          data-description-en="A comfortable tent for travel, trips and outdoor protection."
+          data-category-el="Ταξίδι και κάμπινγκ"
+          data-category-en="Travel and camping"
+          data-search="ταξίδι κάμπινγκ σκηνή camping tent travel"
+        >
+
+          <div class="product-image-box">
+            <img
+              class="product-image"
+              src="assets/products/tent.png"
+              alt="Σκηνή κάμπινγκ"
+            >
+          </div>
+
+          <span
+            class="product-category"
+            data-el="ΤΑΞΙΔΙ ΚΑΙ ΚΑΜΠΙΝΓΚ"
+            data-en="TRAVEL AND CAMPING"
+          >
+            ΤΑΞΙΔΙ ΚΑΙ ΚΑΜΠΙΝΓΚ
+          </span>
+
+          <h3
+            data-el="Σκηνή κάμπινγκ"
+            data-en="Camping tent"
+          >
+            Σκηνή κάμπινγκ
+          </h3>
+
+          <p
+            data-el="Άνεση και προστασία για ταξίδια και υπαίθριες εξορμήσεις."
+            data-en="Comfort and protection for travel and outdoor trips."
+          >
+            Άνεση και προστασία για ταξίδια και υπαίθριες εξορμήσεις.
+          </p>
+
+          <button
+            class="product-button"
+            type="button"
+            data-el="ΔΕΣ ΠΡΟΪΟΝ"
+            data-en="VIEW PRODUCT"
+          >
+            ΔΕΣ ΠΡΟΪΟΝ
+          </button>
+
+        </article>
+
+        <article
+          class="product-card"
+          data-category="gifts"
+          data-title-el="Τριαντάφυλλα σε γυάλινο κουτί"
+          data-title-en="Roses in a glass box"
+          data-description-el="Ένα εντυπωσιακό διακοσμητικό δώρο για ξεχωριστές στιγμές και περιστάσεις."
+          data-description-en="An impressive decorative gift for special moments and occasions."
+          data-category-el="Δώρα"
+          data-category-en="Gifts"
+          data-search="δώρο τριαντάφυλλα λουλούδια gift roses flowers"
+        >
+
+          <div class="product-image-box">
+            <img
+              class="product-image"
+              src="assets/products/gift.png"
+              alt="Τριαντάφυλλα σε γυάλινο κουτί"
+            >
+          </div>
+
+          <span
+            class="product-category"
+            data-el="ΔΩΡΑ"
+            data-en="GIFTS"
+          >
+            ΔΩΡΑ
+          </span>
+
+          <h3
+            data-el="Τριαντάφυλλα σε γυάλινο κουτί"
+            data-en="Roses in a glass box"
+          >
+            Τριαντάφυλλα σε γυάλινο κουτί
+          </h3>
+
+          <p
+            data-el="Ένα εντυπωσιακό δώρο για κάθε ξεχωριστή περίσταση."
+            data-en="An impressive gift for every special occasion."
+          >
+            Ένα εντυπωσιακό δώρο για κάθε ξεχωριστή περίσταση.
+          </p>
+
+          <button
+            class="product-button"
+            type="button"
+            data-el="ΔΕΣ ΠΡΟΪΟΝ"
+            data-en="VIEW PRODUCT"
+          >
+            ΔΕΣ ΠΡΟΪΟΝ
+          </button>
+
+        </article>
+
+      </div>
+
+      <div
+        class="empty-message"
+        id="emptyMessage"
+        data-el="Δεν υπάρχουν ακόμη προϊόντα σε αυτή την κατηγορία."
+        data-en="There are no products in this category yet."
+      >
+        Δεν υπάρχουν ακόμη προϊόντα σε αυτή την κατηγορία.
+      </div>
+
+    </section>
+
+    <section
+      class="bottom-static section-anchor"
+      id="about"
+      aria-label="Πληροφορίες GlobalLink"
+    >
+
+      <img
+        class="bottom-static-image"
+        src="assets/homepage.png"
+        alt="Πληροφορίες και επικοινωνία GlobalLink"
+      >
+
+      <span
+        class="section-anchor"
+        id="contact"
+      ></span>
+
+    </section>
+
   </main>
+
+  <div
+    class="modal"
+    id="productModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modalTitle"
+  >
+
+    <div class="modal-panel">
+
+      <button
+        class="modal-close"
+        id="modalClose"
+        type="button"
+        aria-label="Κλείσιμο"
+      >
+        ×
+      </button>
+
+      <img
+        class="modal-image"
+        id="modalImage"
+        src=""
+        alt=""
+      >
+
+      <span
+        class="modal-category"
+        id="modalCategory"
+      ></span>
+
+      <h2
+        class="modal-title"
+        id="modalTitle"
+      ></h2>
+
+      <p
+        class="modal-description"
+        id="modalDescription"
+      ></p>
+
+      <div
+        class="modal-note"
+        id="modalNote"
+      >
+        Ο σύνδεσμος του προϊόντος θα προστεθεί όταν ενεργοποιηθεί το πρόγραμμα συνεργασίας.
+      </div>
+
+      <button
+        class="primary-button modal-bottom-button"
+        id="modalBottomClose"
+        type="button"
+        data-el="ΚΛΕΙΣΙΜΟ"
+        data-en="CLOSE"
+      >
+        ΚΛΕΙΣΙΜΟ
+      </button>
+
+    </div>
+
+  </div>
 
   <div
     class="toast"
@@ -1256,15 +2222,56 @@
     const searchSubmit =
       document.getElementById("searchSubmit");
 
-    const toast =
-      document.getElementById("toast");
+    const showAllButton =
+      document.getElementById("showAllButton");
 
-    const translatedItems =
-      document.querySelectorAll("[data-el][data-en]");
+    const productsTitle =
+      document.getElementById("productsTitle");
+
+    const productGrid =
+      document.getElementById("productGrid");
+
+    const emptyMessage =
+      document.getElementById("emptyMessage");
+
+    const productCards =
+      document.querySelectorAll(".product-card");
 
     const categoryButtons =
       document.querySelectorAll(".category-button");
 
+    const translatedItems =
+      document.querySelectorAll("[data-el][data-en]");
+
+    const productModal =
+      document.getElementById("productModal");
+
+    const modalClose =
+      document.getElementById("modalClose");
+
+    const modalBottomClose =
+      document.getElementById("modalBottomClose");
+
+    const modalImage =
+      document.getElementById("modalImage");
+
+    const modalCategory =
+      document.getElementById("modalCategory");
+
+    const modalTitle =
+      document.getElementById("modalTitle");
+
+    const modalDescription =
+      document.getElementById("modalDescription");
+
+    const modalNote =
+      document.getElementById("modalNote");
+
+    const toast =
+      document.getElementById("toast");
+
+    let currentCategory = "all";
+    let currentModalCard = null;
     let toastTimer;
 
     function showToast(message) {
@@ -1275,32 +2282,91 @@
 
       toastTimer = setTimeout(() => {
         toast.classList.remove("show");
-      }, 3000);
+      }, 2800);
     }
 
-    function getCategoryName(button) {
+    function categoryName(button) {
       return language.value === "el"
         ? button.dataset.nameEl
         : button.dataset.nameEn;
     }
 
-    function selectCategory(categoryId, scroll = true) {
-      const selectedButton =
+    function updateProductsTitle(categoryId) {
+      if (categoryId === "all") {
+        productsTitle.textContent =
+          language.value === "el"
+            ? "Προτεινόμενα προϊόντα"
+            : "Recommended products";
+
+        return;
+      }
+
+      const button =
         document.querySelector(
           `.category-button[data-category="${categoryId}"]`
         );
 
-      if (!selectedButton) {
-        return;
-      }
+      const name =
+        button
+          ? categoryName(button)
+          : "";
+
+      productsTitle.textContent =
+        language.value === "el"
+          ? `Προϊόντα: ${name}`
+          : `Products: ${name}`;
+    }
+
+    function filterProducts(
+      categoryId,
+      shouldScroll = true,
+      shouldNotify = true
+    ) {
+      currentCategory = categoryId;
+
+      let visibleProducts = 0;
 
       categoryButtons.forEach((button) => {
-        button.classList.remove("selected");
-        button.setAttribute("aria-pressed", "false");
+        const selected =
+          button.dataset.category === categoryId;
+
+        button.classList.toggle(
+          "selected",
+          selected
+        );
+
+        button.setAttribute(
+          "aria-pressed",
+          selected ? "true" : "false"
+        );
       });
 
-      selectedButton.classList.add("selected");
-      selectedButton.setAttribute("aria-pressed", "true");
+      productCards.forEach((card) => {
+        const visible =
+          categoryId === "all" ||
+          card.dataset.category === categoryId;
+
+        card.classList.toggle(
+          "hidden",
+          !visible
+        );
+
+        if (visible) {
+          visibleProducts += 1;
+        }
+      });
+
+      productGrid.classList.toggle(
+        "filtered",
+        categoryId !== "all"
+      );
+
+      emptyMessage.classList.toggle(
+        "show",
+        visibleProducts === 0
+      );
+
+      updateProductsTitle(categoryId);
 
       try {
         localStorage.setItem(
@@ -1308,18 +2374,33 @@
           categoryId
         );
       } catch (error) {
-        console.log("Δεν αποθηκεύτηκε η κατηγορία.");
+        console.log(
+          "Δεν αποθηκεύτηκε η κατηγορία."
+        );
       }
 
-      const name = getCategoryName(selectedButton);
+      if (
+        shouldNotify &&
+        categoryId !== "all"
+      ) {
+        const button =
+          document.querySelector(
+            `.category-button[data-category="${categoryId}"]`
+          );
 
-      showToast(
-        language.value === "el"
-          ? `Επιλέχθηκε η κατηγορία: ${name}`
-          : `Selected category: ${name}`
-      );
+        const name =
+          button
+            ? categoryName(button)
+            : "";
 
-      if (scroll) {
+        showToast(
+          language.value === "el"
+            ? `Εμφανίζονται προϊόντα: ${name}`
+            : `Showing products: ${name}`
+        );
+      }
+
+      if (shouldScroll) {
         document
           .getElementById("products")
           .scrollIntoView({
@@ -1330,81 +2411,283 @@
     }
 
     categoryButtons.forEach((button) => {
-      button.setAttribute("aria-pressed", "false");
+      button.setAttribute(
+        "aria-pressed",
+        "false"
+      );
 
-      button.addEventListener("click", () => {
-        selectCategory(
-          button.dataset.category,
-          true
-        );
-      });
+      button.addEventListener(
+        "click",
+        () => {
+          filterProducts(
+            button.dataset.category,
+            true,
+            true
+          );
+        }
+      );
     });
 
-    try {
-      const savedCategory =
-        localStorage.getItem("globallink-category");
+    showAllButton.addEventListener(
+      "click",
+      () => {
+        filterProducts(
+          "all",
+          false,
+          false
+        );
 
-      if (savedCategory) {
-        selectCategory(savedCategory, false);
+        showToast(
+          language.value === "el"
+            ? "Εμφανίζονται όλα τα προϊόντα."
+            : "All products are displayed."
+        );
       }
-    } catch (error) {
-      console.log("Δεν φορτώθηκε η κατηγορία.");
+    );
+
+    function openProductModal(card) {
+      currentModalCard = card;
+
+      const greek =
+        language.value === "el";
+
+      const image =
+        card.querySelector(".product-image");
+
+      modalImage.src = image.src;
+
+      modalImage.alt =
+        greek
+          ? card.dataset.titleEl
+          : card.dataset.titleEn;
+
+      modalCategory.textContent =
+        greek
+          ? card.dataset.categoryEl
+          : card.dataset.categoryEn;
+
+      modalTitle.textContent =
+        greek
+          ? card.dataset.titleEl
+          : card.dataset.titleEn;
+
+      modalDescription.textContent =
+        greek
+          ? card.dataset.descriptionEl
+          : card.dataset.descriptionEn;
+
+      modalNote.textContent =
+        greek
+          ? "Ο σύνδεσμος του προϊόντος θα προστεθεί όταν ενεργοποιηθεί το πρόγραμμα συνεργασίας."
+          : "The product link will be added when the affiliate programme is activated.";
+
+      productModal.classList.add("open");
+      document.body.classList.add("modal-open");
+
+      modalClose.focus();
     }
 
-    menuButton.addEventListener("click", () => {
-      mobileNav.classList.toggle("open");
-      searchPanel.classList.remove("open");
-    });
+    function closeProductModal() {
+      productModal.classList.remove("open");
+      document.body.classList.remove("modal-open");
+
+      currentModalCard = null;
+    }
+
+    document
+      .querySelectorAll(".product-button")
+      .forEach((button) => {
+        button.addEventListener(
+          "click",
+          () => {
+            const card =
+              button.closest(".product-card");
+
+            openProductModal(card);
+          }
+        );
+      });
+
+    modalClose.addEventListener(
+      "click",
+      closeProductModal
+    );
+
+    modalBottomClose.addEventListener(
+      "click",
+      closeProductModal
+    );
+
+    productModal.addEventListener(
+      "click",
+      (event) => {
+        if (event.target === productModal) {
+          closeProductModal();
+        }
+      }
+    );
+
+    document.addEventListener(
+      "keydown",
+      (event) => {
+        if (
+          event.key === "Escape" &&
+          productModal.classList.contains("open")
+        ) {
+          closeProductModal();
+        }
+      }
+    );
+
+    menuButton.addEventListener(
+      "click",
+      () => {
+        mobileNav.classList.toggle("open");
+        searchPanel.classList.remove("open");
+      }
+    );
 
     mobileNav
       .querySelectorAll("a")
       .forEach((link) => {
-        link.addEventListener("click", () => {
-          mobileNav.classList.remove("open");
-        });
+        link.addEventListener(
+          "click",
+          () => {
+            mobileNav.classList.remove("open");
+          }
+        );
       });
 
-    searchButton.addEventListener("click", () => {
-      searchPanel.classList.toggle("open");
-      mobileNav.classList.remove("open");
+    searchButton.addEventListener(
+      "click",
+      () => {
+        searchPanel.classList.toggle("open");
+        mobileNav.classList.remove("open");
 
-      if (searchPanel.classList.contains("open")) {
-        setTimeout(() => {
-          searchInput.focus();
-        }, 100);
+        if (
+          searchPanel.classList.contains("open")
+        ) {
+          setTimeout(() => {
+            searchInput.focus();
+          }, 100);
+        }
       }
-    });
+    );
 
-    language.addEventListener("change", () => {
+    function updateLanguage() {
+      const greek =
+        language.value === "el";
+
       translatedItems.forEach((item) => {
         item.textContent =
-          language.value === "el"
+          greek
             ? item.dataset.el
             : item.dataset.en;
       });
 
-      if (language.value === "el") {
-        searchInput.placeholder =
-          "Γράψε: σπίτι, αυτοκίνητο, τεχνολογία...";
-
-        searchSubmit.textContent =
-          "ΑΝΑΖΗΤΗΣΗ";
-
-        showToast(
-          "Η γλώσσα άλλαξε σε Ελληνικά."
+      categoryButtons.forEach((button) => {
+        button.setAttribute(
+          "aria-label",
+          greek
+            ? `Κατηγορία ${button.dataset.nameEl}`
+            : `Category ${button.dataset.nameEn}`
         );
-      } else {
-        searchInput.placeholder =
-          "Search: home, car, technology...";
+      });
 
-        searchSubmit.textContent =
-          "SEARCH";
+      searchInput.placeholder =
+        greek
+          ? "Γράψε: σπίτι, αυτοκίνητο, τεχνολογία..."
+          : "Search: home, car, technology...";
+
+      searchSubmit.textContent =
+        greek
+          ? "ΑΝΑΖΗΤΗΣΗ"
+          : "SEARCH";
+
+      updateProductsTitle(currentCategory);
+
+      if (currentModalCard) {
+        openProductModal(currentModalCard);
+      }
+    }
+
+    language.addEventListener(
+      "change",
+      () => {
+        updateLanguage();
 
         showToast(
-          "Language changed to English."
+          language.value === "el"
+            ? "Η γλώσσα άλλαξε σε Ελληνικά."
+            : "Language changed to English."
         );
       }
-    });
+    );
+
+    function findCategoryFromSearch(term) {
+      if (
+        term.includes("σπίτ") ||
+        term.includes("κουζίν") ||
+        term.includes("φριτέζ") ||
+        term.includes("home") ||
+        term.includes("kitchen") ||
+        term.includes("fryer")
+      ) {
+        return "home";
+      }
+
+      if (
+        term.includes("αυτοκ") ||
+        term.includes("αμάξ") ||
+        term.includes("φορτιστ") ||
+        term.includes("car") ||
+        term.includes("charger")
+      ) {
+        return "car";
+      }
+
+      if (
+        term.includes("τεχνο") ||
+        term.includes("κινητ") ||
+        term.includes("ρολό") ||
+        term.includes("technology") ||
+        term.includes("phone") ||
+        term.includes("watch")
+      ) {
+        return "technology";
+      }
+
+      if (
+        term.includes("εργαλ") ||
+        term.includes("δραπα") ||
+        term.includes("tool") ||
+        term.includes("drill")
+      ) {
+        return "tools";
+      }
+
+      if (
+        term.includes("ταξίδ") ||
+        term.includes("κάμπ") ||
+        term.includes("σκην") ||
+        term.includes("travel") ||
+        term.includes("camp") ||
+        term.includes("tent")
+      ) {
+        return "travel";
+      }
+
+      if (
+        term.includes("δώρ") ||
+        term.includes("τριαντάφυλλ") ||
+        term.includes("gift") ||
+        term.includes("rose")
+      ) {
+        return "gifts";
+      }
+
+      return "";
+    }
 
     searchPanel.addEventListener(
       "submit",
@@ -1427,78 +2710,104 @@
         }
 
         if (
-          term.includes("σπίτ") ||
-          term.includes("home")
+          term.includes("όλα") ||
+          term.includes("all")
         ) {
-          selectCategory("home");
-        } else if (
-          term.includes("αυτοκ") ||
-          term.includes("αμάξ") ||
-          term.includes("car")
-        ) {
-          selectCategory("car");
-        } else if (
-          term.includes("τεχνο") ||
-          term.includes("κινητ") ||
-          term.includes("technology") ||
-          term.includes("phone")
-        ) {
-          selectCategory("technology");
-        } else if (
-          term.includes("εργαλ") ||
-          term.includes("δραπα") ||
-          term.includes("tool")
-        ) {
-          selectCategory("tools");
-        } else if (
-          term.includes("ταξίδ") ||
-          term.includes("κάμπ") ||
-          term.includes("σκην") ||
-          term.includes("travel") ||
-          term.includes("camp")
-        ) {
-          selectCategory("travel");
-        } else if (
-          term.includes("δώρ") ||
-          term.includes("gift")
-        ) {
-          selectCategory("gifts");
-        } else {
-          showToast(
-            language.value === "el"
-              ? "Δεν βρέθηκε ακόμη αυτή η αναζήτηση."
-              : "This search is not available yet."
+          filterProducts(
+            "all",
+            true,
+            false
           );
+
+          searchPanel.classList.remove("open");
 
           return;
         }
 
-        searchPanel.classList.remove("open");
+        const category =
+          findCategoryFromSearch(term);
+
+        if (category) {
+          filterProducts(
+            category,
+            true,
+            true
+          );
+
+          searchPanel.classList.remove("open");
+
+          return;
+        }
+
+        const matchingCard =
+          Array.from(productCards).find(
+            (card) =>
+              card.dataset.search
+                .toLocaleLowerCase("el-GR")
+                .includes(term)
+          );
+
+        if (matchingCard) {
+          filterProducts(
+            matchingCard.dataset.category,
+            true,
+            false
+          );
+
+          openProductModal(matchingCard);
+
+          searchPanel.classList.remove("open");
+
+          return;
+        }
+
+        showToast(
+          language.value === "el"
+            ? "Δεν βρέθηκε ακόμη αυτή η αναζήτηση."
+            : "This search is not available yet."
+        );
       }
     );
 
-    document.addEventListener("click", (event) => {
-      const clickedSearch =
-        searchPanel.contains(event.target) ||
-        searchButton.contains(event.target);
+    document.addEventListener(
+      "click",
+      (event) => {
+        const clickedSearch =
+          searchPanel.contains(event.target) ||
+          searchButton.contains(event.target);
 
-      const clickedMenu =
-        mobileNav.contains(event.target) ||
-        menuButton.contains(event.target);
+        const clickedMenu =
+          mobileNav.contains(event.target) ||
+          menuButton.contains(event.target);
 
-      if (!clickedSearch) {
-        searchPanel.classList.remove("open");
+        if (!clickedSearch) {
+          searchPanel.classList.remove("open");
+        }
+
+        if (!clickedMenu) {
+          mobileNav.classList.remove("open");
+        }
       }
+    );
 
-      if (!clickedMenu) {
-        mobileNav.classList.remove("open");
-      }
-    });
+    try {
+      const savedCategory =
+        localStorage.getItem(
+          "globallink-category"
+        );
 
-    /*
-      Φωτεινή περιστρεφόμενη Γη
-      με σωστή σφαιρική προβολή.
-    */
+      filterProducts(
+        savedCategory || "all",
+        false,
+        false
+      );
+    } catch (error) {
+      filterProducts(
+        "all",
+        false,
+        false
+      );
+    }
 
     const earthCanvas =
       document.getElementById("earthCanvas");
@@ -1582,15 +2891,15 @@
           rectangle.width *
           Math.min(
             window.devicePixelRatio || 1,
-            1.45
+            1.4
           )
         );
 
       const size =
         Math.min(
-          360,
+          340,
           Math.max(
-            220,
+            210,
             requestedSize
           )
         );
@@ -1604,8 +2913,11 @@
 
       globeSize = size;
 
-      earthCanvas.width = globeSize;
-      earthCanvas.height = globeSize;
+      earthCanvas.width =
+        globeSize;
+
+      earthCanvas.height =
+        globeSize;
 
       globeImage =
         earthContext.createImageData(
@@ -1618,9 +2930,6 @@
       const radius =
         globeSize / 2;
 
-      const center =
-        radius;
-
       for (
         let y = 0;
         y < globeSize;
@@ -1632,10 +2941,10 @@
           x += 1
         ) {
           const nx =
-            (x - center) / radius;
+            (x - radius) / radius;
 
           const ny =
-            (y - center) / radius;
+            (y - radius) / radius;
 
           const radiusSquared =
             nx * nx +
@@ -1659,16 +2968,12 @@
           const edge =
             Math.pow(nz, 0.55);
 
-          const lightX = -0.45;
-          const lightY = -0.45;
-          const lightZ = 0.78;
-
           const diffuse =
             Math.max(
               0,
-              nx * lightX +
-              ny * lightY +
-              nz * lightZ
+              nx * -0.45 +
+              ny * -0.45 +
+              nz * 0.78
             );
 
           const highlight =
@@ -1705,7 +3010,7 @@
 
       if (
         time - previousFrame <
-        48
+        50
       ) {
         return;
       }
@@ -1814,17 +3119,18 @@
           ) *
           (
             0.54 +
-            point.edge * 0.60
+            point.edge * 0.6
           );
 
-        const highlight =
+        const shine =
           point.highlight * 110;
 
-        const blueBoost =
-          18 +
-          point.diffuse * 20;
+        const outputIndex =
+          point.pixelIndex;
 
-        const red =
+        output[
+          outputIndex
+        ] =
           Math.min(
             255,
             (
@@ -1832,10 +3138,12 @@
               22
             ) *
             light +
-            highlight
+            shine
           );
 
-        const green =
+        output[
+          outputIndex + 1
+        ] =
           Math.min(
             255,
             (
@@ -1843,42 +3151,31 @@
               26
             ) *
             light +
-            highlight
+            shine
           );
 
-        const blue =
+        output[
+          outputIndex + 2
+        ] =
           Math.min(
             255,
             (
               sourceBlue * 1.14 +
-              blueBoost
+              18 +
+              point.diffuse * 20
             ) *
             light +
-            highlight
+            shine
           );
-
-        const outputIndex =
-          point.pixelIndex;
-
-        output[
-          outputIndex
-        ] = red;
-
-        output[
-          outputIndex + 1
-        ] = green;
-
-        output[
-          outputIndex + 2
-        ] = blue;
 
         output[
           outputIndex + 3
-        ] = Math.min(
-          255,
-          225 +
-          point.edge * 30
-        );
+        ] =
+          Math.min(
+            255,
+            225 +
+            point.edge * 30
+          );
       }
 
       earthContext.putImageData(
@@ -1904,7 +3201,9 @@
       "error",
       () => {
         showToast(
-          "Δεν φορτώθηκε ο χάρτης της Γης."
+          language.value === "el"
+            ? "Δεν φορτώθηκε ο χάρτης της Γης."
+            : "The Earth map could not be loaded."
         );
       }
     );
