@@ -1701,12 +1701,7 @@
     }
 
   
-    /* MOBILE_ONE_SCREEN_V1 */
-
-    /*
-      Στο κινητό ολόκληρη η αρχική σελίδα
-      χωράει μέσα σε μία οθόνη.
-    */
+    /* MOBILE_ONE_SCREEN_V2 */
 
     @media (max-width: 700px) {
       html,
@@ -1714,14 +1709,14 @@
         width: 100%;
         height: 100%;
         margin: 0;
+        padding: 0;
         overflow: hidden;
       }
 
       body {
         height: 100vh;
         height: 100dvh;
-        min-height: 100vh;
-        min-height: 100dvh;
+        min-height: 0;
       }
 
       .top-header {
@@ -1729,26 +1724,26 @@
         top: auto;
 
         width: 100%;
-        height: 68px;
-        padding: 4px 5px;
+        height: 64px;
+        padding: 4px;
 
         overflow: visible;
       }
 
       .top-inner {
         width: 100%;
-        height: 60px;
-        min-height: 60px;
-        padding: 6px 8px;
-        gap: 6px;
+        height: 56px;
+        min-height: 56px;
+        padding: 5px 7px;
+        gap: 5px;
 
-        border-radius: 21px;
+        border-radius: 20px;
       }
 
       .liquid-logo {
-        width: 40px;
-        height: 40px;
-        flex-basis: 40px;
+        width: 39px;
+        height: 39px;
+        flex: 0 0 39px;
       }
 
       .liquid-logo::before,
@@ -1756,23 +1751,22 @@
         left: 6px;
         top: 13px;
 
-        width: 29px;
-        height: 11px;
+        width: 28px;
+        height: 10px;
 
         border-width: 3px;
       }
 
       .brand {
-        gap: 7px;
+        gap: 6px;
       }
 
       .brand-name {
-        font-size: 18px;
+        font-size: 17px;
       }
 
       .brand-owner {
         margin-top: 2px;
-
         font-size: 8px;
       }
 
@@ -1782,16 +1776,16 @@
 
       .language {
         width: 72px;
-        height: 34px;
+        height: 33px;
         padding: 0 3px;
 
         font-size: 8px;
       }
 
       .icon-button {
-        width: 34px;
-        height: 34px;
-        flex-basis: 34px;
+        width: 33px;
+        height: 33px;
+        flex: 0 0 33px;
       }
 
       .icon-button svg {
@@ -1801,21 +1795,16 @@
 
       main {
         width: 100%;
-        height: calc(100vh - 68px);
-        height: calc(100dvh - 68px);
+        height: calc(100vh - 64px);
+        height: calc(100dvh - 64px);
         min-height: 0;
 
         display: grid;
-
-        /*
-          Γη, κατηγορίες, προϊόντα και κάτω μέρος.
-        */
-
         grid-template-rows:
-          minmax(0, 24fr)
-          minmax(0, 11fr)
-          minmax(0, 54fr)
-          minmax(0, 11fr);
+          minmax(0, 25fr)
+          minmax(0, 12fr)
+          minmax(0, 38fr)
+          minmax(0, 25fr);
 
         overflow: hidden;
       }
@@ -1840,14 +1829,12 @@
       .earth-ring {
         left: 53%;
         top: 2%;
-
         width: 40%;
       }
 
       .glass-earth {
         left: 55.5%;
         top: 5%;
-
         width: 35%;
       }
 
@@ -1892,6 +1879,8 @@
       }
 
       .products-section {
+        position: relative;
+
         width: calc(100% - 10px);
         height: 100%;
         min-height: 0;
@@ -1903,8 +1892,8 @@
       }
 
       .products-heading {
-        height: 31px;
-        min-height: 31px;
+        height: 32px;
+        min-height: 32px;
         margin-bottom: 4px;
 
         align-items: center;
@@ -1930,6 +1919,7 @@
       }
 
       .show-all-button {
+        flex: 0 0 auto;
         padding: 5px 7px;
 
         border-radius: 10px;
@@ -1941,12 +1931,13 @@
       .product-grid,
       .product-grid.filtered {
         width: 100%;
-        height: calc(100% - 35px);
+        height: calc(100% - 36px);
         min-height: 0;
-        padding: 0 2px 3px;
+        padding: 0 2px 2px;
 
         display: flex !important;
         justify-content: flex-start;
+        align-items: stretch;
 
         gap: 7px;
 
@@ -1964,19 +1955,50 @@
 
       .product-card,
       .product-grid.filtered .product-card {
-        width: 42vw;
-        min-width: 42vw;
-        max-width: 160px;
+        width: 84vw;
+        min-width: 84vw;
+        max-width: 520px;
         height: 100%;
-        max-height: 100%;
-        padding: 5px;
+        min-height: 0;
+        padding: 7px;
 
-        flex: 0 0 42vw;
+        flex: 0 0 84vw;
 
-        border-radius: 16px;
+        display: grid !important;
+        grid-template-columns:
+          minmax(105px, 39%)
+          minmax(0, 1fr);
+
+        grid-template-rows:
+          auto
+          auto
+          minmax(0, 1fr)
+          auto;
+
+        grid-template-areas:
+          "image category"
+          "image title"
+          "image description"
+          "image button";
+
+        column-gap: 8px;
+        row-gap: 3px;
+
+        border-radius: 17px;
         overflow: hidden;
 
         scroll-snap-align: start;
+      }
+
+      .product-grid.filtered .product-card {
+        width: 100%;
+        min-width: 100%;
+        max-width: none;
+        flex-basis: 100%;
+      }
+
+      .product-card.hidden {
+        display: none !important;
       }
 
       .product-card:hover {
@@ -1985,15 +2007,15 @@
 
       .product-image-box,
       .product-grid.filtered .product-image-box {
+        grid-area: image;
+
         width: 100%;
-        height: 46%;
+        height: 100%;
         min-height: 0;
         max-height: none;
 
-        flex: 0 0 46%;
-
         aspect-ratio: auto;
-        border-radius: 12px;
+        border-radius: 13px;
       }
 
       .product-image {
@@ -2006,20 +2028,27 @@
 
       .product-category,
       .product-grid.filtered .product-category {
-        margin-top: 3px;
-        padding: 2px 5px;
+        grid-area: category;
 
-        font-size: 6px;
+        align-self: start;
+        justify-self: start;
+
+        margin: 0;
+        padding: 3px 6px;
+
+        font-size: 7px;
       }
 
       .product-card h3,
       .product-grid.filtered .product-card h3 {
-        margin: 3px 0 2px;
+        grid-area: title;
+
+        margin: 1px 0 2px;
 
         overflow: hidden;
 
-        font-size: 9px;
-        line-height: 1.13;
+        font-size: 12px;
+        line-height: 1.16;
 
         display: -webkit-box;
         -webkit-box-orient: vertical;
@@ -2028,30 +2057,37 @@
 
       .product-card p,
       .product-grid.filtered .product-card p {
-        margin: 0 0 3px;
+        grid-area: description;
+
+        margin: 0;
 
         overflow: hidden;
 
-        font-size: 7px;
-        line-height: 1.2;
+        font-size: 8.5px;
+        line-height: 1.3;
 
         display: -webkit-box;
         -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
+        -webkit-line-clamp: 4;
       }
 
       .product-button,
       .product-grid.filtered .product-button {
-        min-height: 24px;
-        margin-top: auto;
-        padding: 3px;
+        grid-area: button;
 
-        border-radius: 9px;
+        width: 100%;
+        min-height: 28px;
+        margin: 0;
+        padding: 4px 5px;
 
-        font-size: 7px;
+        border-radius: 10px;
+
+        font-size: 8px;
       }
 
       .bottom-static {
+        position: relative;
+
         width: 100%;
         height: 100%;
         min-height: 0;
@@ -2062,130 +2098,210 @@
       }
 
       .bottom-static-image {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: auto;
+        bottom: 0;
+
         width: 100%;
         height: auto;
 
-        transform: translateY(-76.22%);
+        transform: none;
       }
 
       /*
-        Το παράθυρο του προϊόντος ανοίγει επάνω από
-        την αρχική χωρίς να δημιουργεί κύλιση στη σελίδα.
+        Οι πληροφορίες προϊόντος εμφανίζονται
+        μόνο μέσα στην περιοχή προϊόντων.
+        Δεν κρύβουν το κάτω μέρος της σελίδας.
       */
 
-      .modal.open {
-        position: fixed !important;
-        z-index: 5000;
-        inset: 0 !important;
+      .modal {
+        position: absolute !important;
+        z-index: 80;
+        left: 6px !important;
+        right: 6px !important;
+        top: 38px !important;
+        bottom: 6px !important;
+        inset: 38px 6px 6px !important;
 
-        width: 100% !important;
-        height: 100vh !important;
-        height: 100dvh !important;
-        padding: 8px !important;
+        width: auto !important;
+        height: auto !important;
+        padding: 0 !important;
 
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
+        display: none !important;
 
         overflow: hidden !important;
 
-        background: rgba(1, 27, 79, 0.48) !important;
+        background: transparent !important;
 
-        backdrop-filter: blur(10px) !important;
-        -webkit-backdrop-filter: blur(10px) !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+
+        transform: none !important;
+      }
+
+      .modal.open {
+        display: block !important;
       }
 
       .modal-panel {
-        width: min(390px, 100%) !important;
-        max-height: calc(100vh - 16px) !important;
-        max-height: calc(100dvh - 16px) !important;
-        margin: auto !important;
-        padding: 13px !important;
+        position: relative;
 
-        display: block !important;
-        overflow-y: auto !important;
+        width: 100% !important;
+        height: 100% !important;
+        max-height: none !important;
+        margin: 0 !important;
+        padding: 7px !important;
 
-        border-radius: 23px !important;
+        display: grid !important;
+
+        grid-template-columns:
+          minmax(105px, 38%)
+          minmax(0, 1fr);
+
+        grid-template-rows:
+          auto
+          auto
+          minmax(0, 1fr)
+          auto;
+
+        grid-template-areas:
+          "modalimage modalcategory"
+          "modalimage modaltitle"
+          "modalimage modaldescription"
+          "modalimage modalbutton";
+
+        column-gap: 8px;
+        row-gap: 3px;
+
+        overflow: hidden !important;
+
+        border-radius: 17px !important;
       }
 
       .modal-image {
-        width: 100%;
-        height: auto;
-        max-height: 220px !important;
+        grid-area: modalimage;
 
-        object-fit: contain;
+        width: 100% !important;
+        height: 100% !important;
+        max-height: none !important;
+
+        object-fit: cover !important;
+
+        border-radius: 13px !important;
+      }
+
+      .modal-category {
+        grid-area: modalcategory;
+
+        justify-self: start;
+        align-self: start;
+
+        margin: 0 !important;
+        padding: 3px 6px !important;
+
+        font-size: 7px !important;
       }
 
       .modal-title {
-        margin-top: 7px !important;
+        grid-area: modaltitle;
 
-        font-size: 20px !important;
+        margin: 1px 35px 1px 0 !important;
+
+        overflow: hidden;
+
+        font-size: 13px !important;
+        line-height: 1.16 !important;
+
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
       }
 
       .modal-description {
-        font-size: 12px !important;
-        line-height: 1.45 !important;
+        grid-area: modaldescription;
+
+        margin: 0 !important;
+
+        overflow: hidden;
+
+        font-size: 9px !important;
+        line-height: 1.35 !important;
+
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 5;
       }
 
       .modal-note {
-        margin-top: 8px !important;
-        padding: 9px !important;
-
-        font-size: 10px !important;
+        display: none !important;
       }
 
       .modal-bottom-button {
-        min-height: 39px !important;
-        margin-top: 8px !important;
+        grid-area: modalbutton;
+
+        width: 100%;
+        min-height: 29px !important;
+        margin: 0 !important;
+        padding: 4px !important;
+
+        border-radius: 10px !important;
+
+        font-size: 8px !important;
+      }
+
+      .modal-close {
+        position: absolute !important;
+        z-index: 5;
+        right: 7px !important;
+        top: 7px !important;
+
+        width: 28px !important;
+        height: 28px !important;
+
+        font-size: 19px !important;
       }
 
       .search-panel {
-        top: 68px;
+        top: 64px;
       }
 
       .mobile-nav {
         position: fixed;
         z-index: 2000;
-        top: 64px;
+        top: 60px;
         left: 5px;
         right: 5px;
 
         width: auto;
-        max-height: calc(100dvh - 70px);
+        max-height: calc(100dvh - 66px);
 
         overflow-y: auto;
       }
     }
 
-    /*
-      Σε πιο κοντές οθόνες αφαιρούμε μόνο
-      την περιγραφή από τις μικρές κάρτες.
-    */
-
-    @media (max-width: 700px) and (max-height: 760px) {
-      .product-card p,
-      .product-grid.filtered .product-card p {
+    @media (max-width: 700px) and (max-height: 720px) {
+      .brand-owner {
         display: none;
       }
 
-      .product-image-box,
-      .product-grid.filtered .product-image-box {
-        height: 52%;
-        flex-basis: 52%;
+      .product-card p,
+      .product-grid.filtered .product-card p {
+        -webkit-line-clamp: 2;
       }
 
-      .products-heading {
-        height: 28px;
-        min-height: 28px;
+      .product-card h3,
+      .product-grid.filtered .product-card h3 {
+        font-size: 11px;
       }
 
-      .product-grid,
-      .product-grid.filtered {
-        height: calc(100% - 32px);
+      .modal-description {
+        -webkit-line-clamp: 3;
       }
     }
 
-    /* END_MOBILE_ONE_SCREEN_V1 */
+    /* END_MOBILE_ONE_SCREEN_V2 */
 
   </style>
 </head>
@@ -3253,13 +3369,6 @@
       productModal.classList.add("open");
       document.body.classList.remove("modal-open");
 
-      requestAnimationFrame(() => {
-        productModal.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-      });
-
       modalClose.focus();
     }
 
@@ -3599,8 +3708,12 @@
     const earthTexture =
       new Image();
 
-    earthTexture.src =
-      "assets/earth-map.jpg";
+    /*
+      EARTH_ROTATION_FIX_V2
+
+      Η εικόνα της Γης θα οριστεί αφού συνδεθούν
+      πρώτα οι εντολές φόρτωσης.
+    */
 
     const textureCanvas =
       document.createElement("canvas");
@@ -3671,11 +3784,16 @@
           )
         );
 
+      const mobileEarth =
+        window.matchMedia(
+          "(max-width: 700px)"
+        ).matches;
+
       const size =
         Math.min(
-          340,
+          mobileEarth ? 230 : 340,
           Math.max(
-            210,
+            mobileEarth ? 160 : 210,
             requestedSize
           )
         );
@@ -3786,7 +3904,7 @@
 
       if (
         time - previousFrame <
-        50
+        70
       ) {
         return;
       }
@@ -3802,7 +3920,7 @@
 
       const rotation =
         0.22 +
-        time / 29000;
+        time / 7000;
 
       for (
         let index = 0;
@@ -3984,7 +4102,16 @@
       }
     );
 
-    window.addEventListener(
+    /*
+      Η πηγή ορίζεται τώρα αφού έχουν συνδεθεί
+      οι ακροατές φόρτωσης και σφάλματος.
+      Έτσι η κίνηση ξεκινά ακόμη και από την προσωρινή μνήμη.
+    */
+
+    earthTexture.src =
+      "assets/earth-map.jpg";
+
+        window.addEventListener(
       "resize",
       () => {
         globeSize = 0;
@@ -4034,6 +4161,37 @@
     );
   </script>
   <!-- END_MOBILE_ONE_SCREEN_SCRIPT_V1 -->
+
+
+  <!-- MOBILE_RUNTIME_V2 -->
+  <script>
+    /*
+      Το παράθυρο πληροφοριών μεταφέρεται
+      μέσα στην περιοχή των προϊόντων.
+    */
+
+    (function () {
+      const productsSection =
+        document.querySelector(
+          ".products-section"
+        );
+
+      const detailsPanel =
+        document.getElementById(
+          "productModal"
+        );
+
+      if (
+        productsSection &&
+        detailsPanel
+      ) {
+        productsSection.appendChild(
+          detailsPanel
+        );
+      }
+    })();
+  </script>
+  <!-- END_MOBILE_RUNTIME_V2 -->
 
 </body>
 </html>
