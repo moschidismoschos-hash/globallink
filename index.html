@@ -1530,6 +1530,176 @@
         scroll-behavior: auto;
       }
     }
+
+    /* INLINE_PRODUCT_DETAILS_FIX */
+
+    /*
+      Οι πληροφορίες του προϊόντος ανοίγουν
+      μέσα στη σελίδα και δεν καλύπτουν το κάτω μέρος.
+    */
+
+    body.modal-open {
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
+    }
+
+    .modal {
+      position: relative !important;
+      inset: auto !important;
+
+      width: 100% !important;
+      padding: 0 7px 14px !important;
+
+      display: none !important;
+
+      background: transparent !important;
+
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+
+    .modal.open {
+      display: block !important;
+    }
+
+    .modal-panel {
+      position: relative;
+
+      width: min(1100px, calc(100% - 14px)) !important;
+      max-height: none !important;
+      margin: 0 auto !important;
+      padding: 18px !important;
+
+      display: grid;
+      grid-template-columns:
+        minmax(220px, 340px)
+        minmax(0, 1fr);
+
+      grid-template-areas:
+        "image category"
+        "image title"
+        "image description"
+        "image note"
+        "image button";
+
+      align-items: start;
+      gap: 10px 22px;
+
+      overflow: visible !important;
+
+      border-radius: 30px !important;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.96),
+          rgba(216, 241, 255, 0.88)
+        ) !important;
+
+      box-shadow:
+        inset 0 2px 5px white,
+        inset 0 -10px 30px rgba(0, 119, 255, 0.07),
+        0 18px 44px rgba(0, 76, 175, 0.18) !important;
+    }
+
+    .modal-image {
+      grid-area: image;
+
+      width: 100%;
+      height: 100%;
+      max-height: 310px !important;
+
+      object-fit: contain;
+
+      border-radius: 22px;
+    }
+
+    .modal-category {
+      grid-area: category;
+
+      justify-self: start;
+      align-self: end;
+
+      margin-top: 5px !important;
+    }
+
+    .modal-title {
+      grid-area: title;
+
+      margin: 2px 55px 2px 0 !important;
+    }
+
+    .modal-description {
+      grid-area: description;
+    }
+
+    .modal-note {
+      grid-area: note;
+
+      margin-top: 5px !important;
+    }
+
+    .modal-bottom-button {
+      grid-area: button;
+
+      margin-top: 5px !important;
+    }
+
+    .modal-close {
+      position: absolute !important;
+      right: 14px !important;
+      top: 14px !important;
+    }
+
+    @media (max-width: 700px) {
+      .modal {
+        padding: 0 7px 12px !important;
+      }
+
+      .modal-panel {
+        width: calc(100% - 8px) !important;
+        padding: 14px !important;
+
+        grid-template-columns: 1fr;
+
+        grid-template-areas:
+          "image"
+          "category"
+          "title"
+          "description"
+          "note"
+          "button";
+
+        gap: 9px;
+
+        border-radius: 24px !important;
+      }
+
+      .modal-image {
+        width: 100%;
+        height: auto;
+        max-height: 245px !important;
+      }
+
+      .modal-category {
+        margin-top: 2px !important;
+      }
+
+      .modal-title {
+        margin: 0 52px 0 0 !important;
+
+        font-size: 21px !important;
+      }
+
+      .modal-note {
+        margin-top: 2px !important;
+      }
+
+      .modal-bottom-button {
+        margin-top: 3px !important;
+      }
+    }
+
   </style>
 </head>
 
@@ -2230,8 +2400,8 @@
   <div
     class="modal"
     id="productModal"
-    role="dialog"
-    aria-modal="true"
+    role="region"
+    aria-modal="false"
     aria-labelledby="modalTitle"
   >
 
@@ -2365,6 +2535,22 @@
 
     const toast =
       document.getElementById("toast");
+
+
+    /*
+      Μεταφέρουμε τις πληροφορίες του προϊόντος
+      πριν από το κάτω ενημερωτικό τμήμα.
+    */
+
+    const bottomStaticSection =
+      document.querySelector(".bottom-static");
+
+    if (
+      bottomStaticSection &&
+      productModal
+    ) {
+      bottomStaticSection.before(productModal);
+    }
 
     let currentCategory = "all";
     let currentModalCard = null;
@@ -2578,7 +2764,14 @@
           : "The product link will be added when the affiliate programme is activated.";
 
       productModal.classList.add("open");
-      document.body.classList.add("modal-open");
+      document.body.classList.remove("modal-open");
+
+      requestAnimationFrame(() => {
+        productModal.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      });
 
       modalClose.focus();
     }
