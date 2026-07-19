@@ -1,30 +1,29 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="el">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#020b1f">
-  <meta name="description" content="GlobalLink — ανακάλυψε επιλεγμένες κατηγορίες προϊόντων από όλο τον κόσμο.">
+  <meta name="theme-color" content="#020b18">
+  <meta name="description" content="GlobalLink — αγορές και ταξίδια σε ένα μέρος.">
   <title>GlobalLink</title>
 
   <style>
     :root {
-      --navy: #020b1f;
-      --navy-2: #061a3c;
-      --panel: rgba(8, 28, 63, 0.84);
-      --line: rgba(71, 184, 255, 0.27);
-      --cyan: #23d8ff;
-      --blue: #1787ff;
-      --violet: #765dff;
-      --white: #f7fbff;
-      --muted: #aebdd4;
-      --header-height: 62px;
-      --trust-height: 54px;
-      --category-height: 190px;
+      color-scheme: dark;
+      --bg: #020813;
+      --panel: rgba(7, 24, 47, 0.76);
+      --panel-strong: rgba(8, 31, 61, 0.95);
+      --line: rgba(89, 170, 255, 0.34);
+      --text: #f7fbff;
+      --muted: #aabbd0;
+      --blue: #39a4ff;
+      --blue-2: #0f6cff;
+      --radius: 22px;
     }
 
     * {
       box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
     }
 
     html,
@@ -33,683 +32,451 @@
       height: 100%;
       margin: 0;
       overflow: hidden;
-      overscroll-behavior: none;
-      background: var(--navy);
+      background: var(--bg);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
     body {
-      color: var(--white);
-      font-family: Arial, Helvetica, sans-serif;
-      -webkit-tap-highlight-color: transparent;
-      touch-action: manipulation;
+      min-height: 100svh;
+      color: var(--text);
+    }
+
+    button,
+    a {
+      font: inherit;
     }
 
     button {
-      font: inherit;
+      color: inherit;
     }
 
     .app {
       position: relative;
       width: 100%;
-      height: 100vh;
-      height: 100dvh;
+      height: 100svh;
+      min-height: 100svh;
       overflow: hidden;
       display: grid;
-      grid-template-rows:
-        var(--header-height)
-        minmax(0, 1fr)
-        var(--trust-height);
+      grid-template-rows: auto minmax(0, 1fr) auto;
       background:
-        radial-gradient(circle at 79% 27%, rgba(17, 130, 255, 0.19), transparent 31%),
-        radial-gradient(circle at 15% 76%, rgba(35, 216, 255, 0.10), transparent 26%),
-        linear-gradient(180deg, #020b1f 0%, #03142e 56%, #020b1f 100%);
+        radial-gradient(circle at 50% 32%, rgba(0, 117, 255, 0.16), transparent 31%),
+        radial-gradient(circle at 15% 75%, rgba(0, 212, 255, 0.08), transparent 24%),
+        linear-gradient(180deg, #020813 0%, #031020 45%, #020914 100%);
+      isolation: isolate;
+      padding:
+        max(8px, env(safe-area-inset-top))
+        12px
+        max(8px, env(safe-area-inset-bottom));
     }
 
     .app::before {
       content: "";
       position: absolute;
       inset: 0;
-      pointer-events: none;
-      opacity: 0.42;
+      z-index: -2;
+      opacity: 0.44;
       background-image:
-        radial-gradient(circle, rgba(88, 205, 255, 0.85) 0 1px, transparent 1.5px),
-        radial-gradient(circle, rgba(255, 255, 255, 0.55) 0 1px, transparent 1.5px);
-      background-position: 18px 24px, 82px 71px;
-      background-size: 92px 92px, 137px 137px;
+        radial-gradient(circle, rgba(255,255,255,.85) 0 1px, transparent 1.3px),
+        radial-gradient(circle, rgba(93,176,255,.8) 0 1px, transparent 1.25px);
+      background-size: 72px 72px, 118px 118px;
+      background-position: 7px 14px, 36px 50px;
+    }
+
+    .app::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.18));
     }
 
     .topbar {
-      position: relative;
-      z-index: 20;
-      min-width: 0;
-      padding:
-        max(6px, env(safe-area-inset-top))
-        12px
-        6px;
+      min-height: 52px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
-      border-bottom: 1px solid rgba(78, 179, 255, 0.16);
-      background: rgba(2, 11, 31, 0.78);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
+      gap: 12px;
+      padding: 0 4px 8px;
+      border-bottom: 1px solid rgba(89,170,255,.18);
     }
 
     .brand {
       min-width: 0;
       display: flex;
       align-items: center;
-      gap: 9px;
+      gap: 10px;
     }
 
     .brand-mark {
-      position: relative;
-      width: 42px;
-      height: 42px;
-      flex: 0 0 42px;
-      border: 2px solid var(--cyan);
+      width: 40px;
+      height: 40px;
+      flex: 0 0 40px;
+      border: 2px solid #28c8ff;
       border-radius: 50%;
-      box-shadow:
-        0 0 18px rgba(35, 216, 255, 0.55),
-        inset 0 0 13px rgba(35, 216, 255, 0.16);
+      display: grid;
+      place-items: center;
+      box-shadow: 0 0 24px rgba(32, 184, 255, .28);
     }
 
-    .brand-mark::before,
-    .brand-mark::after {
-      content: "";
-      position: absolute;
-      inset: 7px 4px;
-      border: 1px solid rgba(180, 240, 255, 0.8);
-      border-radius: 50%;
-    }
-
-    .brand-mark::after {
-      inset: 4px 11px;
-    }
-
-    .brand-copy {
-      min-width: 0;
+    .brand-mark svg {
+      width: 29px;
+      height: 29px;
     }
 
     .brand-name {
-      overflow: hidden;
-      color: white;
-      font-size: clamp(20px, 6vw, 27px);
+      margin: 0;
+      font-size: clamp(22px, 6vw, 31px);
       line-height: 1;
-      font-weight: 900;
-      letter-spacing: -0.7px;
-      text-overflow: ellipsis;
+      font-weight: 750;
+      letter-spacing: -0.04em;
       white-space: nowrap;
     }
 
     .brand-name span {
-      color: var(--cyan);
+      color: #39a4ff;
     }
 
-    .brand-subtitle {
-      margin-top: 4px;
-      overflow: hidden;
+    .tagline {
+      margin: 4px 0 0;
       color: var(--muted);
-      font-size: clamp(8px, 2.7vw, 12px);
-      text-overflow: ellipsis;
+      font-size: clamp(10px, 2.9vw, 13px);
+      line-height: 1.2;
       white-space: nowrap;
     }
 
-    .header-actions {
+    .top-actions {
       display: flex;
       align-items: center;
-      gap: 7px;
+      gap: 6px;
     }
 
-    .language-chip,
-    .menu-button {
-      min-height: 40px;
-      border: 1px solid rgba(103, 184, 255, 0.26);
+    .icon-button,
+    .lang-button {
+      min-height: 42px;
+      border: 1px solid rgba(89,170,255,.25);
       border-radius: 14px;
-      color: white;
-      background: rgba(8, 27, 61, 0.78);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      background: rgba(4,17,34,.7);
+      cursor: pointer;
     }
 
-    .language-chip {
-      min-width: 62px;
-      padding: 0 10px;
-      font-size: 12px;
-      font-weight: 800;
+    .lang-button {
+      padding: 0 11px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 700;
     }
 
-    .menu-button {
-      width: 42px;
-      padding: 0;
+    .icon-button {
+      width: 44px;
       display: grid;
       place-items: center;
-      cursor: pointer;
-      font-size: 23px;
     }
 
     .main {
-      position: relative;
-      z-index: 2;
       min-height: 0;
-      overflow: hidden;
       display: grid;
-      grid-template-rows:
-        minmax(0, 1fr)
-        var(--category-height);
+      grid-template-rows: auto auto minmax(0, 1fr);
+      gap: 8px;
+      padding: 8px 0 7px;
     }
 
     .hero {
-      position: relative;
       min-height: 0;
-      overflow: hidden;
-      padding: 15px 12px 7px;
       display: grid;
-      grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr);
+      grid-template-columns: minmax(0, 1fr) clamp(115px, 36vw, 178px);
       align-items: center;
-      isolation: isolate;
+      gap: 8px;
+      padding: 2px 4px 0;
     }
 
-    .hero-copy {
-      position: relative;
-      z-index: 6;
-      min-width: 0;
-      align-self: center;
-    }
-
-    .eyebrow {
-      width: max-content;
-      max-width: 100%;
-      margin-bottom: 9px;
-      padding: 6px 9px;
-      overflow: hidden;
-      border: 1px solid rgba(35, 216, 255, 0.42);
-      border-radius: 999px;
-      color: #b9f3ff;
-      background: rgba(7, 42, 82, 0.62);
-      font-size: clamp(7px, 2.2vw, 10px);
-      font-weight: 900;
-      letter-spacing: 0.5px;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    h1 {
+    .hero-copy h1 {
       margin: 0;
-      font-size: clamp(27px, 8.2vw, 45px);
-      line-height: 0.98;
-      letter-spacing: -1.6px;
+      max-width: 13ch;
+      font-size: clamp(25px, 7.1vw, 38px);
+      line-height: 1.03;
+      letter-spacing: -0.04em;
     }
 
-    h1 span {
-      display: block;
-      margin-top: 5px;
-      color: transparent;
-      background: linear-gradient(90deg, var(--cyan), var(--blue), var(--violet));
-      -webkit-background-clip: text;
-      background-clip: text;
+    .hero-copy h1 span {
+      color: #56a9ff;
     }
 
-    .hero-text {
-      max-width: 240px;
-      margin: 12px 0 0;
+    .hero-copy p {
+      margin: 8px 0 0;
+      max-width: 29ch;
       color: var(--muted);
-      font-size: clamp(10px, 3vw, 14px);
-      line-height: 1.48;
-    }
-
-    .explore-button {
-      min-height: 44px;
-      margin-top: 14px;
-      padding: 0 16px;
-      border: 0;
-      border-radius: 15px;
-      cursor: pointer;
-      color: white;
-      background: linear-gradient(120deg, #126eff, #18baff);
-      font-size: clamp(11px, 3.4vw, 15px);
-      font-weight: 900;
-      box-shadow:
-        inset 0 1px 1px rgba(255, 255, 255, 0.34),
-        0 10px 30px rgba(0, 122, 255, 0.30);
-    }
-
-    .explore-button:active {
-      transform: scale(0.98);
-    }
-
-    .globe-stage {
-      position: relative;
-      z-index: 4;
-      width: min(58vw, 285px);
-      aspect-ratio: 1;
-      justify-self: end;
-      border-radius: 50%;
-      filter: drop-shadow(0 0 21px rgba(33, 182, 255, 0.36));
-      touch-action: none;
-      user-select: none;
+      font-size: clamp(11px, 3vw, 14px);
+      line-height: 1.35;
     }
 
     .globe-shell {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-      border: 2px solid rgba(167, 231, 255, 0.9);
-      border-radius: 50%;
-      background:
-        radial-gradient(circle at 30% 20%, #98efff, #116fc7 42%, #052d6c 70%, #010a22 100%);
-      box-shadow:
-        inset 11px 10px 27px rgba(255, 255, 255, 0.32),
-        inset -18px -18px 30px rgba(0, 4, 32, 0.68),
-        0 0 12px rgba(255, 255, 255, 0.75),
-        0 0 37px rgba(24, 164, 255, 0.72);
-    }
-
-    #earthCanvas {
-      width: 100%;
-      height: 100%;
-      display: block;
-      border-radius: 50%;
-    }
-
-    .globe-shine {
-      position: absolute;
-      z-index: 3;
-      inset: 0;
-      border-radius: 50%;
-      pointer-events: none;
-      background:
-        radial-gradient(circle at 27% 18%, rgba(255, 255, 255, 0.68), transparent 27%),
-        radial-gradient(circle at 74% 78%, transparent 35%, rgba(0, 4, 28, 0.58) 100%);
-    }
-
-    .orbit {
-      position: absolute;
-      z-index: -1;
-      left: -10%;
-      top: 30%;
-      width: 120%;
-      height: 42%;
-      border: 1px solid rgba(35, 216, 255, 0.48);
-      border-radius: 50%;
-      transform: rotate(-18deg);
-      box-shadow: 0 0 14px rgba(35, 216, 255, 0.22);
-      animation: orbit-pulse 3.4s ease-in-out infinite;
-    }
-
-    .flag {
-      position: absolute;
-      z-index: 6;
-      width: clamp(31px, 10vw, 45px);
+      position: relative;
+      width: clamp(115px, 36vw, 178px);
       aspect-ratio: 1;
       display: grid;
       place-items: center;
-      border: 2px solid rgba(206, 244, 255, 0.9);
-      border-radius: 50%;
-      background: rgba(4, 18, 48, 0.88);
-      box-shadow: 0 0 15px rgba(35, 216, 255, 0.45);
-      font-size: clamp(16px, 5vw, 22px);
-      pointer-events: none;
     }
 
-    .flag-one {
-      left: 3%;
-      top: 36%;
-    }
-
-    .flag-two {
-      right: -1%;
-      top: 35%;
-    }
-
-    .flag-three {
-      right: 12%;
-      bottom: 3%;
-    }
-
-    .drag-hint {
+    .orbit,
+    .orbit::before {
       position: absolute;
-      z-index: 7;
-      left: 50%;
-      bottom: -8px;
-      width: max-content;
-      max-width: 92%;
-      padding: 7px 11px;
-      border: 1px solid rgba(112, 193, 255, 0.25);
-      border-radius: 999px;
-      color: #d8efff;
-      background: rgba(3, 17, 43, 0.88);
-      font-size: clamp(8px, 2.6vw, 11px);
-      font-weight: 800;
-      transform: translateX(-50%);
+      inset: 15%;
+      border: 1px solid rgba(66, 171, 255, .48);
+      border-radius: 50%;
+      content: "";
+      transform: rotate(-18deg) scaleX(1.28);
+    }
+
+    .orbit::before {
+      inset: -7%;
+      transform: rotate(61deg) scaleX(.85);
+      opacity: .8;
+    }
+
+    .globe {
+      position: relative;
+      width: 74%;
+      aspect-ratio: 1;
+      overflow: hidden;
+      border-radius: 50%;
+      border: 1px solid rgba(102, 198, 255, .85);
+      background:
+        linear-gradient(120deg, rgba(255,255,255,.24), transparent 27%),
+        url("assets/earth-map.jpg") center / 205% 100% repeat-x,
+        radial-gradient(circle at 35% 30%, #1da8ff, #07579e 42%, #012743 70%, #001322);
+      box-shadow:
+        inset -18px -12px 28px rgba(0,0,0,.55),
+        inset 10px 8px 20px rgba(132, 222, 255, .18),
+        0 0 34px rgba(0,133,255,.55);
+      animation: rotateEarth 24s linear infinite;
+    }
+
+    .globe::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background:
+        radial-gradient(circle at 30% 25%, rgba(255,255,255,.28), transparent 18%),
+        linear-gradient(95deg, transparent 53%, rgba(0,0,0,.48) 79%, rgba(0,0,0,.72));
       pointer-events: none;
     }
 
-    .categories {
-      min-height: 0;
-      padding: 5px 10px 9px;
+    @keyframes rotateEarth {
+      from { background-position: 0 center, 0 center, center; }
+      to   { background-position: 0 center, -205% center, center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .globe { animation: none; }
+    }
+
+    .tabs {
       display: grid;
-      grid-template-rows: 30px minmax(0, 1fr);
-      gap: 7px;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+      width: min(100%, 430px);
+      margin: 0 auto;
+      padding: 4px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(3, 18, 37, .82);
     }
 
-    .section-title {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-    }
-
-    .section-title h2 {
-      margin: 0;
-      font-size: clamp(18px, 5.6vw, 25px);
-      line-height: 1;
-      letter-spacing: -0.5px;
-    }
-
-    .section-title small {
-      color: var(--cyan);
-      font-size: clamp(8px, 2.7vw, 11px);
-      font-weight: 900;
-    }
-
-    .category-grid {
-      min-height: 0;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      grid-template-rows: repeat(2, minmax(0, 1fr));
-      gap: 7px;
-    }
-
-    .category-card {
-      min-width: 0;
-      min-height: 0;
-      padding: 5px 3px;
-      display: grid;
-      place-items: center;
-      align-content: center;
-      gap: 3px;
-      border: 1px solid rgba(81, 172, 255, 0.23);
-      border-radius: 16px;
+    .tab {
+      min-height: 39px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: #8999ae;
       cursor: pointer;
-      color: white;
-      background:
-        linear-gradient(145deg, rgba(10, 37, 82, 0.92), rgba(4, 20, 49, 0.92));
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.06),
-        0 8px 20px rgba(0, 0, 0, 0.14);
-    }
-
-    .category-card:active,
-    .category-card.selected {
-      border-color: var(--cyan);
-      box-shadow:
-        inset 0 0 18px rgba(35, 216, 255, 0.08),
-        0 0 15px rgba(35, 216, 255, 0.22);
-      transform: scale(0.98);
-    }
-
-    .category-icon {
-      font-size: clamp(20px, 7vw, 30px);
-      line-height: 1;
-    }
-
-    .category-label {
-      overflow: hidden;
-      font-size: clamp(9px, 3vw, 12px);
-      line-height: 1.08;
-      font-weight: 900;
-      text-align: center;
-      text-overflow: ellipsis;
-    }
-
-    .trustbar {
-      position: relative;
-      z-index: 15;
-      min-height: 0;
-      padding:
-        5px
-        8px
-        max(5px, env(safe-area-inset-bottom));
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      align-items: center;
-      border-top: 1px solid rgba(71, 184, 255, 0.21);
-      background: rgba(2, 11, 31, 0.94);
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-    }
-
-    .trust-item {
-      min-width: 0;
-      padding: 0 4px;
+      font-weight: 750;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 5px;
-      border-right: 1px solid rgba(91, 169, 236, 0.18);
-      color: #d8e8fa;
-      font-size: clamp(7px, 2.3vw, 10px);
-      font-weight: 800;
-      text-align: center;
-    }
-
-    .trust-item:last-child {
-      border-right: 0;
-    }
-
-    .trust-icon {
-      flex: 0 0 auto;
-      color: var(--cyan);
-      font-size: clamp(15px, 4.7vw, 21px);
-    }
-
-    .menu-panel {
-      position: absolute;
-      z-index: 100;
-      top: calc(var(--header-height) - 2px);
-      right: 10px;
-      width: min(245px, calc(100% - 20px));
-      padding: 12px;
-      display: none;
-      border: 1px solid rgba(74, 180, 255, 0.25);
-      border-radius: 18px;
-      background: rgba(3, 16, 42, 0.97);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-    }
-
-    .menu-panel.open {
-      display: grid;
       gap: 8px;
     }
 
-    .menu-panel strong {
-      color: var(--cyan);
-      font-size: 14px;
+    .tab.active {
+      color: #fff;
+      background: linear-gradient(180deg, rgba(23,100,186,.72), rgba(7,42,84,.92));
+      box-shadow:
+        inset 0 0 0 1px rgba(75,183,255,.8),
+        0 0 20px rgba(0,130,255,.2);
     }
 
-    .menu-panel span {
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.45;
+    .panels {
+      min-height: 0;
+      position: relative;
     }
 
-    .toast {
-      position: absolute;
-      z-index: 120;
-      left: 50%;
-      bottom: calc(var(--trust-height) + 9px);
-      width: min(340px, calc(100% - 24px));
-      padding: 11px 14px;
-      border: 1px solid rgba(85, 194, 255, 0.42);
-      border-radius: 15px;
-      color: white;
+    .panel {
+      display: none;
+      height: 100%;
+      min-height: 0;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .panel.active {
+      display: grid;
+    }
+
+    .partner {
+      min-width: 0;
+      min-height: 0;
+      position: relative;
+      border: 1px solid rgba(96, 180, 255, .34);
+      border-radius: var(--radius);
+      color: #fff;
+      text-decoration: none;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(31, 122, 220, .13), transparent 55%),
+        linear-gradient(145deg, rgba(10,39,74,.88), rgba(2,15,31,.96));
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      gap: 6px;
+      padding: 10px 8px;
+      overflow: hidden;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.035);
+    }
+
+    .partner::after {
+      content: "→";
+      font-size: 21px;
+      line-height: 1;
+      color: #4eb4ff;
+    }
+
+    .partner:active {
+      transform: scale(.985);
+    }
+
+    .partner.wide {
+      grid-column: 1 / -1;
+    }
+
+    .panel.shopping .partner {
+      grid-row: auto;
+    }
+
+    .panel.shopping .partner:nth-child(3) {
+      grid-column: 1 / -1;
+    }
+
+    .brand-logo {
+      max-width: 100%;
       text-align: center;
-      background: rgba(3, 23, 55, 0.96);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
-      font-size: 12px;
+      font-size: clamp(22px, 6.2vw, 32px);
+      line-height: 1;
       font-weight: 800;
-      opacity: 0;
-      pointer-events: none;
-      transform: translate(-50%, 12px);
-      transition: opacity 0.22s ease, transform 0.22s ease;
+      letter-spacing: -0.04em;
+      white-space: nowrap;
     }
 
-    .toast.show {
-      opacity: 1;
-      transform: translate(-50%, 0);
+    .brand-label {
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: clamp(13px, 3.8vw, 17px);
+      font-weight: 700;
+      white-space: nowrap;
     }
 
-    .globe-stage.boost {
-      animation: globe-boost 0.75s ease;
+    .aliexpress { color: #ff6d20; }
+    .moustakas { color: #ffd43c; text-shadow: 0 2px 0 #a11515; }
+    .agnotis { color: #8fbd45; font-family: Georgia, serif; }
+    .aegean { color: #eaf1ff; letter-spacing: .06em; }
+    .olympic { color: #f4f7ff; font-style: italic; }
+    .croatia { color: #f0f4ff; font-size: clamp(17px, 4.8vw, 25px); }
+    .kiwi { color: #31c8b7; letter-spacing: .01em; }
+
+    .footnote {
+      min-height: 36px;
+      border-top: 1px solid rgba(89,170,255,.16);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 7px 8px 0;
+      color: var(--muted);
+      text-align: center;
+      font-size: clamp(9px, 2.5vw, 11px);
+      line-height: 1.25;
     }
 
-    @keyframes orbit-pulse {
-      0%,
-      100% {
-        opacity: 0.45;
-        transform: rotate(-18deg) scale(0.97);
-      }
-
-      50% {
-        opacity: 1;
-        transform: rotate(-18deg) scale(1.03);
-      }
+    .footnote span {
+      flex: 0 0 20px;
+      width: 20px;
+      height: 20px;
+      border: 1px solid rgba(67,176,255,.75);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #61bdff;
+      font-weight: 800;
     }
 
-    @keyframes globe-boost {
-      0% {
-        transform: scale(1);
-      }
-
-      40% {
-        transform: scale(1.05);
-      }
-
-      100% {
-        transform: scale(1);
-      }
+    .overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 20;
+      display: none;
+      place-items: center;
+      padding: 18px;
+      background: rgba(0, 5, 12, .76);
+      backdrop-filter: blur(10px);
     }
 
-    @media (max-width: 350px) {
-      :root {
-        --header-height: 56px;
-        --trust-height: 48px;
-        --category-height: 174px;
+    .overlay.open {
+      display: grid;
+    }
+
+    .modal {
+      width: min(100%, 430px);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--panel-strong);
+      padding: 18px;
+      box-shadow: 0 26px 80px rgba(0,0,0,.45);
+    }
+
+    .modal h2 {
+      margin: 0 0 8px;
+      font-size: 22px;
+    }
+
+    .modal p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .close-button {
+      width: 100%;
+      min-height: 44px;
+      margin-top: 16px;
+      border: 1px solid rgba(86,179,255,.6);
+      border-radius: 14px;
+      background: rgba(22,93,165,.42);
+      color: #fff;
+      font-weight: 750;
+      cursor: pointer;
+    }
+
+    @media (max-height: 720px) {
+      .app {
+        padding-top: max(5px, env(safe-area-inset-top));
+        padding-bottom: max(5px, env(safe-area-inset-bottom));
       }
 
       .topbar {
-        padding-left: 8px;
-        padding-right: 8px;
-      }
-
-      .brand-mark {
-        width: 37px;
-        height: 37px;
-        flex-basis: 37px;
-      }
-
-      .language-chip {
-        display: none;
-      }
-
-      .hero {
-        padding-left: 8px;
-        padding-right: 8px;
-      }
-
-      .hero-text {
-        margin-top: 8px;
-      }
-
-      .explore-button {
-        min-height: 39px;
-        margin-top: 10px;
-        padding: 0 11px;
-      }
-
-      .categories {
-        padding-left: 7px;
-        padding-right: 7px;
-      }
-
-      .category-grid {
-        gap: 5px;
-      }
-    }
-
-    @media (max-height: 700px) {
-      :root {
-        --header-height: 56px;
-        --trust-height: 46px;
-        --category-height: 168px;
-      }
-
-      .topbar {
-        padding-top: 4px;
-        padding-bottom: 4px;
-      }
-
-      .brand-mark {
-        width: 38px;
-        height: 38px;
-        flex-basis: 38px;
-      }
-
-      .language-chip,
-      .menu-button {
-        min-height: 36px;
-      }
-
-      .menu-button {
-        width: 38px;
-      }
-
-      .hero {
-        padding-top: 8px;
-        padding-bottom: 3px;
-      }
-
-      .eyebrow {
-        margin-bottom: 6px;
-        padding: 4px 7px;
-      }
-
-      h1 {
-        font-size: clamp(24px, 7.6vw, 38px);
-      }
-
-      .hero-text {
-        margin-top: 8px;
-        line-height: 1.32;
-      }
-
-      .explore-button {
-        min-height: 38px;
-        margin-top: 9px;
-      }
-
-      .drag-hint {
-        padding: 5px 9px;
-      }
-
-      .categories {
-        grid-template-rows: 25px minmax(0, 1fr);
-        gap: 5px;
-      }
-
-      .category-card {
-        border-radius: 13px;
-      }
-    }
-
-    @media (max-height: 590px) {
-      :root {
-        --header-height: 50px;
-        --trust-height: 42px;
-        --category-height: 148px;
+        min-height: 46px;
+        padding-bottom: 5px;
       }
 
       .brand-mark {
@@ -718,78 +485,95 @@
         flex-basis: 34px;
       }
 
-      .brand-subtitle,
-      .eyebrow,
-      .hero-text,
-      .drag-hint {
+      .brand-mark svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .tagline {
         display: none;
-      }
-
-      .hero {
-        padding-top: 4px;
-      }
-
-      .explore-button {
-        min-height: 35px;
-        margin-top: 8px;
-      }
-
-      .category-icon {
-        font-size: 20px;
-      }
-    }
-
-    @media (orientation: landscape) and (max-height: 520px) {
-      :root {
-        --header-height: 48px;
-        --trust-height: 40px;
-        --category-height: 112px;
       }
 
       .main {
-        grid-template-columns: minmax(0, 1.12fr) minmax(300px, 0.88fr);
-        grid-template-rows: 1fr;
+        gap: 5px;
+        padding: 5px 0;
       }
 
       .hero {
-        grid-column: 1;
-        grid-row: 1;
+        grid-template-columns: minmax(0, 1fr) clamp(94px, 28vw, 125px);
       }
 
-      .categories {
-        grid-column: 2;
-        grid-row: 1;
-        grid-template-rows: 25px minmax(0, 1fr);
-        align-self: stretch;
+      .hero-copy h1 {
+        font-size: clamp(22px, 6.5vw, 30px);
       }
 
-      .category-grid {
-        gap: 5px;
+      .hero-copy p {
+        margin-top: 5px;
+        font-size: 10px;
       }
 
-      .brand-subtitle,
-      .hero-text,
-      .eyebrow,
-      .drag-hint {
-        display: none;
+      .tabs {
+        padding: 3px;
       }
 
-      h1 {
-        font-size: clamp(24px, 4.5vw, 38px);
+      .tab {
+        min-height: 34px;
       }
 
-      .globe-stage {
-        width: min(32vw, 210px);
+      .panel {
+        gap: 6px;
+      }
+
+      .partner {
+        border-radius: 17px;
+        gap: 3px;
+        padding: 7px 6px;
+      }
+
+      .partner::after {
+        font-size: 17px;
+      }
+
+      .brand-logo {
+        font-size: clamp(18px, 5.4vw, 25px);
+      }
+
+      .brand-label {
+        font-size: 12px;
+      }
+
+      .footnote {
+        min-height: 28px;
+        padding-top: 5px;
+        font-size: 8px;
       }
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      .orbit {
-        animation: none;
+    @media (max-height: 600px) {
+      .hero-copy p {
+        display: none;
       }
 
-      .toast {
-        transition: none;
+      .hero {
+        grid-template-columns: minmax(0, 1fr) 86px;
+      }
+
+      .globe-shell {
+        width: 86px;
+      }
+
+      .footnote {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    @media (min-width: 700px) {
+      .app {
+        max-width: 520px;
+        margin: 0 auto;
+        border-inline: 1px solid rgba(89,170,255,.16);
       }
     }
   </style>
@@ -798,518 +582,166 @@
 <body>
   <div class="app">
     <header class="topbar">
-      <div class="brand" aria-label="GlobalLink">
-        <span class="brand-mark" aria-hidden="true"></span>
-
-        <span class="brand-copy">
-          <span class="brand-name">Global<span>Link</span></span>
-          <span class="brand-subtitle">Αγορές από όλο τον κόσμο</span>
-        </span>
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none">
+            <circle cx="16" cy="16" r="13" stroke="currentColor"/>
+            <path d="M3.5 16h25M16 3c4 4.5 5.5 8.8 5.5 13S20 24.5 16 29M16 3c-4 4.5-5.5 8.8-5.5 13S12 24.5 16 29M6.5 9.5c3.2 1.6 6.4 2.4 9.5 2.4s6.3-.8 9.5-2.4M6.5 22.5c3.2-1.6 6.4-2.4 9.5-2.4s6.3.8 9.5 2.4" stroke="currentColor" stroke-width="1.25"/>
+          </svg>
+        </div>
+        <div>
+          <p class="brand-name">Global<span>Link</span></p>
+          <p class="tagline">Αγόρασε από όλο τον κόσμο</p>
+        </div>
       </div>
 
-      <div class="header-actions">
-        <button class="language-chip" type="button" id="languageButton">
-          🇬🇷 ΕΛ
+      <div class="top-actions">
+        <button class="lang-button" type="button" aria-label="Γλώσσα">
+          ΕΛ <span aria-hidden="true">⌄</span>
         </button>
-
-        <button
-          class="menu-button"
-          id="menuButton"
-          type="button"
-          aria-label="Άνοιγμα μενού"
-          aria-expanded="false"
-        >
-          ☰
+        <button class="icon-button" id="menuButton" type="button" aria-label="Πληροφορίες">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
         </button>
       </div>
     </header>
 
     <main class="main">
-      <section class="hero" aria-labelledby="mainTitle">
+      <section class="hero" aria-labelledby="pageTitle">
         <div class="hero-copy">
-          <div class="eyebrow">ΠΑΓΚΟΣΜΙΑ ΑΝΑΚΑΛΥΨΗ</div>
-
-          <h1 id="mainTitle">
-            Ανακάλυψε τον κόσμο
-            <span>μέσα από τη GlobalLink</span>
-          </h1>
-
-          <p class="hero-text">
-            Οι πρώτες επιλεγμένες κατηγορίες είναι έτοιμες.
-            Τα προϊόντα θα προστεθούν σύντομα.
-          </p>
-
-          <button class="explore-button" id="exploreButton" type="button">
-            Γύρισε τη Γη →
-          </button>
+          <h1 id="pageTitle">Αγορές και <span>ταξίδια</span><br>σε ένα μέρος</h1>
+          <p>Επίλεξε εταιρεία και συνέχισε στον επίσημο ιστότοπό της.</p>
         </div>
 
-        <div
-          class="globe-stage"
-          id="globeStage"
-          aria-label="Περιστρεφόμενη Γη. Σύρε με το δάχτυλο."
-        >
-          <span class="orbit" aria-hidden="true"></span>
-
-          <div class="globe-shell">
-            <canvas id="earthCanvas"></canvas>
-            <span class="globe-shine" aria-hidden="true"></span>
-          </div>
-
-          <span class="flag flag-one" aria-hidden="true">🇺🇸</span>
-          <span class="flag flag-two" aria-hidden="true">🇯🇵</span>
-          <span class="flag flag-three" aria-hidden="true">🇮🇹</span>
-
-          <span class="drag-hint">Σύρε τη Γη με το δάχτυλο</span>
+        <div class="globe-shell" aria-hidden="true">
+          <div class="orbit"></div>
+          <div class="globe"></div>
         </div>
       </section>
 
-      <section class="categories" aria-labelledby="categoriesTitle">
-        <div class="section-title">
-          <h2 id="categoriesTitle">Κατηγορίες</h2>
-          <small>ΠΡΟΪΟΝΤΑ ΣΥΝΤΟΜΑ</small>
-        </div>
+      <div class="tabs" role="tablist" aria-label="Κατηγορίες συνεργασιών">
+        <button class="tab active" type="button" role="tab" aria-selected="true" aria-controls="shoppingPanel" id="shoppingTab" data-panel="shoppingPanel">
+          <span aria-hidden="true">▣</span> Αγορές
+        </button>
+        <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="travelPanel" id="travelTab" data-panel="travelPanel">
+          <span aria-hidden="true">✈</span> Ταξίδια
+        </button>
+      </div>
 
-        <div class="category-grid">
-          <button class="category-card" type="button" data-name="Τεχνολογία">
-            <span class="category-icon">📱</span>
-            <span class="category-label">Τεχνολογία</span>
-          </button>
+      <div class="panels">
+        <section class="panel shopping active" id="shoppingPanel" role="tabpanel" aria-labelledby="shoppingTab">
+          <a class="partner" href="https://go.linkwi.se/z/11183-0/CD28424/?lnkurl=https%3A%2F%2Fmbest.aliexpress.com%2F%3Faff_fcid%3D6f5c24dc77ae4b37a8b14ec41a360672-1784476017202-05841-j6RrMzM%26aff_fsk%3Dj6RrMzM%26aff_platform%3Daaf%26sk%3Dj6RrMzM%26aff_trace_key%3D6f5c24dc77ae4b37a8b14ec41a360672-1784476017202-05841-j6RrMzM%26terminal_id%3D5a3158914b624c63ae53a1583c8df889%26afSmartRedirect%3Dy" target="_blank" rel="sponsored noopener noreferrer">
+            <div class="brand-logo aliexpress">AliExpress</div>
+            <div class="brand-label">ΑλίΕξπρες</div>
+          </a>
 
-          <button class="category-card" type="button" data-name="Σπίτι">
-            <span class="category-icon">🏠</span>
-            <span class="category-label">Σπίτι</span>
-          </button>
+          <a class="partner" href="https://go.linkwi.se/z/10784-0/CD28424/?lnkurl=https%3A%2F%2Fwww.moustakastoys.gr%2F" target="_blank" rel="sponsored noopener noreferrer">
+            <div class="brand-logo moustakas">ΜΟΥΣΤΑΚΑΣ</div>
+            <div class="brand-label">Μουστάκας Toys</div>
+          </a>
 
-          <button class="category-card" type="button" data-name="Αυτοκίνητο">
-            <span class="category-icon">🚗</span>
-            <span class="category-label">Αυτοκίνητο</span>
-          </button>
+          <a class="partner" href="https://go.linkwi.se/z/11562-0/CD28424/?lnkurl=https%3A%2F%2Fwww.agnotis.com%2F" target="_blank" rel="sponsored noopener noreferrer">
+            <div class="brand-logo agnotis">Αγνότης</div>
+            <div class="brand-label">Αγνότης</div>
+          </a>
+        </section>
 
-          <button class="category-card" type="button" data-name="Εργαλεία">
-            <span class="category-icon">🛠️</span>
-            <span class="category-label">Εργαλεία</span>
-          </button>
+        <section class="panel travel" id="travelPanel" role="tabpanel" aria-labelledby="travelTab" hidden>
+          <a class="partner" href="https://go.linkwi.se/z/73-0/CD28424/?lnkurl=https%3A%2F%2Fel.aegeanair.com%2F" target="_blank" rel="sponsored noopener noreferrer">
+            <div class="brand-logo aegean">AEGEAN</div>
+            <div class="brand-label">Aegean Airlines</div>
+          </a>
 
-          <button class="category-card" type="button" data-name="Ταξίδι και κάμπινγκ">
-            <span class="category-icon">⛺</span>
-            <span class="category-label">Ταξίδι και κάμπινγκ</span>
-          </button>
+          <a class="partner" href="https://go.linkwi.se/z/11129-0/CD28424/?lnkurl=https%3A%2F%2Fwww.olympicair.com%2F" target="_blank" rel="sponsored noopener noreferrer">
+            <div class="brand-logo olympic">OLYMPIC AIR</div>
+            <div class="brand-label">Ολύμπικ Έαρ</div>
+          </a>
 
-          <button class="category-card" type="button" data-name="Δώρα">
-            <span class="category-icon">🎁</span>
-            <span class="category-label">Δώρα</span>
-          </button>
-        </div>
-      </section>
+          <a class="partner" href="https://go.linkwi.se/z/11294-0/CD28424/?lnkurl=https%3A%2F%2Fwww.croatiaairlines.com%2F" target="_blank" rel="sponsored noopener noreferrer">
+            <div class="brand-logo croatia">CROATIA AIRLINES</div>
+            <div class="brand-label">Κροάτια Έρλαϊνς</div>
+          </a>
+
+          <a class="partner" href="https://go.linkwi.se/z/11376-0/CD28424/?lnkurl=https%3A%2F%2Fwww.kiwi.com%2Fel%2F%3Forigin%3D--%26destination%3D--%26outboundDate%3D2026-07-20_2026-08-19%26inboundDate%3Dno-return%26lang%3Del%26user_id%3D0f5dc79713778bac86722a9958112238%26deeplink_uuid%3De78e6da4-fd36-49cf-bbbd-09fcd240cf08%26session_identifier%3DYbBk9Zoa8kzQyPJPaEDvG9ds5%252Bazz9t8vsNCU5jE5sg%253D%26deeplinkId%3D28997540899" target="_blank" rel="sponsored noopener noreferrer">
+            <div class="brand-logo kiwi">KIWI.COM</div>
+            <div class="brand-label">Kiwi.com</div>
+          </a>
+        </section>
+      </div>
     </main>
 
-    <footer class="trustbar">
-      <div class="trust-item">
-        <span class="trust-icon">🛡</span>
-        <span>Ασφαλείς επιλογές</span>
-      </div>
-
-      <div class="trust-item">
-        <span class="trust-icon">🌍</span>
-        <span>Παγκόσμια αναζήτηση</span>
-      </div>
-
-      <div class="trust-item">
-        <span class="trust-icon">✨</span>
-        <span>Νέα προϊόντα σύντομα</span>
-      </div>
+    <footer class="footnote">
+      <span aria-hidden="true">i</span>
+      Οι αγορές ολοκληρώνονται στον ιστότοπο κάθε εταιρείας. Οι σύνδεσμοι ενδέχεται να αποφέρουν προμήθεια χωρίς επιπλέον κόστος.
     </footer>
 
-    <aside class="menu-panel" id="menuPanel">
-      <strong>GlobalLink</strong>
-      <span>
-        Η σελίδα βρίσκεται στο πρώτο στάδιο.
-        Οι πραγματικοί σύνδεσμοι και τα προϊόντα θα προστεθούν όταν είναι έτοιμα.
-      </span>
-    </aside>
-
-    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <div class="overlay" id="overlay" aria-hidden="true">
+      <section class="modal" role="dialog" aria-modal="true" aria-labelledby="infoTitle">
+        <h2 id="infoTitle">Πληροφορίες</h2>
+        <p>
+          Η GlobalLink συγκεντρώνει συνδέσμους προς εξωτερικές εταιρείες.
+          Η αγορά ή η κράτηση ολοκληρώνεται στον ιστότοπο της κάθε εταιρείας.
+          Ορισμένοι σύνδεσμοι είναι σύνδεσμοι συνεργασίας.
+        </p>
+        <button class="close-button" id="closeButton" type="button">Κλείσιμο</button>
+      </section>
+    </div>
   </div>
 
   <script>
-    const toast = document.getElementById("toast");
-    const menuButton = document.getElementById("menuButton");
-    const menuPanel = document.getElementById("menuPanel");
-    const exploreButton = document.getElementById("exploreButton");
-    const globeStage = document.getElementById("globeStage");
+    (() => {
+      const tabs = [...document.querySelectorAll(".tab")];
+      const panels = [...document.querySelectorAll(".panel")];
+      const overlay = document.getElementById("overlay");
+      const menuButton = document.getElementById("menuButton");
+      const closeButton = document.getElementById("closeButton");
 
-    let toastTimer;
+      function activateTab(tab) {
+        const targetId = tab.dataset.panel;
 
-    function showToast(message) {
-      clearTimeout(toastTimer);
-      toast.textContent = message;
-      toast.classList.add("show");
-
-      toastTimer = setTimeout(() => {
-        toast.classList.remove("show");
-      }, 2400);
-    }
-
-    menuButton.addEventListener("click", () => {
-      const open = menuPanel.classList.toggle("open");
-      menuButton.setAttribute("aria-expanded", open ? "true" : "false");
-    });
-
-    document.addEventListener("click", (event) => {
-      if (
-        !menuPanel.contains(event.target) &&
-        !menuButton.contains(event.target)
-      ) {
-        menuPanel.classList.remove("open");
-        menuButton.setAttribute("aria-expanded", "false");
-      }
-    });
-
-    document
-      .querySelectorAll(".category-card")
-      .forEach((card) => {
-        card.addEventListener("click", () => {
-          document
-            .querySelectorAll(".category-card")
-            .forEach((item) => item.classList.remove("selected"));
-
-          card.classList.add("selected");
-
-          showToast(
-            `Η κατηγορία «${card.dataset.name}» θα ενεργοποιηθεί όταν προστεθούν προϊόντα.`
-          );
+        tabs.forEach((item) => {
+          const active = item === tab;
+          item.classList.toggle("active", active);
+          item.setAttribute("aria-selected", String(active));
         });
-      });
 
-    document
-      .getElementById("languageButton")
-      .addEventListener("click", () => {
-        showToast("Η αγγλική έκδοση θα προστεθεί στο επόμενο στάδιο.");
-      });
-
-    exploreButton.addEventListener("click", () => {
-      globeStage.classList.remove("boost");
-
-      requestAnimationFrame(() => {
-        globeStage.classList.add("boost");
-      });
-
-      rotationVelocity += 0.045;
-      showToast("Σύρε τη Γη δεξιά ή αριστερά με το δάχτυλο.");
-    });
-
-    const canvas = document.getElementById("earthCanvas");
-    const context = canvas.getContext("2d", { alpha: true });
-    const textureCanvas = document.createElement("canvas");
-    const textureContext = textureCanvas.getContext("2d", {
-      willReadFrequently: true
-    });
-    const earthTexture = new Image();
-
-    let texturePixels = null;
-    let textureWidth = 0;
-    let textureHeight = 0;
-    let globeSize = 0;
-    let globeImage = null;
-    let spherePoints = [];
-
-    let rotation = 0.32;
-    let rotationVelocity = 0.0026;
-    let dragging = false;
-    let lastPointerX = 0;
-    let lastFrame = 0;
-    let visible = true;
-
-    function prepareTexture() {
-      textureWidth = Math.min(earthTexture.naturalWidth, 1200);
-      textureHeight = Math.round(textureWidth / 2);
-
-      textureCanvas.width = textureWidth;
-      textureCanvas.height = textureHeight;
-
-      textureContext.drawImage(
-        earthTexture,
-        0,
-        0,
-        textureWidth,
-        textureHeight
-      );
-
-      texturePixels = textureContext.getImageData(
-        0,
-        0,
-        textureWidth,
-        textureHeight
-      ).data;
-    }
-
-    function prepareGlobe() {
-      const rectangle = canvas.getBoundingClientRect();
-
-      const requestedSize = Math.max(
-        130,
-        Math.round(
-          rectangle.width *
-          Math.min(window.devicePixelRatio || 1, 1.25)
-        )
-      );
-
-      if (
-        requestedSize === globeSize &&
-        globeImage
-      ) {
-        return;
+        panels.forEach((panel) => {
+          const active = panel.id === targetId;
+          panel.classList.toggle("active", active);
+          panel.hidden = !active;
+        });
       }
 
-      globeSize = requestedSize;
-      canvas.width = globeSize;
-      canvas.height = globeSize;
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => activateTab(tab));
+      });
 
-      globeImage = context.createImageData(
-        globeSize,
-        globeSize
-      );
+      function openOverlay() {
+        overlay.classList.add("open");
+        overlay.setAttribute("aria-hidden", "false");
+        closeButton.focus();
+      }
 
-      spherePoints = [];
+      function closeOverlay() {
+        overlay.classList.remove("open");
+        overlay.setAttribute("aria-hidden", "true");
+        menuButton.focus();
+      }
 
-      const radius = globeSize / 2;
+      menuButton.addEventListener("click", openOverlay);
+      closeButton.addEventListener("click", closeOverlay);
 
-      for (let y = 0; y < globeSize; y += 1) {
-        for (let x = 0; x < globeSize; x += 1) {
-          const nx = (x - radius) / radius;
-          const ny = (y - radius) / radius;
-          const radiusSquared = nx * nx + ny * ny;
+      overlay.addEventListener("click", (event) => {
+        if (event.target === overlay) closeOverlay();
+      });
 
-          if (radiusSquared > 1) {
-            continue;
-          }
-
-          const nz = Math.sqrt(1 - radiusSquared);
-          const latitude = Math.asin(-ny);
-          const baseLongitude = Math.atan2(nx, nz);
-          const edge = Math.pow(nz, 0.55);
-          const diffuse = Math.max(
-            0,
-            nx * -0.38 +
-            ny * -0.46 +
-            nz * 0.82
-          );
-
-          const highlight = Math.pow(
-            Math.max(
-              0,
-              nx * -0.45 +
-              ny * -0.55 +
-              nz * 0.72
-            ),
-            17
-          );
-
-          spherePoints.push({
-            pixelIndex: (y * globeSize + x) * 4,
-            latitude,
-            baseLongitude,
-            edge,
-            diffuse,
-            highlight
-          });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && overlay.classList.contains("open")) {
+          closeOverlay();
         }
-      }
-    }
-
-    function renderEarth(time) {
-      requestAnimationFrame(renderEarth);
-
-      if (
-        !visible ||
-        !texturePixels ||
-        time - lastFrame < 62
-      ) {
-        return;
-      }
-
-      lastFrame = time;
-      prepareGlobe();
-
-      if (!dragging) {
-        rotation += rotationVelocity;
-        rotationVelocity *= 0.985;
-
-        if (Math.abs(rotationVelocity) < 0.0022) {
-          rotationVelocity = 0.0022;
-        }
-      }
-
-      const output = globeImage.data;
-      output.fill(0);
-
-      for (
-        let index = 0;
-        index < spherePoints.length;
-        index += 1
-      ) {
-        const point = spherePoints[index];
-
-        let longitude =
-          point.baseLongitude +
-          rotation;
-
-        longitude =
-          (
-            longitude +
-            Math.PI * 3
-          ) %
-          (
-            Math.PI * 2
-          ) -
-          Math.PI;
-
-        const textureX = Math.floor(
-          (
-            longitude /
-            (Math.PI * 2) +
-            0.5
-          ) *
-          textureWidth
-        );
-
-        const textureY = Math.floor(
-          (
-            0.5 -
-            point.latitude / Math.PI
-          ) *
-          textureHeight
-        );
-
-        const wrappedX =
-          (
-            textureX %
-            textureWidth +
-            textureWidth
-          ) %
-          textureWidth;
-
-        const clampedY = Math.max(
-          0,
-          Math.min(
-            textureHeight - 1,
-            textureY
-          )
-        );
-
-        const textureIndex =
-          (
-            clampedY *
-            textureWidth +
-            wrappedX
-          ) *
-          4;
-
-        const red = texturePixels[textureIndex];
-        const green = texturePixels[textureIndex + 1];
-        const blue = texturePixels[textureIndex + 2];
-
-        const light =
-          (
-            0.72 +
-            point.diffuse * 0.46
-          ) *
-          (
-            0.51 +
-            point.edge * 0.63
-          );
-
-        const shine =
-          point.highlight * 105;
-
-        const outputIndex =
-          point.pixelIndex;
-
-        output[outputIndex] = Math.min(
-          255,
-          (red * 0.78 + 13) * light + shine
-        );
-
-        output[outputIndex + 1] = Math.min(
-          255,
-          (green * 0.95 + 23) * light + shine
-        );
-
-        output[outputIndex + 2] = Math.min(
-          255,
-          (blue * 1.13 + 25) * light + shine
-        );
-
-        output[outputIndex + 3] = Math.min(
-          255,
-          222 + point.edge * 33
-        );
-      }
-
-      context.putImageData(
-        globeImage,
-        0,
-        0
-      );
-    }
-
-    globeStage.addEventListener("pointerdown", (event) => {
-      dragging = true;
-      lastPointerX = event.clientX;
-      globeStage.setPointerCapture(event.pointerId);
-    });
-
-    globeStage.addEventListener("pointermove", (event) => {
-      if (!dragging) {
-        return;
-      }
-
-      const movement =
-        event.clientX -
-        lastPointerX;
-
-      rotation += movement * 0.012;
-      rotationVelocity = movement * 0.0014;
-      lastPointerX = event.clientX;
-    });
-
-    function stopDragging(event) {
-      dragging = false;
-
-      if (
-        event &&
-        globeStage.hasPointerCapture(event.pointerId)
-      ) {
-        globeStage.releasePointerCapture(event.pointerId);
-      }
-    }
-
-    globeStage.addEventListener("pointerup", stopDragging);
-    globeStage.addEventListener("pointercancel", stopDragging);
-
-    document.addEventListener("visibilitychange", () => {
-      visible = !document.hidden;
-    });
-
-    window.addEventListener("resize", () => {
-      globeSize = 0;
-      globeImage = null;
-      spherePoints = [];
-    });
-
-    earthTexture.addEventListener("load", () => {
-      prepareTexture();
-      prepareGlobe();
-    });
-
-    earthTexture.addEventListener("error", () => {
-      showToast("Δεν φορτώθηκε η εικόνα της Γης.");
-    });
-
-    earthTexture.src = "assets/earth-map.jpg?v=one-screen-1";
-
-    requestAnimationFrame(renderEarth);
+      });
+    })();
   </script>
 </body>
 </html>
