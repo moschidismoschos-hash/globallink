@@ -1,15 +1,19 @@
-<!doctype html>
-<!-- GlobalLink one-screen v4 | 2026-07-19 | 7 Linkwise partnerships -->
+<!DOCTYPE html>
+
+<!-- GlobalLink one-screen v5 | 2026-07-19 | official partner logos | 7 Linkwise partnerships -->
 <html lang="el">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#020b18">
-  <meta name="globallink-version" content="4">
-  <meta name="description" content="GlobalLink — αγορές και ταξίδια σε ένα μέρος.">
-  <title>GlobalLink</title>
-
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta content="#020b18" name="theme-color"/>
+<meta content="5" name="globallink-version"/>
+<meta content="GlobalLink — αγορές και ταξίδια σε ένα μέρος." name="description"/>
+<title>GlobalLink</title>
+<link href="https://upload.wikimedia.org" rel="preconnect"/>
+<link href="https://en.aegeanair.com" rel="preconnect"/>
+<link href="https://www.olympicair.com" rel="preconnect"/>
+<link href="https://www.kimolistes.com" rel="preconnect"/>
+<style>
     :root {
       color-scheme: dark;
       --bg: #020813;
@@ -344,18 +348,35 @@
       gap: 6px;
       padding: 10px 8px;
       overflow: hidden;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.035);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.045),
+        0 10px 24px rgba(0,0,0,.13);
+      transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease;
     }
 
     .partner::after {
-      content: "→";
-      font-size: 21px;
+      content: "↗";
+      width: 25px;
+      height: 25px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(74, 180, 255, .48);
+      border-radius: 50%;
+      background: rgba(11, 74, 135, .34);
+      font-size: 15px;
       line-height: 1;
-      color: #4eb4ff;
+      color: #62c0ff;
+    }
+
+    .partner:hover {
+      border-color: rgba(94, 194, 255, .72);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.06),
+        0 12px 30px rgba(0, 102, 204, .17);
     }
 
     .partner:active {
-      transform: scale(.985);
+      transform: scale(.982);
     }
 
     .partner.wide {
@@ -370,13 +391,50 @@
       grid-column: 1 / -1;
     }
 
-    .brand-logo {
+    .logo-plate {
+      width: min(90%, 190px);
+      height: clamp(44px, 6.6vh, 58px);
+      display: grid;
+      place-items: center;
+      padding: 7px 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.62);
+      border-radius: 14px;
+      background: rgba(255,255,255,.96);
+      box-shadow:
+        0 8px 22px rgba(0,0,0,.22),
+        inset 0 1px 0 rgba(255,255,255,.9);
+    }
+
+    .logo-plate.mascot {
+      width: clamp(48px, 7.4vh, 62px);
+      height: clamp(48px, 7.4vh, 62px);
+      padding: 0;
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    .partner-logo {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .logo-plate.mascot .partner-logo {
+      object-fit: cover;
+    }
+
+    .logo-fallback {
       max-width: 100%;
+      overflow: hidden;
       text-align: center;
-      font-size: clamp(22px, 6.2vw, 32px);
+      text-overflow: ellipsis;
+      color: #102c55;
+      font-size: clamp(17px, 4.8vw, 25px);
       line-height: 1;
-      font-weight: 800;
-      letter-spacing: -0.04em;
+      font-weight: 850;
+      letter-spacing: -0.035em;
       white-space: nowrap;
     }
 
@@ -384,18 +442,10 @@
       max-width: 100%;
       overflow: hidden;
       text-overflow: ellipsis;
-      font-size: clamp(13px, 3.8vw, 17px);
-      font-weight: 700;
+      font-size: clamp(12px, 3.45vw, 16px);
+      font-weight: 720;
       white-space: nowrap;
     }
-
-    .aliexpress { color: #ff6d20; }
-    .moustakas { color: #ffd43c; text-shadow: 0 2px 0 #a11515; }
-    .agnotis { color: #8fbd45; font-family: Georgia, serif; }
-    .aegean { color: #eaf1ff; letter-spacing: .06em; }
-    .olympic { color: #f4f7ff; font-style: italic; }
-    .croatia { color: #f0f4ff; font-size: clamp(17px, 4.8vw, 25px); }
-    .kiwi { color: #31c8b7; letter-spacing: .01em; }
 
     .footnote {
       min-height: 36px;
@@ -536,12 +586,24 @@
         font-size: 17px;
       }
 
-      .brand-logo {
-        font-size: clamp(18px, 5.4vw, 25px);
+      .logo-plate {
+        height: 38px;
+        padding: 5px 9px;
+        border-radius: 11px;
+      }
+
+      .logo-plate.mascot {
+        width: 42px;
+        height: 42px;
+        padding: 0;
+      }
+
+      .logo-fallback {
+        font-size: 17px;
       }
 
       .brand-label {
-        font-size: 12px;
+        font-size: 11px;
       }
 
       .footnote {
@@ -580,124 +642,130 @@
     }
   </style>
 </head>
-
 <body>
-  <div class="app" data-version="4">
-    <header class="topbar">
-      <div class="brand">
-        <div class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 32 32" fill="none">
-            <circle cx="16" cy="16" r="13" stroke="currentColor"/>
-            <path d="M3.5 16h25M16 3c4 4.5 5.5 8.8 5.5 13S20 24.5 16 29M16 3c-4 4.5-5.5 8.8-5.5 13S12 24.5 16 29M6.5 9.5c3.2 1.6 6.4 2.4 9.5 2.4s6.3-.8 9.5-2.4M6.5 22.5c3.2-1.6 6.4-2.4 9.5-2.4s6.3.8 9.5 2.4" stroke="currentColor" stroke-width="1.25"/>
-          </svg>
-        </div>
-        <div>
-          <p class="brand-name">Global<span>Link</span></p>
-          <p class="tagline">Αγόρασε από όλο τον κόσμο</p>
-        </div>
-      </div>
-
-      <div class="top-actions">
-        <button class="lang-button" type="button" aria-label="Γλώσσα">
+<div class="app" data-version="5">
+<header class="topbar">
+<div class="brand">
+<div aria-hidden="true" class="brand-mark">
+<svg fill="none" viewbox="0 0 32 32">
+<circle cx="16" cy="16" r="13" stroke="currentColor"></circle>
+<path d="M3.5 16h25M16 3c4 4.5 5.5 8.8 5.5 13S20 24.5 16 29M16 3c-4 4.5-5.5 8.8-5.5 13S12 24.5 16 29M6.5 9.5c3.2 1.6 6.4 2.4 9.5 2.4s6.3-.8 9.5-2.4M6.5 22.5c3.2-1.6 6.4-2.4 9.5-2.4s6.3.8 9.5 2.4" stroke="currentColor" stroke-width="1.25"></path>
+</svg>
+</div>
+<div>
+<p class="brand-name">Global<span>Link</span></p>
+<p class="tagline">Αγόρασε από όλο τον κόσμο</p>
+</div>
+</div>
+<div class="top-actions">
+<button aria-label="Γλώσσα" class="lang-button" type="button">
           ΕΛ <span aria-hidden="true">⌄</span>
+</button>
+<button aria-label="Πληροφορίες" class="icon-button" id="menuButton" type="button">
+<svg aria-hidden="true" fill="none" height="24" viewbox="0 0 24 24" width="24">
+<path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</header>
+<main class="main">
+<section aria-labelledby="pageTitle" class="hero">
+<div class="hero-copy">
+<h1 id="pageTitle">Αγορές και <span>ταξίδια</span><br/>σε ένα μέρος</h1>
+<p>Επίλεξε εταιρεία και συνέχισε στον επίσημο ιστότοπό της.</p>
+</div>
+<div aria-hidden="true" class="globe-shell">
+<div class="orbit"></div>
+<div class="globe"></div>
+</div>
+</section>
+<div aria-label="Κατηγορίες συνεργασιών" class="tabs" role="tablist">
+<button aria-controls="shoppingPanel" aria-selected="true" class="tab active" data-panel="shoppingPanel" id="shoppingTab" role="tab" type="button">
+<svg aria-hidden="true" fill="none" height="18" viewbox="0 0 24 24" width="18">
+<path d="M5 8h14l-1 12H6L5 8Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.8"></path>
+<path d="M9 9V6a3 3 0 0 1 6 0v3" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+</svg>
+          Αγορές
         </button>
-        <button class="icon-button" id="menuButton" type="button" aria-label="Πληροφορίες">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
+<button aria-controls="travelPanel" aria-selected="false" class="tab" data-panel="travelPanel" id="travelTab" role="tab" type="button">
+<svg aria-hidden="true" fill="none" height="18" viewbox="0 0 24 24" width="18">
+<path d="m3 13 7 1 4 6 2-1-2-5 5-2c1.7-.7 2.5-2.5 1.8-4.2-.7-1.7-2.5-2.5-4.2-1.8l-5 2-4-4-2 1 2 5-5 2 .2 1Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"></path>
+</svg>
+          Ταξίδια
         </button>
-      </div>
-    </header>
-
-    <main class="main">
-      <section class="hero" aria-labelledby="pageTitle">
-        <div class="hero-copy">
-          <h1 id="pageTitle">Αγορές και <span>ταξίδια</span><br>σε ένα μέρος</h1>
-          <p>Επίλεξε εταιρεία και συνέχισε στον επίσημο ιστότοπό της.</p>
-        </div>
-
-        <div class="globe-shell" aria-hidden="true">
-          <div class="orbit"></div>
-          <div class="globe"></div>
-        </div>
-      </section>
-
-      <div class="tabs" role="tablist" aria-label="Κατηγορίες συνεργασιών">
-        <button class="tab active" type="button" role="tab" aria-selected="true" aria-controls="shoppingPanel" id="shoppingTab" data-panel="shoppingPanel">
-          <span aria-hidden="true">▣</span> Αγορές
-        </button>
-        <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="travelPanel" id="travelTab" data-panel="travelPanel">
-          <span aria-hidden="true">✈</span> Ταξίδια
-        </button>
-      </div>
-
-      <div class="panels">
-        <section class="panel shopping active" id="shoppingPanel" role="tabpanel" aria-labelledby="shoppingTab">
-          <a class="partner" href="https://go.linkwi.se/z/11183-0/CD28424/?lnkurl=https%3A%2F%2Fmbest.aliexpress.com%2F%3Faff_fcid%3D6f5c24dc77ae4b37a8b14ec41a360672-1784476017202-05841-j6RrMzM%26aff_fsk%3Dj6RrMzM%26aff_platform%3Daaf%26sk%3Dj6RrMzM%26aff_trace_key%3D6f5c24dc77ae4b37a8b14ec41a360672-1784476017202-05841-j6RrMzM%26terminal_id%3D5a3158914b624c63ae53a1583c8df889%26afSmartRedirect%3Dy" target="_blank" rel="sponsored noopener noreferrer">
-            <div class="brand-logo aliexpress">AliExpress</div>
-            <div class="brand-label">ΑλίΕξπρες</div>
-          </a>
-
-          <a class="partner" href="https://go.linkwi.se/z/10784-0/CD28424/?lnkurl=https%3A%2F%2Fwww.moustakastoys.gr%2F" target="_blank" rel="sponsored noopener noreferrer">
-            <div class="brand-logo moustakas">ΜΟΥΣΤΑΚΑΣ</div>
-            <div class="brand-label">Μουστάκας Toys</div>
-          </a>
-
-          <a class="partner" href="https://go.linkwi.se/z/11562-0/CD28424/?lnkurl=https%3A%2F%2Fwww.agnotis.com%2F" target="_blank" rel="sponsored noopener noreferrer">
-            <div class="brand-logo agnotis">Αγνότης</div>
-            <div class="brand-label">Αγνότης</div>
-          </a>
-        </section>
-
-        <section class="panel travel" id="travelPanel" role="tabpanel" aria-labelledby="travelTab" hidden>
-          <a class="partner" href="https://go.linkwi.se/z/73-0/CD28424/?lnkurl=https%3A%2F%2Fel.aegeanair.com%2F" target="_blank" rel="sponsored noopener noreferrer">
-            <div class="brand-logo aegean">AEGEAN</div>
-            <div class="brand-label">Aegean Airlines</div>
-          </a>
-
-          <a class="partner" href="https://go.linkwi.se/z/11129-0/CD28424/?lnkurl=https%3A%2F%2Fwww.olympicair.com%2F" target="_blank" rel="sponsored noopener noreferrer">
-            <div class="brand-logo olympic">OLYMPIC AIR</div>
-            <div class="brand-label">Ολύμπικ Έαρ</div>
-          </a>
-
-          <a class="partner" href="https://go.linkwi.se/z/11294-0/CD28424/?lnkurl=https%3A%2F%2Fwww.croatiaairlines.com%2F" target="_blank" rel="sponsored noopener noreferrer">
-            <div class="brand-logo croatia">CROATIA AIRLINES</div>
-            <div class="brand-label">Κροάτια Έρλαϊνς</div>
-          </a>
-
-          <a class="partner" href="https://go.linkwi.se/z/11376-0/CD28424/?lnkurl=https%3A%2F%2Fwww.kiwi.com%2Fel%2F%3Forigin%3D--%26destination%3D--%26outboundDate%3D2026-07-20_2026-08-19%26inboundDate%3Dno-return%26lang%3Del%26user_id%3D0f5dc79713778bac86722a9958112238%26deeplink_uuid%3De78e6da4-fd36-49cf-bbbd-09fcd240cf08%26session_identifier%3DYbBk9Zoa8kzQyPJPaEDvG9ds5%252Bazz9t8vsNCU5jE5sg%253D%26deeplinkId%3D28997540899" target="_blank" rel="sponsored noopener noreferrer">
-            <div class="brand-logo kiwi">KIWI.COM</div>
-            <div class="brand-label">Kiwi.com</div>
-          </a>
-        </section>
-      </div>
-    </main>
-
-    <footer class="footnote">
-      <span aria-hidden="true">i</span>
-      Οι αγορές ολοκληρώνονται στον ιστότοπο κάθε εταιρείας. Οι σύνδεσμοι ενδέχεται να αποφέρουν προμήθεια χωρίς επιπλέον κόστος.
+</div>
+<div class="panels">
+<section aria-labelledby="shoppingTab" class="panel shopping active" id="shoppingPanel" role="tabpanel">
+<a class="partner" href="https://go.linkwi.se/z/11183-0/CD28424/?lnkurl=https%3A%2F%2Fmbest.aliexpress.com%2F%3Faff_fcid%3D6f5c24dc77ae4b37a8b14ec41a360672-1784476017202-05841-j6RrMzM%26aff_fsk%3Dj6RrMzM%26aff_platform%3Daaf%26sk%3Dj6RrMzM%26aff_trace_key%3D6f5c24dc77ae4b37a8b14ec41a360672-1784476017202-05841-j6RrMzM%26terminal_id%3D5a3158914b624c63ae53a1583c8df889%26afSmartRedirect%3Dy" rel="sponsored noopener noreferrer" target="_blank">
+<div class="logo-plate"><img alt="AliExpress" class="partner-logo" decoding="async" loading="eager" referrerpolicy="no-referrer" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/AliExpress_2024.svg/960px-AliExpress_2024.svg.png"/><span class="logo-fallback" hidden="">AliExpress</span></div>
+<div class="brand-label">ΑλίΕξπρες</div>
+</a>
+<a class="partner" href="https://go.linkwi.se/z/10784-0/CD28424/?lnkurl=https%3A%2F%2Fwww.moustakastoys.gr%2F" rel="sponsored noopener noreferrer" target="_blank">
+<div class="logo-plate mascot"><img alt="Μουστάκας" class="partner-logo" decoding="async" loading="eager" referrerpolicy="no-referrer" src="https://www.kimolistes.com/wp-content/uploads/2023/05/MOUSTAKAS-NEW-LOGO-scaled.jpg"/><span class="logo-fallback" hidden="">ΜΟΥΣΤΑΚΑΣ</span></div>
+<div class="brand-label">Μουστάκας Toys</div>
+</a>
+<a class="partner" href="https://go.linkwi.se/z/11562-0/CD28424/?lnkurl=https%3A%2F%2Fwww.agnotis.com%2F" rel="sponsored noopener noreferrer" target="_blank">
+<div class="logo-plate"><img alt="Αγνότης" class="partner-logo" decoding="async" loading="eager" referrerpolicy="no-referrer" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Agnotis_Logo.png/960px-Agnotis_Logo.png"/><span class="logo-fallback" hidden="">Αγνότης</span></div>
+<div class="brand-label">Αγνότης</div>
+</a>
+</section>
+<section aria-labelledby="travelTab" class="panel travel" hidden="" id="travelPanel" role="tabpanel">
+<a class="partner" href="https://go.linkwi.se/z/73-0/CD28424/?lnkurl=https%3A%2F%2Fel.aegeanair.com%2F" rel="sponsored noopener noreferrer" target="_blank">
+<div class="logo-plate"><img alt="Aegean" class="partner-logo" decoding="async" loading="eager" referrerpolicy="no-referrer" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Aegean_Airlines_Logo_2020.svg/960px-Aegean_Airlines_Logo_2020.svg.png"/><span class="logo-fallback" hidden="">AEGEAN</span></div>
+<div class="brand-label">Aegean Airlines</div>
+</a>
+<a class="partner" href="https://go.linkwi.se/z/11129-0/CD28424/?lnkurl=https%3A%2F%2Fwww.olympicair.com%2F" rel="sponsored noopener noreferrer" target="_blank">
+<div class="logo-plate"><img alt="Olympic Air" class="partner-logo" decoding="async" loading="eager" referrerpolicy="no-referrer" src="https://www.olympicair.com/Media/OlympicAir/logos/logo.svg"/><span class="logo-fallback" hidden="">OLYMPIC AIR</span></div>
+<div class="brand-label">Ολύμπικ Έαρ</div>
+</a>
+<a class="partner" href="https://go.linkwi.se/z/11294-0/CD28424/?lnkurl=https%3A%2F%2Fwww.croatiaairlines.com%2F" rel="sponsored noopener noreferrer" target="_blank">
+<div class="logo-plate"><img alt="Croatia Airlines" class="partner-logo" decoding="async" loading="eager" referrerpolicy="no-referrer" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Croatia_Airlines_2024_logo.svg/960px-Croatia_Airlines_2024_logo.svg.png"/><span class="logo-fallback" hidden="">CROATIA AIRLINES</span></div>
+<div class="brand-label">Κροάτια Έρλαϊνς</div>
+</a>
+<a class="partner" href="https://go.linkwi.se/z/11376-0/CD28424/?lnkurl=https%3A%2F%2Fwww.kiwi.com%2Fel%2F%3Forigin%3D--%26destination%3D--%26outboundDate%3D2026-07-20_2026-08-19%26inboundDate%3Dno-return%26lang%3Del%26user_id%3D0f5dc79713778bac86722a9958112238%26deeplink_uuid%3De78e6da4-fd36-49cf-bbbd-09fcd240cf08%26session_identifier%3DYbBk9Zoa8kzQyPJPaEDvG9ds5%252Bazz9t8vsNCU5jE5sg%253D%26deeplinkId%3D28997540899" rel="sponsored noopener noreferrer" target="_blank">
+<div class="logo-plate"><img alt="Kiwi.com" class="partner-logo" decoding="async" loading="eager" referrerpolicy="no-referrer" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Kiwi.com_logo.svg/960px-Kiwi.com_logo.svg.png"/><span class="logo-fallback" hidden="">KIWI.COM</span></div>
+<div class="brand-label">Kiwi.com</div>
+</a>
+</section>
+</div>
+</main>
+<footer class="footnote">
+<span aria-hidden="true">i</span>
+      Οι αγορές και οι κρατήσεις ολοκληρώνονται στην εταιρεία. Οι σύνδεσμοι μπορεί να αποφέρουν προμήθεια χωρίς επιπλέον κόστος.
     </footer>
-
-    <div class="overlay" id="overlay" aria-hidden="true">
-      <section class="modal" role="dialog" aria-modal="true" aria-labelledby="infoTitle">
-        <h2 id="infoTitle">Πληροφορίες</h2>
-        <p>
+<div aria-hidden="true" class="overlay" id="overlay">
+<section aria-labelledby="infoTitle" aria-modal="true" class="modal" role="dialog">
+<h2 id="infoTitle">Πληροφορίες</h2>
+<p>
           Η GlobalLink συγκεντρώνει συνδέσμους προς εξωτερικές εταιρείες.
           Η αγορά ή η κράτηση ολοκληρώνεται στον ιστότοπο της κάθε εταιρείας.
           Ορισμένοι σύνδεσμοι είναι σύνδεσμοι συνεργασίας.
         </p>
-        <button class="close-button" id="closeButton" type="button">Κλείσιμο</button>
-      </section>
-    </div>
-  </div>
-
-  <script>
+<button class="close-button" id="closeButton" type="button">Κλείσιμο</button>
+</section>
+</div>
+</div>
+<script>
     (() => {
       const tabs = [...document.querySelectorAll(".tab")];
       const panels = [...document.querySelectorAll(".panel")];
       const overlay = document.getElementById("overlay");
       const menuButton = document.getElementById("menuButton");
       const closeButton = document.getElementById("closeButton");
+
+      document.querySelectorAll(".partner-logo").forEach((image) => {
+        const showFallback = () => {
+          image.hidden = true;
+          const fallback = image.nextElementSibling;
+          if (fallback) fallback.hidden = false;
+        };
+
+        image.addEventListener("error", showFallback);
+
+        if (image.complete && image.naturalWidth === 0) {
+          showFallback();
+        }
+      });
 
       function activateTab(tab) {
         const targetId = tab.dataset.panel;
