@@ -1,7 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 180" role="img" aria-labelledby="title">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 220" role="img" aria-labelledby="title">
 <title id="title">Kiwi.com</title>
-<path d="M138 145A92 92 0 1 1 207 35" fill="none" stroke="#00a991" stroke-width="16" stroke-linecap="round"/>
-<text x="168" y="116" font-family="Arial, Helvetica, sans-serif" font-size="78" font-weight="700" fill="#15191f">KIWI</text>
-<circle cx="390" cy="95" r="9" fill="#00a991"/>
-<text x="414" y="116" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="650" fill="#15191f">COM</text>
+<rect width="760" height="220" rx="24" fill="#ffffff"/>
+<path d="M105 172A92 92 0 1 1 177 47"
+      fill="none" stroke="#00a991" stroke-width="15" stroke-linecap="round"/>
+<text x="166" y="139" font-family="Arial, Helvetica, sans-serif"
+      font-size="86" font-weight="700" fill="#171b20">KIWI</text>
+<circle cx="407" cy="111" r="9" fill="#00a991"/>
+<text x="438" y="139" font-family="Arial, Helvetica, sans-serif"
+      font-size="78" font-weight="650" fill="#171b20">COM</text>
 </svg>

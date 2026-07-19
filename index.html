@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<!-- GlobalLink one-screen v6 | local partner logos | 7 Linkwise partnerships -->
+<!-- GlobalLink one-screen v7 | corrected local logos | 7 Linkwise partnerships -->
 <html lang="el">
 <head>
 <meta charset="utf-8"/>
@@ -9,7 +9,7 @@
 <meta content="5" name="globallink-version"/>
 <meta content="GlobalLink — αγορές και ταξίδια σε ένα μέρος." name="description"/>
 <title>GlobalLink</title>
-<meta name="globallink-build" content="6-local"/>
+<meta name="globallink-build" content="7-hotfix">
 <link href="https://upload.wikimedia.org" rel="preconnect"/>
 <link href="https://en.aegeanair.com" rel="preconnect"/>
 <link href="https://www.olympicair.com" rel="preconnect"/>
@@ -669,10 +669,39 @@
       max-height: 72%;
     }
 
-  </style>
+  
+    /* v7: fixed partner logo sizing */
+    .logo-plate.agnotis-plate,
+    .logo-plate.kiwi-plate {
+      width: min(90%, 210px);
+      height: clamp(48px, 7vh, 62px);
+      padding: 0;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .logo-plate.agnotis-plate .partner-logo,
+    .logo-plate.kiwi-plate .partner-logo {
+      display: block;
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    @media (max-height: 720px) {
+      .logo-plate.agnotis-plate,
+      .logo-plate.kiwi-plate {
+        height: 42px;
+      }
+    }
+
+</style>
 </head>
 <body>
-<div class="app" data-version="6">
+<div class="app" data-version="7">
 <header class="topbar">
 <div class="brand">
 <div aria-hidden="true" class="brand-mark">

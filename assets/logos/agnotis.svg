@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 220" role="img" aria-labelledby="title">
-<title id="title">Αγνότης</title>
-<g fill="none" stroke="#79a936" stroke-width="8" stroke-linecap="round">
-  <path d="M370 62c34-37 79-49 127-38"/>
-  <path d="M410 43c-7-22 4-38 29-45 2 23-7 39-29 45Z" fill="#79a936" stroke="none"/>
-  <path d="M462 34c3-23 18-36 43-35-6 22-20 34-43 35Z" fill="#79a936" stroke="none"/>
-</g>
-<text x="330" y="145" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="118" font-weight="700" fill="#668f2f">Αγνότης</text>
-<text x="330" y="196" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#668f2f">η φύση στο τραπέζι σας</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 190" role="img" aria-labelledby="title">
+<title id="title">AGNOTIS</title>
+<rect width="700" height="190" rx="24" fill="#ffffff"/>
+<circle cx="90" cy="95" r="8" fill="#20252b"/>
+<circle cx="610" cy="95" r="8" fill="#20252b"/>
+<text x="350" y="124" text-anchor="middle"
+      font-family="'Courier New', Courier, monospace"
+      font-size="94" font-weight="600" letter-spacing="14"
+      fill="#20252b">AGNOTIS</text>
 </svg>
