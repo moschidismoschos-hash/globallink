@@ -6,10 +6,10 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
 <meta content="#020b18" name="theme-color"/>
-<meta content="12" name="globallink-version"/>
+<meta content="13" name="globallink-version"/>
 <meta content="GlobalLink — αγορές και ταξίδια σε ένα μέρος." name="description"/>
 <title>GlobalLink</title>
-<meta name="globallink-build" content="12-genuine-company-logos">
+<meta name="globallink-build" content="13-genuine-glass-logos">
 <link href="https://upload.wikimedia.org" rel="preconnect"/>
 <link href="https://en.aegeanair.com" rel="preconnect"/>
 <link href="https://www.olympicair.com" rel="preconnect"/>
@@ -1161,43 +1161,70 @@
 
 
 
-/* GENUINE LOGOS V12 START */
+
+
+
+/* GENUINE GLASS LOGOS V13 START */
 
 .partner .logo-plate,
 .partner .logo-plate.mascot,
 .partner .logo-plate.agnotis-plate,
 .partner .logo-plate.kiwi-plate {
+  --glass-rgb: 90, 170, 255;
+
   position: relative;
   width: min(91%, 218px);
   height: clamp(52px, 7.4vh, 66px);
   padding: 0;
   overflow: hidden;
   display: block;
-  border: 1px solid rgba(255,255,255,.88);
+
+  border: 1px solid rgba(255,255,255,.92);
   border-radius: 18px;
-  background: rgba(239,248,255,.98);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.40) 0%,
+      rgba(255,255,255,.14) 22%,
+      rgba(255,255,255,.05) 23%,
+      rgba(255,255,255,.03) 100%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.24) 0%,
+      rgba(var(--glass-rgb), .18) 46%,
+      rgba(var(--glass-rgb), .34) 100%
+    );
+
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,1),
-    0 0 0 2px rgba(255,255,255,.08),
-    0 0 24px rgba(var(--accent-rgb), .28),
-    0 11px 25px rgba(0,0,0,.27);
-  transform: translateZ(0);
+    inset 0 -1px 0 rgba(255,255,255,.20),
+    inset 0 -16px 26px rgba(var(--glass-rgb), .14),
+    0 0 0 1px rgba(255,255,255,.07),
+    0 0 22px rgba(var(--glass-rgb), .24),
+    0 10px 24px rgba(0,0,0,.26);
+
+  backdrop-filter: blur(14px) saturate(155%);
+  -webkit-backdrop-filter: blur(14px) saturate(155%);
 }
 
 .partner .logo-plate::before {
   content: "";
   position: absolute;
   z-index: 2;
-  left: 5%;
-  right: 5%;
-  top: 3px;
-  height: 38%;
+  left: 6%;
+  right: 6%;
+  top: 4px;
+  height: 40%;
   border-radius: 999px;
-  background: linear-gradient(
-    180deg,
-    rgba(255,255,255,.76),
-    rgba(255,255,255,.12)
-  );
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.82),
+      rgba(255,255,255,.14) 72%,
+      transparent
+    );
   pointer-events: none;
 }
 
@@ -1208,8 +1235,8 @@
   inset: 0;
   border-radius: inherit;
   box-shadow:
-    inset 0 0 18px rgba(85,178,255,.13),
-    inset 0 -10px 20px rgba(var(--accent-rgb), .08);
+    inset 0 0 16px rgba(100,190,255,.10),
+    inset 0 -12px 20px rgba(var(--glass-rgb), .08);
   pointer-events: none;
 }
 
@@ -1223,18 +1250,29 @@
   max-height: none;
   object-fit: cover;
   object-position: center;
-  filter: none;
-  transform: none;
+  filter: saturate(1.02) contrast(1.02);
 }
 
+/* Χρώμα γυαλιού ανά εταιρεία */
+.shopping .partner:nth-child(1) .logo-plate { --glass-rgb: 255, 96, 140; }   /* AliExpress */
+.shopping .partner:nth-child(2) .logo-plate { --glass-rgb: 84, 154, 255; }   /* Μουστάκας */
+.shopping .partner:nth-child(3) .logo-plate { --glass-rgb: 60, 194, 145; }   /* Αγνότης */
+
+.travel .partner:nth-child(1) .logo-plate { --glass-rgb: 54, 120, 255; }     /* Aegean */
+.travel .partner:nth-child(2) .logo-plate { --glass-rgb: 60, 188, 255; }     /* Olympic */
+.travel .partner:nth-child(3) .logo-plate { --glass-rgb: 228, 82, 120; }     /* Croatia */
+.travel .partner:nth-child(4) .logo-plate { --glass-rgb: 44, 192, 172; }     /* Kiwi */
+
 .partner:hover .logo-plate {
-  transform: translateY(-2px) scale(1.018);
+  transform: translateY(-2px) scale(1.02);
   border-color: rgba(255,255,255,1);
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,1),
-    0 0 0 2px rgba(255,255,255,.11),
-    0 0 30px rgba(var(--accent-rgb), .38),
-    0 15px 29px rgba(0,0,0,.3);
+    inset 0 -1px 0 rgba(255,255,255,.24),
+    inset 0 -16px 28px rgba(var(--glass-rgb), .18),
+    0 0 0 1px rgba(255,255,255,.09),
+    0 0 28px rgba(var(--glass-rgb), .34),
+    0 14px 28px rgba(0,0,0,.30);
 }
 
 @media (max-height: 720px) {
@@ -1257,12 +1295,12 @@
   }
 }
 
-/* GENUINE LOGOS V12 END */
+/* GENUINE GLASS LOGOS V13 END */
 
 </style>
 </head>
 <body>
-<div class="app" data-version="12">
+<div class="app" data-version="13">
 <header class="topbar">
 <div class="brand">
 <div aria-hidden="true" class="brand-mark">
@@ -1316,33 +1354,33 @@
 <div class="panels">
 <section aria-labelledby="shoppingTab" class="panel shopping active" id="shoppingPanel" role="tabpanel">
 <a class="partner" href="https://go.linkwi.se/z/11183-0/CD28424/?lnkurl=https%3A%2F%2Fmbest.aliexpress.com%2F%3Faff_fcid%3D6f5c24dc77ae4b37a8b14ec41a360672-1784476017202-05841-j6RrMzM%26aff_fsk%3Dj6RrMzM%26aff_platform%3Daaf%26sk%3Dj6RrMzM%26aff_trace_key%3D6f5c24dc77ae4b37a8b14ec41a360672-1784476017202-05841-j6RrMzM%26terminal_id%3D5a3158914b624c63ae53a1583c8df889%26afSmartRedirect%3Dy" rel="sponsored noopener noreferrer" target="_blank">
-<div class="logo-plate"><img alt="AliExpress" class="partner-logo genuine-logo" decoding="async" loading="eager" src="assets/logos-genuine/aliexpress.png?v=12"/></div>
+<div class="logo-plate"><img alt="AliExpress" class="partner-logo genuine-logo" decoding="async" loading="eager" src="assets/logos-genuine/aliexpress.png?v=13"/></div>
 <div class="brand-label">ΑλίΕξπρες</div>
 </a>
 <a class="partner" href="https://go.linkwi.se/z/10784-0/CD28424/?lnkurl=https%3A%2F%2Fwww.moustakastoys.gr%2F" rel="sponsored noopener noreferrer" target="_blank">
-<div class="logo-plate"><img alt="Μουστάκας Toys" class="partner-logo genuine-logo" decoding="async" loading="eager" src="assets/logos-genuine/moustakas.png?v=12"/></div>
+<div class="logo-plate"><img alt="Μουστάκας Toys" class="partner-logo genuine-logo" decoding="async" loading="eager" src="assets/logos-genuine/moustakas.png?v=13"/></div>
 <div class="brand-label">Μουστάκας Toys</div>
 </a>
 <a class="partner" href="https://go.linkwi.se/z/11562-0/CD28424/?lnkurl=https%3A%2F%2Fwww.agnotis.com%2F" rel="sponsored noopener noreferrer" target="_blank">
-<div class="logo-plate"><img alt="Αγνότης" class="partner-logo genuine-logo" decoding="async" loading="eager" src="assets/logos-genuine/agnotis.png?v=12"/></div>
+<div class="logo-plate"><img alt="Αγνότης" class="partner-logo genuine-logo" decoding="async" loading="eager" src="assets/logos-genuine/agnotis.png?v=13"/></div>
 <div class="brand-label">Αγνότης</div>
 </a>
 </section>
 <section aria-labelledby="travelTab" class="panel travel" hidden="" id="travelPanel" role="tabpanel">
 <a class="partner" href="https://go.linkwi.se/z/73-0/CD28424/?lnkurl=https%3A%2F%2Fel.aegeanair.com%2F" rel="sponsored noopener noreferrer" target="_blank">
-<div class="logo-plate"><img alt="Aegean Airlines" class="partner-logo genuine-logo" decoding="async" loading="eager" src="assets/logos-genuine/aegean.png?v=12"/></div>
+<div class="logo-plate"><img alt="Aegean Airlines" class="partner-logo genuine-logo" decoding="async" loading="eager" src="assets/logos-genuine/aegean.png?v=13"/></div>
 <div class="brand-label">Aegean Airlines</div>
 </a>
 <a class="partner" href="https://go.linkwi.se/z/11129-0/CD28424/?lnkurl=https%3A%2F%2Fwww.olympicair.com%2F" rel="sponsored noopener noreferrer" target="_blank">
-<div class="logo-plate"><img alt="Olympic Air" class="partner-logo genuine-logo" decoding="async" loading="eager" src="assets/logos-genuine/olympic-air.png?v=12"/></div>
+<div class="logo-plate"><img alt="Olympic Air" class="partner-logo genuine-logo" decoding="async" loading="eager" src="assets/logos-genuine/olympic-air.png?v=13"/></div>
 <div class="brand-label">Ολύμπικ Έαρ</div>
 </a>
 <a class="partner" href="https://go.linkwi.se/z/11294-0/CD28424/?lnkurl=https%3A%2F%2Fwww.croatiaairlines.com%2F" rel="sponsored noopener noreferrer" target="_blank">
-<div class="logo-plate"><img alt="Croatia Airlines" class="partner-logo genuine-logo" decoding="async" loading="eager" src="assets/logos-genuine/croatia-airlines.png?v=12"/></div>
+<div class="logo-plate"><img alt="Croatia Airlines" class="partner-logo genuine-logo" decoding="async" loading="eager" src="assets/logos-genuine/croatia-airlines.png?v=13"/></div>
 <div class="brand-label">Κροάτια Έρλαϊνς</div>
 </a>
 <a class="partner" href="https://go.linkwi.se/z/11376-0/CD28424/?lnkurl=https%3A%2F%2Fwww.kiwi.com%2Fel%2F%3Forigin%3D--%26destination%3D--%26outboundDate%3D2026-07-20_2026-08-19%26inboundDate%3Dno-return%26lang%3Del%26user_id%3D0f5dc79713778bac86722a9958112238%26deeplink_uuid%3De78e6da4-fd36-49cf-bbbd-09fcd240cf08%26session_identifier%3DYbBk9Zoa8kzQyPJPaEDvG9ds5%252Bazz9t8vsNCU5jE5sg%253D%26deeplinkId%3D28997540899" rel="sponsored noopener noreferrer" target="_blank">
-<div class="logo-plate"><img alt="Kiwi.com" class="partner-logo genuine-logo" decoding="async" loading="eager" src="assets/logos-genuine/kiwi.png?v=12"/></div>
+<div class="logo-plate"><img alt="Kiwi.com" class="partner-logo genuine-logo" decoding="async" loading="eager" src="assets/logos-genuine/kiwi.png?v=13"/></div>
 <div class="brand-label">Kiwi.com</div>
 </a>
 </section>
