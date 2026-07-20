@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://moschidismoschos-hash.github.io/globallink/professional-preview/sitemap.xml
