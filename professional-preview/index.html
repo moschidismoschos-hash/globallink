@@ -3,324 +3,628 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#020814">
-  <meta name="description" content="GlobalLink — 7 επιλεγμένες συνεργασίες για αγορές και ακτοπλοϊκά ταξίδια, όλες με κωδικό συνεργάτη CD28424.">
-  <meta name="robots" content="index,follow,max-image-preview:large">
-  <link rel="canonical" href="https://moschidismoschos-hash.github.io/globallink/professional-preview/">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="manifest" href="site.webmanifest">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="el_GR">
-  <meta property="og:site_name" content="GlobalLink">
-  <meta property="og:title" content="GlobalLink — Αγορές και ταξίδια σε ένα μέρος">
-  <meta property="og:description" content="Επιλεγμένοι σύνδεσμοι συνεργατών για αγορές και ταξίδια.">
-  <meta property="og:url" content="https://moschidismoschos-hash.github.io/globallink/professional-preview/">
-  <meta property="og:image" content="https://moschidismoschos-hash.github.io/globallink/professional-preview/assets/og-image.jpg">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="GlobalLink — Αγορές και ταξίδια">
-  <meta name="twitter:description" content="Επιλεγμένοι σύνδεσμοι συνεργατών σε μία καθαρή σελίδα.">
-  <meta name="twitter:image" content="https://moschidismoschos-hash.github.io/globallink/professional-preview/assets/og-image.jpg">
-  <title>GlobalLink — Αγορές & Ταξίδια</title>
-  <link rel="stylesheet" href="assets/styles.css">
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"WebSite",
-    "name":"GlobalLink",
-    "url":"https://moschidismoschos-hash.github.io/globallink/professional-preview/",
-    "description":"Επιλεγμένες αγορές και ταξίδια σε ένα μέρος.",
-    "inLanguage":"el"
-  }
-  </script>
-  <script defer src="assets/config.js"></script>
-  <script defer src="assets/app.js"></script>
+  <meta name="theme-color" content="#020a16">
+  <meta name="description" content="GlobalLink — επιλεγμένες αγορές και ακτοπλοϊκά ταξίδια σε μία οθόνη.">
+  <title>GlobalLink — Αγορές &amp; Ταξίδια</title>
+  <style>
+    :root{
+      --bg:#020914;
+      --panel:rgba(7,30,58,.82);
+      --panel2:rgba(8,40,77,.75);
+      --line:rgba(76,174,255,.35);
+      --text:#f7fbff;
+      --muted:#aab9cb;
+      --blue:#2f9bff;
+      --cyan:#5cddff;
+      --safe-top:env(safe-area-inset-top,0px);
+      --safe-bottom:env(safe-area-inset-bottom,0px);
+    }
+    *{box-sizing:border-box}
+    html,body{width:100%;height:100%;margin:0;overflow:hidden}
+    body{
+      color:var(--text);
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+      background:
+        radial-gradient(circle at 78% 18%,rgba(0,118,255,.17),transparent 25rem),
+        linear-gradient(180deg,#010713 0%,#031329 58%,#020914 100%);
+      overscroll-behavior:none;
+    }
+    body::before{
+      content:"";
+      position:fixed;inset:0;pointer-events:none;opacity:.48;
+      background-image:
+        radial-gradient(circle,rgba(112,204,255,.75) 0 1px,transparent 1.6px),
+        radial-gradient(circle,rgba(255,255,255,.34) 0 1px,transparent 1.4px);
+      background-size:89px 89px,147px 147px;
+      background-position:12px 25px,44px 67px;
+    }
+    button,a{font:inherit}
+    button{color:inherit}
+    .app{
+      position:relative;z-index:1;
+      width:min(100%,760px);
+      height:100dvh;
+      margin:0 auto;
+      padding:calc(8px + var(--safe-top)) 12px calc(8px + var(--safe-bottom));
+      display:grid;
+      grid-template-rows:auto minmax(0,1fr) auto;
+      gap:8px;
+      overflow:hidden;
+    }
+    .topbar{
+      height:64px;
+      padding:8px 10px;
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+      border:1px solid var(--line);border-radius:22px;
+      background:linear-gradient(135deg,rgba(9,39,74,.88),rgba(3,20,41,.82));
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.07);
+      backdrop-filter:blur(16px);
+    }
+    .brand{display:flex;align-items:center;gap:10px;min-width:0}
+    .brand-icon{
+      width:43px;height:43px;flex:0 0 auto;display:grid;place-items:center;
+      border:2px solid var(--cyan);border-radius:50%;color:var(--cyan);
+      box-shadow:0 0 18px rgba(76,210,255,.22);
+    }
+    .brand-icon svg{width:28px;height:28px}
+    .brand-name{font-size:27px;font-weight:620;letter-spacing:-1.1px;white-space:nowrap}
+    .brand-name span{color:#49a4ff}
+    .top-actions{display:flex;gap:7px}
+    .icon-btn{
+      width:48px;height:48px;border:1px solid rgba(91,181,255,.34);border-radius:16px;
+      display:grid;place-items:center;background:rgba(5,28,56,.78);cursor:pointer;
+      -webkit-tap-highlight-color:transparent;
+    }
+    .icon-btn:active{transform:scale(.96)}
+    .menu-lines{width:25px;display:grid;gap:5px}
+    .menu-lines i{display:block;height:3px;border-radius:8px;background:#fff}
+    .main{
+      min-height:0;
+      display:grid;
+      grid-template-rows:auto auto minmax(0,1fr);
+      gap:8px;
+      overflow:hidden;
+    }
+    .hero{
+      min-height:118px;
+      padding:7px 7px 2px;
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 128px;
+      gap:8px;align-items:center;
+    }
+    .eyebrow{
+      display:inline-flex;align-items:center;width:max-content;max-width:100%;
+      padding:6px 10px;border:1px solid rgba(76,178,255,.62);border-radius:999px;
+      color:#dff5ff;background:rgba(4,28,57,.56);
+      font-size:10px;font-weight:850;letter-spacing:.07em;
+    }
+    .eyebrow b{color:#56c9ff;margin-left:4px}
+    .hero h1{
+      margin:8px 0 4px;
+      font-size:clamp(29px,8.2vw,45px);
+      line-height:.95;letter-spacing:-.045em;font-weight:790;
+    }
+    .hero h1 span{color:#459fff}
+    .hero p{margin:0;color:var(--muted);font-size:13px;line-height:1.35}
+    .globe-wrap{position:relative;width:128px;height:128px;display:grid;place-items:center}
+    .globe-wrap::before,.globe-wrap::after{
+      content:"";position:absolute;width:138px;height:58px;border:1.5px solid rgba(65,169,255,.5);
+      border-radius:50%;filter:drop-shadow(0 0 6px rgba(0,142,255,.45));pointer-events:none;
+    }
+    .globe-wrap::before{transform:rotate(-18deg)}
+    .globe-wrap::after{transform:rotate(38deg);width:128px;height:76px;opacity:.64}
+    #globeCanvas{
+      position:relative;z-index:2;width:112px;height:112px;border-radius:50%;
+      filter:drop-shadow(0 0 20px rgba(42,171,255,.55));
+    }
+    .satellite{
+      position:absolute;z-index:3;width:7px;height:7px;border-radius:50%;
+      background:#68e2ff;box-shadow:0 0 12px #35d5ff;
+      animation:satellite 5s linear infinite;
+    }
+    @keyframes satellite{
+      from{transform:rotate(0deg) translateX(68px) rotate(0deg)}
+      to{transform:rotate(360deg) translateX(68px) rotate(-360deg)}
+    }
+    .tabs{
+      height:52px;padding:5px;display:grid;grid-template-columns:1fr 1fr;gap:5px;
+      border:1px solid var(--line);border-radius:18px;background:rgba(3,21,43,.78);
+    }
+    .tab{
+      border:0;border-radius:14px;background:transparent;color:#b8c6d7;
+      display:flex;align-items:center;justify-content:center;gap:8px;
+      font-size:16px;font-weight:780;cursor:pointer;
+      -webkit-tap-highlight-color:transparent;
+    }
+    .tab.active{
+      color:#fff;background:linear-gradient(135deg,#1f78dc,#124c9c);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 7px 20px rgba(0,82,184,.24);
+    }
+    .count{
+      width:30px;height:30px;display:grid;place-items:center;border-radius:50%;
+      border:1px solid rgba(141,199,255,.18);background:rgba(115,166,220,.19);
+      font-size:13px;
+    }
+    .carousel{
+      min-height:0;position:relative;overflow:hidden;
+      border:1px solid rgba(74,160,240,.19);border-radius:22px;
+      background:linear-gradient(180deg,rgba(6,31,61,.5),rgba(3,16,33,.42));
+      touch-action:none;
+    }
+    .card{
+      --accent:#58caff;
+      position:absolute;inset:8px 8px 34px;padding:18px;
+      border:1px solid color-mix(in srgb,var(--accent) 58%,transparent);
+      border-radius:20px;overflow:hidden;
+      display:grid;grid-template-rows:auto 1fr auto;gap:10px;
+      background:
+        radial-gradient(circle at 35% 8%,color-mix(in srgb,var(--accent) 28%,transparent),transparent 45%),
+        linear-gradient(145deg,color-mix(in srgb,var(--accent) 14%,#071a31),rgba(2,14,29,.95) 70%);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 12px 28px rgba(0,0,0,.18);
+      opacity:0;transform:translateX(22px) scale(.98);pointer-events:none;
+      transition:opacity .28s ease,transform .28s ease;
+    }
+    .card.active{opacity:1;transform:none;pointer-events:auto}
+    .card-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .partner-icon{
+      width:48px;height:48px;display:grid;place-items:center;border-radius:15px;
+      border:1px solid rgba(255,255,255,.14);background:rgba(2,19,38,.52);color:#fff;
+    }
+    .partner-icon svg{width:28px;height:28px}
+    .category{
+      max-width:64%;padding:7px 10px;border:1px solid rgba(255,255,255,.12);
+      border-radius:999px;background:rgba(2,18,38,.54);color:#d9e4ef;
+      font-size:10px;font-weight:850;letter-spacing:.055em;text-align:center;
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+    }
+    .card-body{align-self:center}
+    .wordmark{
+      margin:0 0 6px;font-size:clamp(31px,9vw,48px);line-height:.94;
+      font-weight:900;letter-spacing:-.055em;color:#fff;
+    }
+    .wordmark span{color:var(--accent)}
+    .wordmark.serif{font-family:Georgia,"Times New Roman",serif;letter-spacing:.035em;font-weight:700}
+    .description{margin:0;color:#bdcad8;font-size:15px;line-height:1.38}
+    .card-foot{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .cta{
+      min-height:48px;padding:0 17px;border-radius:14px;
+      display:flex;align-items:center;justify-content:center;
+      color:#fff;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 77%,#1268cc),#13539f);
+      border:1px solid color-mix(in srgb,var(--accent) 68%,transparent);
+      font-size:15px;font-weight:820;text-decoration:none;text-align:center;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.16);
+      -webkit-tap-highlight-color:transparent;
+    }
+    .cta:active{transform:scale(.98)}
+    .arrow-btn{
+      width:46px;height:46px;flex:0 0 auto;border-radius:50%;
+      border:1px solid rgba(125,197,255,.38);background:rgba(3,21,43,.7);
+      display:grid;place-items:center;color:#fff;font-size:24px;cursor:pointer;
+    }
+    .arrow-btn:disabled{opacity:.35}
+    .nav-row{
+      position:absolute;left:10px;right:10px;bottom:5px;height:25px;
+      display:grid;grid-template-columns:38px 1fr 38px;align-items:center;
+    }
+    .mini-arrow{
+      width:32px;height:25px;border:0;background:transparent;color:#92b0cc;
+      font-size:22px;cursor:pointer;
+    }
+    .dots{display:flex;justify-content:center;gap:7px}
+    .dot{
+      width:7px;height:7px;padding:0;border:0;border-radius:50%;
+      background:#3a5875;cursor:pointer;
+    }
+    .dot.active{width:18px;border-radius:8px;background:#55cfff}
+    .footer{
+      height:34px;display:flex;align-items:center;justify-content:center;gap:8px;
+      color:#92a7bc;font-size:11px;text-align:center;
+    }
+    .info-btn{border:0;background:transparent;color:#82caff;text-decoration:underline;cursor:pointer}
+    .modal{
+      position:fixed;inset:0;z-index:30;display:none;place-items:center;padding:18px;
+      background:rgba(0,7,16,.74);backdrop-filter:blur(10px);
+    }
+    .modal.open{display:grid}
+    .modal-card{
+      width:min(100%,480px);max-height:min(520px,80dvh);overflow:auto;
+      padding:20px;border:1px solid rgba(84,180,255,.42);border-radius:22px;
+      background:linear-gradient(155deg,#092546,#041225);box-shadow:0 24px 70px rgba(0,0,0,.46);
+    }
+    .modal-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .modal h2{margin:0;font-size:23px}
+    .close{width:40px;height:40px;border:1px solid var(--line);border-radius:13px;background:#061b35;cursor:pointer}
+    .modal p{color:#bfccda;line-height:1.55;font-size:15px}
+    .steps{display:grid;gap:10px;margin-top:15px}
+    .step{padding:12px;border:1px solid rgba(84,180,255,.24);border-radius:14px;background:rgba(5,24,48,.64)}
+    @media(max-height:700px){
+      .topbar{height:58px}
+      .brand-icon{width:39px;height:39px}
+      .brand-name{font-size:24px}
+      .icon-btn{width:43px;height:43px}
+      .hero{min-height:100px;grid-template-columns:minmax(0,1fr) 108px}
+      .hero h1{font-size:clamp(27px,7.4vw,38px)}
+      .hero p{display:none}
+      .globe-wrap{width:108px;height:108px}
+      #globeCanvas{width:94px;height:94px}
+      .globe-wrap::before{width:115px;height:46px}
+      .globe-wrap::after{width:108px;height:63px}
+      .card{padding:14px;gap:7px}
+      .partner-icon{width:42px;height:42px}
+      .wordmark{font-size:clamp(28px,8vw,41px)}
+      .description{font-size:13px}
+      .cta{min-height:43px;font-size:14px}
+    }
+    @media(min-width:700px){
+      .app{padding-left:18px;padding-right:18px}
+      .hero{grid-template-columns:minmax(0,1fr) 155px}
+      .globe-wrap{width:150px;height:150px}
+      #globeCanvas{width:132px;height:132px}
+      .card{inset:10px 55px 35px}
+    }
+  </style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Μετάβαση στο κύριο περιεχόμενο</a>
-
-  <main class="page" id="main">
-    <header class="topbar glass">
-      <a class="brand" href="./" aria-label="GlobalLink αρχική">
-        <span class="brand-mark"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="24" cy="24" r="19"/><path d="M5 24h38M24 5c7 7 10 13 10 19s-3 12-10 19c-7-7-10-13-10-19S17 12 24 5z"/><path d="M9 14c5 3 10 4 15 4s10-1 15-4M9 34c5-3 10-4 15-4s10 1 15 4"/></svg></span>
-        <span>
-          <span class="brand-title">Global<span>Link</span></span>
-          <span class="brand-subtitle">Επιλεγμένες αγορές και ταξίδια</span>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="24" cy="24" r="18"/>
+            <path d="M6 24h36M24 6c7 7 10 12 10 18s-3 11-10 18c-7-7-10-12-10-18S17 13 24 6z"/>
+          </svg>
         </span>
-      </a>
-
-      <div class="header-actions">
-        <button class="control language" type="button" aria-label="Γλώσσα: Ελληνικά">ΕΛ</button>
-        <button class="control menu-button" type="button" data-menu-button aria-label="Άνοιγμα μενού" aria-expanded="false">
+        <span class="brand-name">Global<span>Link</span></span>
+      </div>
+      <div class="top-actions">
+        <button class="icon-btn" id="infoOpen" type="button" aria-label="Πληροφορίες">ⓘ</button>
+        <button class="icon-btn" id="menuOpen" type="button" aria-label="Μενού">
           <span class="menu-lines"><i></i><i></i><i></i></span>
         </button>
       </div>
     </header>
 
-    <nav class="menu-panel glass" data-menu-panel hidden aria-label="Κύριο μενού">
-      <a href="#partners">Συνεργασίες</a>
-      <a href="#how">Πώς λειτουργεί</a>
-      <a href="#benefits">Γιατί GlobalLink</a>
-      <a href="#faq">Συχνές ερωτήσεις</a>
-    </nav>
-
-    <section class="hero">
-      <div class="hero-copy">
-        <div class="eyebrow">ΕΠΙΛΕΓΜΕΝΕΣ <b>ΣΥΝΕΡΓΑΣΙΕΣ</b></div>
-        <h1>Αγορές και <span>ταξίδια</span> σε ένα μέρος</h1>
-        <p>Επίλεξε αυτό που χρειάζεσαι και συνέχισε με ασφάλεια στον ιστότοπο της αντίστοιχης εταιρείας.</p>
-
-        <div class="hero-actions">
-          <button class="button button-primary" type="button" data-scroll-partners>Δες τις συνεργασίες <span>↓</span></button>
-          <a class="button button-secondary" href="#how">Πώς λειτουργεί</a>
+    <main class="main">
+      <section class="hero">
+        <div>
+          <div class="eyebrow">ΕΠΙΛΕΓΜΕΝΕΣ <b>ΣΥΝΕΡΓΑΣΙΕΣ</b></div>
+          <h1>Αγορές και <span>ταξίδια</span><br>σε ένα μέρος</h1>
+          <p>Επίλεξε εταιρεία και συνέχισε στον ιστότοπό της.</p>
         </div>
-
-        <div class="trust-row" aria-label="Κύρια χαρακτηριστικά">
-          <span class="trust-pill"><i>✓</i> 7 επιλεγμένες επιλογές</span>
-          <span class="trust-pill"><i>✓</i> Χωρίς επιπλέον κόστος</span>
-          <span class="trust-pill"><i>✓</i> Φιλικό σε κινητό</span>
+        <div class="globe-wrap" aria-label="Περιστρεφόμενη Γη">
+          <canvas id="globeCanvas" width="180" height="180"></canvas>
+          <span class="satellite"></span>
         </div>
-      </div>
+      </section>
 
-      <div class="globe-stage" aria-label="Γη με εμφανή συνεχή περιστροφή">
-        <span class="orbit"></span>
-        <span class="orbit second"></span>
-        <span class="orbit-dot"></span>
-        <div class="globe-shell" role="img" aria-label="Περιστρεφόμενη ψηφιακή Γη">
-          <div class="globe-map"></div>
-          <div class="globe-shade"></div>
-        </div>
-      </div>
-    </section>
-
-    <aside class="disclosure reveal" aria-label="Δήλωση συνδέσμων συνεργατών">
-      <span class="disclosure-icon">i</span>
-      <span><strong>Δήλωση συνεργατών:</strong> ορισμένοι σύνδεσμοι είναι σύνδεσμοι συνεργατών. Ενδέχεται να λάβω προμήθεια από αγορά ή κράτηση, χωρίς επιπλέον κόστος για εσένα.</span>
-    </aside>
-
-    <div class="affiliate-id-badge" aria-label="Κωδικός συνεργάτη">
-      Κωδικός συνεργάτη Linkwise: <strong>CD28424</strong>
-    </div>
-
-
-    <section id="partners" aria-labelledby="partners-title">
-      <div class="section-head reveal">
-        <p class="section-kicker">Επιλογές</p>
-        <h2 id="partners-title">Βρες αυτό που χρειάζεσαι</h2>
-        <p>Οι αγορές και οι κρατήσεις ολοκληρώνονται απευθείας στην αντίστοιχη εταιρεία.</p>
-      </div>
-
-      <div class="tabs" role="tablist" aria-label="Κατηγορίες συνεργασιών">
-        <button class="tab active" type="button" data-tab="shopping" role="tab" aria-selected="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 8h12l1 12H5L6 8z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg> Αγορές <span class="count">5</span>
+      <nav class="tabs" aria-label="Κατηγορίες">
+        <button class="tab active" type="button" data-category="shopping" aria-selected="true">
+          🛍 Αγορές <span class="count">5</span>
         </button>
-        <button class="tab" type="button" data-tab="travel" role="tab" aria-selected="false">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m2 16 8-4-5-7 2-1 7 6 6-3c2-1 3 2 1 3l-6 3-1 9-2 1-2-8-6 3-2-2z"/></svg> Ταξίδια <span class="count">2</span>
+        <button class="tab" type="button" data-category="travel" aria-selected="false">
+          ✈ Ταξίδια <span class="count">2</span>
         </button>
-      </div>
+      </nav>
 
-      <div class="partners reveal">
-
-        <div class="grid shopping" data-panel="shopping">
-          <a class="card" href="https://go.linkwi.se/z/11183-0/CD28424/?lnkurl=https%3A%2F%2Fmbest.aliexpress.com%2F%3Faff_fcid%3Dbfcb09d34f5043418bcc9716811fb6f7-1784578478913-08891-j6RrMzM%26aff_fsk%3Dj6RrMzM%26aff_platform%3Daaf%26sk%3Dj6RrMzM%26aff_trace_key%3Dbfcb09d34f5043418bcc9716811fb6f7-1784578478913-08891-j6RrMzM%26terminal_id%3D5a3158914b624c63ae53a1583c8df889%26afSmartRedirect%3Dy" target="_blank" rel="noopener sponsored"
-             data-affiliate="AliExpress" data-category="shopping" style="--accent:245,90,38" aria-label="Επισκέψου το AliExpress">
-            <div class="card-top">
-              <span class="partner-icon">
-                <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
-                  <path d="M13 22h38l-3 30H16l-3-30Z"/><path d="M23 22v-4a9 9 0 0 1 18 0v4"/>
-                  <path d="M24 35h.1M40 35h.1"/><path d="M25 43c5 4 9 4 14 0"/>
-                </svg>
-              </span>
-              <span class="partner-type">ΔΙΕΘΝΕΙΣ ΑΓΟΡΕΣ</span>
-            </div>
-            <div>
-              <div class="wordmark">Ali<span style="color:#ff7b35">Express</span></div>
-              <p>Μεγάλη ποικιλία προϊόντων και διεθνείς αγορές από το κινητό ή τον υπολογιστή.</p>
-            </div>
-            <div class="card-bottom">
-              <span><span class="card-cta">Επισκέψου το κατάστημα</span><span class="card-affiliate-code">ID CD28424</span></span>
-              <span class="arrow">↗</span>
-            </div>
-          </a>
-
-          <a class="card" href="https://go.linkwi.se/z/11625-0/CD28424/?lnkurl=https%3A%2F%2Fwww.luigi.com.gr%2F" target="_blank" rel="noopener sponsored"
-             data-affiliate="Luigi" data-category="shopping" style="--accent:214,69,86" aria-label="Επισκέψου το Luigi">
-            <div class="card-top">
-              <span class="partner-icon"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M10 42c9-1 16-7 20-19 4 8 9 14 22 18 4 1 6 4 5 8H12c-5 0-6-5-2-7Z"/><path d="M30 30l6 2M27 35l6 2"/></svg></span>
-              <span class="partner-type">ΜΟΔΑ</span>
-            </div>
-            <div>
-              <div class="wordmark serif">LUIGI</div>
-              <p>Μόδα, υποδήματα και επιλογές για καθημερινές αγορές.</p>
-            </div>
-            <div class="card-bottom">
-              <span><span class="card-cta">Επισκέψου το κατάστημα</span><span class="card-affiliate-code">ID CD28424</span></span>
-              <span class="arrow">↗</span>
-            </div>
-          </a>
-
-          <a class="card" href="https://go.linkwi.se/z/12056-0/CD28424/?lnkurl=https%3A%2F%2Fsuperpanes.gr%2F" target="_blank" rel="noopener sponsored"
-             data-affiliate="Superpanes" data-category="shopping" style="--accent:42,161,224" aria-label="Επισκέψου το Superpanes">
-            <div class="card-top">
-              <span class="partner-icon"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M18 27c0-9 6-16 14-16s14 7 14 16v9c0 10-6 18-14 18s-14-8-14-18v-9Z"/><path d="M26 30h.1M38 30h.1"/><path d="M27 40c3 3 7 3 10 0"/><path d="M32 11c0-5 5-7 9-4"/></svg></span>
-              <span class="partner-type">ΒΡΕΦΙΚΑ</span>
-            </div>
-            <div>
-              <div class="wordmark">super<span style="color:#72dcff">panes</span></div>
-              <p>Βρεφικά προϊόντα και καθημερινές ανάγκες για την οικογένεια.</p>
-            </div>
-            <div class="card-bottom">
-              <span><span class="card-cta">Επισκέψου το κατάστημα</span><span class="card-affiliate-code">ID CD28424</span></span>
-              <span class="arrow">↗</span>
-            </div>
-          </a>
-
-          <a class="card" href="https://go.linkwi.se/z/12365-0/CD28424/?lnkurl=https%3A%2F%2Fwww.greeceandgrapes.com%2F" target="_blank" rel="noopener sponsored"
-             data-affiliate="Greece and Grapes" data-category="shopping" style="--accent:151,104,186" aria-label="Επισκέψου το Greece and Grapes">
-            <div class="card-top">
-              <span class="partner-icon"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M32 17c3-7 9-9 15-7-2 6-7 10-15 7Z"/><path d="M31 17c-2-6-6-9-11-10"/><circle cx="28" cy="25" r="7"/><circle cx="39" cy="28" r="7"/><circle cx="23" cy="36" r="7"/><circle cx="35" cy="39" r="7"/><circle cx="29" cy="50" r="7"/></svg></span>
-              <span class="partner-type">ΕΛΛΗΝΙΚΑ ΚΡΑΣΙΑ</span>
-            </div>
-            <div>
-              <div class="wordmark serif">GREECE &amp; GRAPES</div>
-              <p>Επιλεγμένα ελληνικά κρασιά και προϊόντα οινικού ενδιαφέροντος.</p>
-            </div>
-            <div class="card-bottom">
-              <span><span class="card-cta">Δες τις επιλογές</span><span class="card-affiliate-code">ID CD28424</span></span>
-              <span class="arrow">↗</span>
-            </div>
-          </a>
-
-          <a class="card" href="https://go.linkwi.se/z/12587-0/CD28424/?lnkurl=https%3A%2F%2Fwww.mycretangoods.com%2Fel-gr" target="_blank" rel="noopener sponsored"
-             data-affiliate="My Cretan Goods" data-category="shopping" style="--accent:86,180,117" aria-label="Επισκέψου το My Cretan Goods">
-            <div class="card-top">
-              <span class="partner-icon">
-                <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
-                  <path d="M34 54c0-17 2-31 13-42"/><path d="M41 20c-9 0-14 5-15 13 8 1 14-3 15-13Z"/>
-                  <path d="M38 31c8-1 13 3 15 10-7 3-13-1-15-10Z"/><path d="M32 44c-7-1-12 2-15 8 6 4 12 1 15-8Z"/>
-                </svg>
-              </span>
-              <span class="partner-type">ΚΡΗΤΙΚΑ ΠΡΟΪΟΝΤΑ</span>
-            </div>
-            <div>
-              <div class="wordmark">My Cretan <span style="color:#84e3a8">Goods</span></div>
-              <p>Κρητικά προϊόντα και αυθεντικές γεύσεις από την Ελλάδα.</p>
-            </div>
-            <div class="card-bottom">
-              <span><span class="card-cta">Επισκέψου το κατάστημα</span><span class="card-affiliate-code">ID CD28424</span></span>
-              <span class="arrow">↗</span>
-            </div>
-          </a>
+      <section class="carousel" id="carousel" aria-live="polite">
+        <article class="card active" id="partnerCard">
+          <div class="card-head">
+            <span class="partner-icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3">
+                <path d="M13 22h38l-3 30H16l-3-30Z"/><path d="M23 22v-4a9 9 0 0 1 18 0v4"/>
+              </svg>
+            </span>
+            <span class="category" id="partnerCategory"></span>
+          </div>
+          <div class="card-body">
+            <div class="wordmark" id="partnerMark"></div>
+            <p class="description" id="partnerDescription"></p>
+          </div>
+          <div class="card-foot">
+            <a class="cta" id="partnerLink" href="#" target="_blank" rel="noopener sponsored"></a>
+            <button class="arrow-btn" id="nextCard" type="button" aria-label="Επόμενη εταιρεία">→</button>
+          </div>
+        </article>
+        <div class="nav-row">
+          <button class="mini-arrow" id="prevCard" type="button" aria-label="Προηγούμενη εταιρεία">‹</button>
+          <div class="dots" id="dots"></div>
+          <button class="mini-arrow" id="nextCardBottom" type="button" aria-label="Επόμενη εταιρεία">›</button>
         </div>
-
-
-        <div class="grid travel" data-panel="travel" hidden>
-          <a class="card" href="https://go.linkwi.se/z/11739-0/CD28424/?lnkurl=https%3A%2F%2Fwww.letsferry.com%2Fel" target="_blank" rel="noopener sponsored"
-             data-affiliate="LetsFerry" data-category="travel" style="--accent:39,153,226" aria-label="Αναζήτησε ακτοπλοϊκά στο LetsFerry">
-            <div class="card-top">
-              <span class="partner-icon"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M14 31h36l-5 16H19l-5-16Z"/><path d="M21 31V19h22v12M27 19V11h10v8"/><path d="M8 51c5 4 10 4 15 0 5 4 10 4 15 0 5 4 10 4 15 0"/></svg></span>
-              <span class="partner-type">ΑΚΤΟΠΛΟΪΚΑ</span>
-            </div>
-            <div>
-              <div class="wordmark">lets<span style="color:#65dcff">ferry</span></div>
-              <p>Αναζήτησε δρομολόγια και ακτοπλοϊκά εισιτήρια για τον προορισμό σου.</p>
-            </div>
-            <div class="card-bottom">
-              <span><span class="card-cta">Αναζήτησε εισιτήρια</span><span class="card-affiliate-code">ID CD28424</span></span>
-              <span class="arrow">↗</span>
-            </div>
-          </a>
-
-          <a class="card" href="https://go.linkwi.se/z/12865-0/CD28424/?lnkurl=https%3A%2F%2Fwww.ferryscanner.com%2Fel%2Fferry" target="_blank" rel="noopener sponsored"
-             data-affiliate="Ferryscanner" data-category="travel" style="--accent:30,188,183" aria-label="Αναζήτησε ακτοπλοϊκά στο Ferryscanner">
-            <div class="card-top">
-              <span class="partner-icon">
-                <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
-                  <path d="M13 31h38l-6 16H19l-6-16Z"/><path d="M20 31V18h24v13"/><path d="M26 18v-7h12v7"/>
-                  <path d="M8 52c5 4 10 4 15 0 5 4 10 4 15 0 5 4 10 4 15 0"/>
-                </svg>
-              </span>
-              <span class="partner-type">ΣΥΓΚΡΙΣΗ ΔΡΟΜΟΛΟΓΙΩΝ</span>
-            </div>
-            <div>
-              <div class="wordmark">Ferry<span style="color:#66e0d8">scanner</span></div>
-              <p>Σύγκρινε δρομολόγια και αναζήτησε ακτοπλοϊκά εισιτήρια.</p>
-            </div>
-            <div class="card-bottom">
-              <span><span class="card-cta">Σύγκρινε εισιτήρια</span><span class="card-affiliate-code">ID CD28424</span></span>
-              <span class="arrow">↗</span>
-            </div>
-          </a>
-        </div>
-
-      </div>
-    </section>
-
-    <section class="section" id="how" aria-labelledby="how-title">
-      <div class="section-head reveal">
-        <p class="section-kicker">3 απλά βήματα</p>
-        <h2 id="how-title">Πώς λειτουργεί</h2>
-        <p>Η GlobalLink σε βοηθά να περάσεις γρήγορα από την επιλογή στην επίσημη ιστοσελίδα της εταιρείας.</p>
-      </div>
-
-      <div class="steps">
-        <article class="step reveal"><span class="step-number">1</span><h3>Επιλέγεις κατηγορία</h3><p>Διάλεξε ανάμεσα σε αγορές και ταξίδια.</p></article>
-        <article class="step reveal"><span class="step-number">2</span><h3>Πατάς την εταιρεία</h3><p>Άνοιξε την επιλογή που ταιριάζει περισσότερο σε αυτό που ψάχνεις.</p></article>
-        <article class="step reveal"><span class="step-number">3</span><h3>Ολοκληρώνεις εκεί</h3><p>Η αγορά ή η κράτηση γίνεται στον ιστότοπο της εταιρείας.</p></article>
-      </div>
-    </section>
-
-    <section class="section" id="benefits" aria-labelledby="benefits-title">
-      <div class="section-head reveal">
-        <p class="section-kicker">Καθαρά και απλά</p>
-        <h2 id="benefits-title">Γιατί GlobalLink</h2>
-      </div>
-
-      <div class="benefits">
-        <article class="benefit reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><h3>Λιγότερο ψάξιμο</h3><p>Οι διαθέσιμες επιλογές βρίσκονται οργανωμένες σε μία σελίδα.</p></article>
-        <article class="benefit reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3 8 8 10 5-2 8-5 8-10V6l-8-3Z"/><path d="m8 12 3 3 5-6"/></svg><h3>Καθαρή ενημέρωση</h3><p>Η σχέση συνεργάτη δηλώνεται εμφανώς πριν από τα κουμπιά.</p></article>
-        <article class="benefit reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M10 18h4"/></svg><h3>Σχεδιασμένο για κινητό</h3><p>Μεγάλα κουμπιά, γρήγορη φόρτωση και απλή πλοήγηση.</p></article>
-      </div>
-    </section>
-
-    <section class="section" id="faq" aria-labelledby="faq-title">
-      <div class="section-head reveal">
-        <p class="section-kicker">Χρήσιμες πληροφορίες</p>
-        <h2 id="faq-title">Συχνές ερωτήσεις</h2>
-      </div>
-
-      <div class="faq reveal">
-        <article class="faq-item">
-          <button class="faq-button" type="button" aria-expanded="false"><span>Πληρώνω περισσότερο μέσω της GlobalLink;</span><span>+</span></button>
-          <div class="faq-answer" hidden>Όχι. Η ενδεχόμενη προμήθεια συνεργάτη δεν προσθέτει επιπλέον κόστος στην τιμή που βλέπεις στην εταιρεία.</div>
-        </article>
-        <article class="faq-item">
-          <button class="faq-button" type="button" aria-expanded="false"><span>Πού ολοκληρώνεται η αγορά ή η κράτηση;</span><span>+</span></button>
-          <div class="faq-answer" hidden>Η συναλλαγή ολοκληρώνεται στον ιστότοπο της εταιρείας που επέλεξες. Η GlobalLink δεν διαχειρίζεται πληρωμές.</div>
-        </article>
-        <article class="faq-item">
-          <button class="faq-button" type="button" aria-expanded="false"><span>Γιατί εμφανίζονται αυτές οι επτά επιλογές;</span><span>+</span></button>
-          <div class="faq-answer" hidden>Η σελίδα εμφανίζει μόνο τις επτά ενεργές συνεργασίες που έχουν προστεθεί με τον κωδικό συνεργάτη CD28424.</div>
-        </article>
-      </div>
-    </section>
-
-    <section class="final-cta reveal">
-      <h2>Έτοιμος να ξεκινήσεις;</h2>
-      <p>Επίλεξε κατηγορία, άνοιξε την εταιρεία και συνέχισε απευθείας στον ιστότοπό της.</p>
-      <button class="button button-primary" type="button" data-scroll-partners>Δες τις συνεργασίες</button>
-    </section>
+      </section>
+    </main>
 
     <footer class="footer">
-      <div>
-        <strong style="color:#dcecff">GlobalLink</strong>
-        <div class="copyright">© <span data-year></span> GlobalLink. Η GlobalLink δεν επεξεργάζεται πληρωμές.</div>
-      </div>
-      <nav class="footer-links" aria-label="Σύνδεσμοι υποσέλιδου">
-        <a href="affiliate-disclosure.html">Δήλωση συνεργατών</a>
-        <a href="privacy.html">Πολιτική απορρήτου</a>
-        <a href="https://github.com/moschidismoschos-hash" target="_blank" rel="noopener">Επικοινωνία</a>
-      </nav>
+      <span>Οι σύνδεσμοι μπορεί να αποφέρουν προμήθεια χωρίς επιπλέον κόστος.</span>
+      <button class="info-btn" id="disclosureOpen" type="button">Πληροφορίες</button>
     </footer>
-  </main>
+  </div>
+
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <div class="modal-top">
+        <h2 id="modalTitle">Πώς λειτουργεί</h2>
+        <button class="close" id="modalClose" type="button" aria-label="Κλείσιμο">✕</button>
+      </div>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script>
+    
+const PARTNERS = {
+  shopping: [
+    {
+      name: 'AliExpress',
+      category: 'Διεθνείς αγορές',
+      description: 'Μεγάλη ποικιλία προϊόντων.',
+      action: 'Επισκέψου το κατάστημα',
+      accent: '#ff7138',
+      mark: 'Ali<span>Express</span>',
+      url: 'https://go.linkwi.se/z/11183-0/CD28424/?lnkurl=https%3A%2F%2Fmbest.aliexpress.com%2F%3Faff_fcid%3Dbfcb09d34f5043418bcc9716811fb6f7-1784578478913-08891-j6RrMzM%26aff_fsk%3Dj6RrMzM%26aff_platform%3Daaf%26sk%3Dj6RrMzM%26aff_trace_key%3Dbfcb09d34f5043418bcc9716811fb6f7-1784578478913-08891-j6RrMzM%26terminal_id%3D5a3158914b624c63ae53a1583c8df889%26afSmartRedirect%3Dy'
+    },
+    {
+      name: 'Luigi',
+      category: 'Μόδα',
+      description: 'Μόδα και υποδήματα.',
+      action: 'Επισκέψου το κατάστημα',
+      accent: '#ef6d86',
+      mark: 'LUIGI',
+      serif: true,
+      url: 'https://go.linkwi.se/z/11625-0/CD28424/?lnkurl=https%3A%2F%2Fwww.luigi.com.gr%2F'
+    },
+    {
+      name: 'Superpanes',
+      category: 'Βρεφικά',
+      description: 'Προϊόντα για τις ανάγκες της οικογένειας.',
+      action: 'Επισκέψου το κατάστημα',
+      accent: '#5ad8ff',
+      mark: 'super<span>panes</span>',
+      url: 'https://go.linkwi.se/z/12056-0/CD28424/?lnkurl=https%3A%2F%2Fsuperpanes.gr%2F'
+    },
+    {
+      name: 'Greece and Grapes',
+      category: 'Ελληνικά κρασιά',
+      description: 'Επιλεγμένα ελληνικά κρασιά.',
+      action: 'Δες τις επιλογές',
+      accent: '#d5a7ff',
+      mark: 'GREECE &amp; GRAPES',
+      serif: true,
+      url: 'https://go.linkwi.se/z/12365-0/CD28424/?lnkurl=https%3A%2F%2Fwww.greeceandgrapes.com%2F'
+    },
+    {
+      name: 'My Cretan Goods',
+      category: 'Κρητικά προϊόντα',
+      description: 'Αυθεντικές γεύσεις από την Κρήτη.',
+      action: 'Επισκέψου το κατάστημα',
+      accent: '#77e5a6',
+      mark: 'My Cretan <span>Goods</span>',
+      url: 'https://go.linkwi.se/z/12587-0/CD28424/?lnkurl=https%3A%2F%2Fwww.mycretangoods.com%2Fel-gr'
+    }
+  ],
+  travel: [
+    {
+      name: 'LetsFerry',
+      category: 'Ακτοπλοϊκά',
+      description: 'Αναζήτησε δρομολόγια και εισιτήρια.',
+      action: 'Αναζήτησε εισιτήρια',
+      accent: '#59d7ff',
+      mark: 'lets<span>ferry</span>',
+      url: 'https://go.linkwi.se/z/11739-0/CD28424/?lnkurl=https%3A%2F%2Fwww.letsferry.com%2Fel'
+    },
+    {
+      name: 'Ferryscanner',
+      category: 'Σύγκριση δρομολογίων',
+      description: 'Σύγκρινε ακτοπλοϊκά δρομολόγια.',
+      action: 'Σύγκρινε εισιτήρια',
+      accent: '#55dfd4',
+      mark: 'Ferry<span>scanner</span>',
+      url: 'https://go.linkwi.se/z/12865-0/CD28424/?lnkurl=https%3A%2F%2Fwww.ferryscanner.com%2Fel%2Fferry'
+    }
+  ]
+};
+
+
+    const state = { category: 'shopping', index: 0 };
+    const card = document.getElementById('partnerCard');
+    const categoryEl = document.getElementById('partnerCategory');
+    const markEl = document.getElementById('partnerMark');
+    const descriptionEl = document.getElementById('partnerDescription');
+    const linkEl = document.getElementById('partnerLink');
+    const dotsEl = document.getElementById('dots');
+    const tabs = [...document.querySelectorAll('.tab')];
+
+    function iconFor(category) {
+      return category === 'travel'
+        ? '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3"><path d="M13 31h38l-6 16H19l-6-16Z"/><path d="M20 31V18h24v13"/><path d="M8 52c5 4 10 4 15 0 5 4 10 4 15 0 5 4 10 4 15 0"/></svg>'
+        : '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3"><path d="M13 22h38l-3 30H16l-3-30Z"/><path d="M23 22v-4a9 9 0 0 1 18 0v4"/></svg>';
+    }
+
+    function renderCard(direction = 1) {
+      const list = PARTNERS[state.category];
+      state.index = (state.index + list.length) % list.length;
+      const partner = list[state.index];
+
+      card.classList.remove('active');
+      card.style.transform = `translateX(${direction * 22}px) scale(.98)`;
+
+      window.setTimeout(() => {
+        card.style.setProperty('--accent', partner.accent);
+        card.querySelector('.partner-icon').innerHTML = iconFor(state.category);
+        categoryEl.textContent = partner.category;
+        markEl.innerHTML = partner.mark;
+        markEl.classList.toggle('serif', Boolean(partner.serif));
+        descriptionEl.textContent = partner.description;
+        linkEl.textContent = partner.action;
+        linkEl.href = partner.url;
+        linkEl.setAttribute('aria-label', `${partner.action} — ${partner.name}`);
+
+        dotsEl.innerHTML = list.map((_, index) =>
+          `<button class="dot ${index === state.index ? 'active' : ''}" type="button" data-index="${index}" aria-label="Εταιρεία ${index + 1}"></button>`
+        ).join('');
+
+        dotsEl.querySelectorAll('.dot').forEach(dot => {
+          dot.addEventListener('click', () => {
+            const target = Number(dot.dataset.index);
+            const direction = target >= state.index ? 1 : -1;
+            state.index = target;
+            renderCard(direction);
+          });
+        });
+
+        requestAnimationFrame(() => {
+          card.style.transform = '';
+          card.classList.add('active');
+        });
+      }, 140);
+    }
+
+    function move(step) {
+      state.index += step;
+      renderCard(step);
+    }
+
+    document.getElementById('nextCard').addEventListener('click', () => move(1));
+    document.getElementById('nextCardBottom').addEventListener('click', () => move(1));
+    document.getElementById('prevCard').addEventListener('click', () => move(-1));
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(item => {
+          item.classList.remove('active');
+          item.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        state.category = tab.dataset.category;
+        state.index = 0;
+        renderCard(1);
+      });
+    });
+
+    let startX = null;
+    const carousel = document.getElementById('carousel');
+    carousel.addEventListener('pointerdown', event => {
+      startX = event.clientX;
+      carousel.setPointerCapture(event.pointerId);
+    });
+    carousel.addEventListener('pointerup', event => {
+      if (startX === null) return;
+      const distance = event.clientX - startX;
+      startX = null;
+      if (Math.abs(distance) > 42) move(distance < 0 ? 1 : -1);
+    });
+    carousel.addEventListener('pointercancel', () => { startX = null; });
+
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalContent = document.getElementById('modalContent');
+
+    function openModal(type) {
+      if (type === 'disclosure') {
+        modalTitle.textContent = 'Δήλωση συνεργατών';
+        modalContent.innerHTML = '<p>Ορισμένοι σύνδεσμοι είναι σύνδεσμοι συνεργατών. Ενδέχεται να λάβω προμήθεια από μια έγκυρη αγορά ή κράτηση, χωρίς επιπλέον κόστος για εσένα.</p><p>Η αγορά ή η κράτηση ολοκληρώνεται απευθείας στον ιστότοπο της αντίστοιχης εταιρείας.</p>';
+      } else {
+        modalTitle.textContent = 'Πώς λειτουργεί';
+        modalContent.innerHTML = '<div class="steps"><div class="step"><strong>1. Επίλεξε κατηγορία</strong><br>Αγορές ή ταξίδια.</div><div class="step"><strong>2. Άλλαξε εταιρεία</strong><br>Με τα βελάκια, τις τελείες ή σύροντας την κάρτα.</div><div class="step"><strong>3. Συνέχισε στην εταιρεία</strong><br>Πάτησε το κουμπί της κάρτας.</div></div>';
+      }
+      modal.classList.add('open');
+    }
+
+    document.getElementById('infoOpen').addEventListener('click', () => openModal('disclosure'));
+    document.getElementById('disclosureOpen').addEventListener('click', () => openModal('disclosure'));
+    document.getElementById('menuOpen').addEventListener('click', () => openModal('how'));
+    document.getElementById('modalClose').addEventListener('click', () => modal.classList.remove('open'));
+    modal.addEventListener('click', event => {
+      if (event.target === modal) modal.classList.remove('open');
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') modal.classList.remove('open');
+    });
+
+    // Πραγματική περιστροφή σφαίρας με Canvas.
+    const globeCanvas = document.getElementById('globeCanvas');
+    const globeContext = globeCanvas.getContext('2d', { alpha: true });
+    const globeSize = globeCanvas.width;
+    const radius = globeSize / 2;
+    const output = globeContext.createImageData(globeSize, globeSize);
+    const textureImage = new Image();
+    let texturePixels = null;
+    let textureWidth = 0;
+    let textureHeight = 0;
+    let rotation = 0;
+    let previousTime = performance.now();
+
+    const pixelMap = [];
+    for (let y = 0; y < globeSize; y++) {
+      for (let x = 0; x < globeSize; x++) {
+        const nx = (x - radius) / radius;
+        const ny = (y - radius) / radius;
+        const distance = nx * nx + ny * ny;
+        if (distance <= 1) {
+          const nz = Math.sqrt(1 - distance);
+          const latitude = Math.asin(-ny);
+          const longitudeBase = Math.atan2(nx, nz);
+          const light = Math.max(.34, .28 + .82 * Math.max(0, nx * -.38 + ny * -.32 + nz * .86));
+          pixelMap.push({ x, y, latitude, longitudeBase, light, edge: Math.pow(nz, .32) });
+        }
+      }
+    }
+
+    function drawGlobe(time) {
+      if (!texturePixels) {
+        requestAnimationFrame(drawGlobe);
+        return;
+      }
+      const delta = Math.min(40, time - previousTime);
+      previousTime = time;
+      rotation = (rotation + delta * 0.00042) % (Math.PI * 2);
+
+      output.data.fill(0);
+      for (const pixel of pixelMap) {
+        let longitude = pixel.longitudeBase + rotation;
+        longitude = ((longitude / (Math.PI * 2)) + .5) % 1;
+        if (longitude < 0) longitude += 1;
+        const latitudeNormalized = .5 - pixel.latitude / Math.PI;
+        const tx = Math.min(textureWidth - 1, Math.floor(longitude * textureWidth));
+        const ty = Math.min(textureHeight - 1, Math.floor(latitudeNormalized * textureHeight));
+        const sourceIndex = (ty * textureWidth + tx) * 4;
+        const targetIndex = (pixel.y * globeSize + pixel.x) * 4;
+        const shade = pixel.light * pixel.edge;
+
+        output.data[targetIndex] = Math.min(255, texturePixels[sourceIndex] * shade + 7);
+        output.data[targetIndex + 1] = Math.min(255, texturePixels[sourceIndex + 1] * shade + 14);
+        output.data[targetIndex + 2] = Math.min(255, texturePixels[sourceIndex + 2] * shade + 25);
+        output.data[targetIndex + 3] = 255;
+      }
+
+      globeContext.putImageData(output, 0, 0);
+      globeContext.globalCompositeOperation = 'source-atop';
+      const glow = globeContext.createRadialGradient(58, 48, 2, 90, 90, 90);
+      glow.addColorStop(0, 'rgba(255,255,255,.20)');
+      glow.addColorStop(.32, 'rgba(86,190,255,.05)');
+      glow.addColorStop(1, 'rgba(0,24,60,.18)');
+      globeContext.fillStyle = glow;
+      globeContext.fillRect(0, 0, globeSize, globeSize);
+      globeContext.globalCompositeOperation = 'source-over';
+
+      requestAnimationFrame(drawGlobe);
+    }
+
+    textureImage.onload = () => {
+      const textureCanvas = document.createElement('canvas');
+      textureCanvas.width = textureImage.naturalWidth;
+      textureCanvas.height = textureImage.naturalHeight;
+      const textureContext = textureCanvas.getContext('2d', { willReadFrequently: true });
+      textureContext.drawImage(textureImage, 0, 0);
+      const textureData = textureContext.getImageData(0, 0, textureCanvas.width, textureCanvas.height);
+      texturePixels = textureData.data;
+      textureWidth = textureCanvas.width;
+      textureHeight = textureCanvas.height;
+      requestAnimationFrame(drawGlobe);
+    };
+    textureImage.src = 'assets/earth-texture.webp';
+
+    renderCard();
+  </script>
 </body>
 </html>
