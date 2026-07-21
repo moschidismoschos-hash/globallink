@@ -421,3 +421,84 @@ img{max-width:100%}
   .partner-type{font-size:10px}
   .wordmark{font-size:clamp(27px,9vw,37px)}
 }
+
+
+/* GLOBAL LINK — ασφαλής διόρθωση στρογγυλής κινούμενης Γης */
+.globe-stage{
+  position:relative;
+  min-height:405px;
+  display:grid;
+  place-items:center;
+  overflow:visible;
+}
+
+.globe-shell{
+  position:relative;
+  z-index:3;
+  width:min(420px,42vw);
+  aspect-ratio:1 / 1;
+  border-radius:50%;
+  overflow:hidden;
+  background:#06162b;
+  box-shadow:
+    0 0 0 2px rgba(112,215,255,.24),
+    0 0 38px rgba(43,174,255,.48),
+    0 0 105px rgba(20,110,255,.20);
+  user-select:none;
+  pointer-events:none;
+  isolation:isolate;
+}
+
+.globe-map{
+  position:absolute;
+  inset:-6%;
+  border-radius:50%;
+  background-image:url("earth.webp");
+  background-repeat:no-repeat;
+  background-size:116% 116%;
+  background-position:42% center;
+  animation:earthSurfaceMove 10s ease-in-out infinite alternate;
+  will-change:background-position,filter;
+}
+
+.globe-shade{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  border-radius:50%;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 31% 24%,rgba(255,255,255,.20),transparent 20%),
+    linear-gradient(90deg,rgba(0,0,0,.34),transparent 34%,transparent 65%,rgba(0,0,0,.48));
+  box-shadow:inset -18px -10px 38px rgba(0,0,0,.34);
+}
+
+@keyframes earthSurfaceMove{
+  0%{
+    background-position:38% center;
+    filter:brightness(.95);
+  }
+  50%{
+    filter:brightness(1.06);
+  }
+  100%{
+    background-position:62% center;
+    filter:brightness(.96);
+  }
+}
+
+.mobile-cta{
+  display:none !important;
+}
+
+@media(max-width:900px){
+  .globe-shell{width:min(320px,72vw)}
+}
+
+@media(max-width:650px){
+  .globe-shell{width:245px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .globe-map{animation:none}
+}
